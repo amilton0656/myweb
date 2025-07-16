@@ -1,0 +1,28 @@
+python -m venv .venv
+.\.venv\Scripts\activate
+source .venv/bin/activate
+
+pip install django
+pip install pillow
+
+pip freeze > requirements.txt
+pip install -r requirements.txt
+
+django-admin startproject core .
+
+pip install python-dotenv
+
+pip install django-cors-headers
+
+pip install django-requestlogs
+
+sudo chmod -R 777 path/info.log
+
+python manage.py startapp base
+
+python manage.py startapp pages
+
+python manage.py startapp english
+
+python manage.py startapp portugues
+
