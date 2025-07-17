@@ -61,11 +61,11 @@ CORS_ALLOW_CREDENTIALS = False
 
 CORS_ORIGIN_WHITELIST = ['http://amilton.com.br',] # Lista.
 
-if not DEBUG:  # https
-	SECURE_SSL_REDIRECT = True
-	ADMINS = [(os.getenv('SUPER_USER'), os.getenv('EMAIL'))]
-	SESSION_COOKIE_SECURE = True
-	CSRF_COOKIE_SECURE = True
+# if not DEBUG:  # https
+# 	SECURE_SSL_REDIRECT = True
+# 	ADMINS = [(os.getenv('SUPER_USER'), os.getenv('EMAIL'))]
+# 	SESSION_COOKIE_SECURE = True
+# 	CSRF_COOKIE_SECURE = True
 
 # Application definition
 
