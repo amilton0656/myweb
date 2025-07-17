@@ -1,0 +1,289 @@
+  {% extends 'friends-base.html' %}
+  {% load static %}
+  {% block title %}
+    <title>Friends - Parte 08</title>
+  {% endblock title %}
+
+<body>
+  {% block video %}
+      <video id="meuVideo" src="{% static 'videos/friends0101/friends-01-08.mp4' %}" controls></video>
+    {% endblock video %}
+  </div>
+
+  {% block script %}
+
+  <script>
+    // 1. DADOS DO DIÁLOGO (PARTE 8)
+    // ATENÇÃO: Apenas os dados válidos do arquivo original foram incluídos.
+    // O restante dos dados no seu arquivo parecia corrompido.
+    const dialogoData = [
+      {
+        pt: "Frannie, bem-vinda de volta! Como foi na Flórida?",
+        en: "Frannie, welcome back! How was Florida?",
+        inicio: 1.6,
+        fim: 3.6,
+      },
+      {
+        pt: "Você fez sexo, não fez?",
+        en: "You had sex, didn't you?",
+        inicio: 4.5,
+        fim: 6,
+      },
+      {
+        pt: "Como você faz isso?",
+        en: "How do you do that?",
+        inicio: 7.9,
+        fim: 8.9,
+      },
+      {
+        pt: "Quer dizer que você conhece Paul como eu conheço Paul?",
+        en: "You mean you know Paul like I know Paul?",
+        inicio: 20,
+        fim: 22.7,
+      },
+      {
+        pt: "Tá brincando? Eu levo o crédito pelo Paul.",
+        en: "Are you kidding? I take credit for Paul.",
+        inicio: 22.8,
+        fim: 25,
+      },
+      {
+        pt: "Sabe, antes de mim, não houve nenhum estalo na tartaruga dele por dois anos.",
+        en: "Y'know before me, there was no snap in his turtle for two years.",
+        inicio: 25.4,
+        fim: 29,
+      },
+      {
+        pt: "Claro que era uma fila!",
+        en: "Of course it was a line!",
+        inicio: 32.5,
+        fim: 34.4,
+      },
+      {
+        pt: "por que alguém faria algo assim?",
+        en: "why would anybody do something like that?",
+        inicio: 36.4,
+        fim: 38.4,
+      },
+      {
+        pt: "Imagino que estejamos procurando uma resposta mais sofisticada do que",
+        en: "I assume we're looking for an answer more sophisticated than",
+        inicio: 38.5,
+        fim: 41.3,
+      },
+      {
+        pt: "'levar você para a cama'.",
+        en: "'to get you into bed'.",
+        inicio: 41.7,
+        fim: 43,
+      },
+      {
+        pt: "Sou eu? É como se eu tivesse algum tipo de farol que somente cães e homens",
+        en: "Is it me? Is it like I have some sort of beacon that only dogs and men",
+        inicio: 45,
+        fim: 50.7,
+      },
+      {
+        pt: "com problemas emocionais graves conseguem ouvir?",
+        en: "with severe emotional problems can hear?",
+        inicio: 50.8,
+        fim: 52.8,
+      },
+      {
+        pt: "Tudo bem, venha cá, me dê seus pés.",
+        en: "All right, c'mere, gimme your feet.",
+        inicio: 53,
+        fim: 54.6,
+      },
+      {
+        pt: "Eu só achei ele legal, sabe?",
+        en: "I just thought he was nice, y'know?",
+        inicio: 62.5,
+        fim: 64.1,
+      },
+      {
+        pt: "Não acredito que você não sabia que era uma fila!",
+        en: "I can't believe you didn't know it was a line!",
+        inicio: 67,
+        fim: 69.5,
+      },
+      {
+        pt: "Advinha!",
+        en: "Guess what?",
+        inicio: 74.5,
+        fim: 75,
+      },
+      {
+        pt: "Você conseguiu um emprego?",
+        en: "You got a job?",
+        inicio: 75.7,
+        fim: 76.5,
+      },
+      {
+        pt: "Tá brincando? Sou treinada para nada!",
+        en: "Are you kidding? I'm trained for nothing!",
+        inicio: 77,
+        fim: 79,
+      },
+      {
+        pt: "Hoje fui motivo de piada em doze entrevistas.",
+        en: "I was laughed out of twelve interviews today.",
+        inicio: 81.5,
+        fim: 83,
+      },
+      {
+        pt: "E ainda assim você está surpreendentemente otimista.",
+        en: "And yet you're surprisingly upbeat.",
+        inicio: 83.7,
+        fim: 85.1,
+      },
+      {
+        pt: "Bem, você também ficaria se encontrasse botas John and David em promoção, com cinquenta por cento de desconto!",
+        en: "Well, you would be too if you found John and David boots on sale, fifty percent off!",
+        inicio: 85.2,
+        fim: 90,
+      },
+      {
+        pt: "Ah, como você me conhece bem...",
+        en: "Oh, how well you know me...",
+        inicio: 91.2,
+        fim: 92.6,
+      },
+      {
+        pt: "Elas são minhas novas botas 'Não preciso de um emprego, não preciso dos meus pais, tenho botas ótimas'!",
+        en: "They're my new 'I don't need a job, I don't need my parents, I've got great boots' boots!",
+        inicio: 94.3,
+        fim: 98.4,
+      },
+      {
+        pt: "Como você pagou por eles?",
+        en: "How'd you pay for them?",
+        inicio: 100.7,
+        fim: 102.1,
+      },
+      {
+        pt: "E quem paga por isso?",
+        en: "And who pays for that?",
+        inicio: 103,
+        fim: 104.8,
+      },
+      {
+        pt: "Vamos lá, você não pode viver às custas dos seus pais a vida toda.",
+        en: "C'mon, you can't live off your parents your whole life.",
+        inicio: 110.3,
+        fim: 112.2,
+      },
+      {
+        pt: "Eu sei disso. É por isso que eu ia me casar.",
+        en: "I know that. That's why I was getting married.",
+        inicio: 112.3,
+        fim: 115,
+      },
+      {
+        pt: "Dê um tempo a ela, é difícil ficar sozinha pela primeira vez.",
+        en: "Give her a break, it's hard being on your own for the first time.",
+        inicio: 116.6,
+        fim: 119.9,
+      },
+      {
+        pt: "Lembro-me de quando cheguei a esta cidade pela primeira vez.",
+        en: "I remember when I first came to this city.",
+        inicio: 121.6,
+        fim: 123.3,
+      },
+      {
+        pt: "Eu tinha quatorze anos.",
+        en: "I was fourteen.",
+        inicio: 123.5,
+        fim: 124.2,
+      },
+      {
+        pt: "Minha mãe tinha acabado de se matar e meu padrasto estava de volta na prisão,",
+        en: "My mom had just killed herself and my step-dad was back in prison,",
+        inicio: 124.6,
+        fim: 127,
+      },
+      {
+        pt: "e eu cheguei aqui e não conhecia ninguém",
+        en: "and I got here, and I didn't know anybody",
+        inicio: 127.3,
+        fim: 129.4,
+      },
+      {
+        pt: "E acabei morando com esse cara albino",
+        en: "And I ended up living with this albino guy",
+        inicio: 130,
+        fim: 131.9,
+      },
+      {
+        pt: "que estava, tipo, limpando para-brisas do lado de fora da autoridade portuária",
+        en: "who was, like, cleaning windshields outside port authority",
+        inicio: 132,
+        fim: 134.2,
+      },
+      {
+        pt: "e então ele se matou",
+        en: "and then he killed himself,",
+        inicio: 134.5,
+        fim: 135.8,
+      },
+      {
+        pt: "e então eu descobri a aromaterapia",
+        en: "and then I found aromatherapy",
+        inicio: 138,
+        fim: 139.5,
+      },
+      {
+        pt: "Então acredite em mim, eu sei exatamente como você se sente.",
+        en: "So believe me, I know exactly how you feel.",
+        inicio: 139.7,
+        fim: 141.8,
+      },
+      {
+        pt: "A palavra que você está procurando é 'De qualquer forma'...",
+        en: "The word you're looking for is 'Anyway'...",
+        inicio: 145.7,
+        fim: 149.7,
+      },
+      {
+        pt: "Bem-vindo ao mundo real!",
+        en: "Welcome to the real world!",
+        inicio: 167.2,
+        fim: 168.8,
+      },
+      {
+        pt: "Que chato. Você vai adorar!",
+        en: "It sucks. You're gonna love it!",
+        inicio: 169,
+        fim: 170.8,
+      },
+
+    ];
+
+    // 2. LÓGICA PARA CRIAR A LISTA (INALTERADA)
+    // A mesma lógica de antes, provando a eficiência do método.
+    document.addEventListener("DOMContentLoaded", () => {
+      const listaDialogoElement = document.getElementById("lista-dialogo");
+
+      dialogoData.forEach((item) => {
+        const li = document.createElement("li");
+        li.className = "linha-dialogo";
+
+        li.innerHTML = `
+          <div class="frases">
+            <span class="frase-pt">${item.pt}</span>
+            <span class="frase-en">${item.en}</span>
+          </div>
+          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
+        `;
+
+        listaDialogoElement.appendChild(li);
+      });
+    });
+  </script>
+  {% endblock script %}
+
+  <script src="script.js"></script>
+</body>
+
+</html>

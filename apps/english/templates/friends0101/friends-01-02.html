@@ -1,0 +1,192 @@
+  {% extends 'friends-base.html' %}
+  {% load static %}
+  {% block title %}
+    <title>Friends - Parte 02</title>
+  {% endblock title %}
+
+<body>
+  <div class="video-container">
+    {% block video %}
+      <video id="meuVideo" src="{% static 'videos/friends0101/friends-01-02.mp4' %}" controls></video>
+    {% endblock video %}
+  </div>
+
+  {% block script %}
+
+  <script>
+    // 1. DADOS DO DIÁLOGO (PARTE 2)
+    // Os dados foram atualizados para o novo trecho do vídeo.
+    const dialogoData = [
+      {
+        pt: "Ai, meu Deus, Monica! Oi! Graças a Deus!",
+        en: "Oh God Monica hi! Thank God!",
+        inicio: 1,
+        fim: 4,
+      },
+      {
+        pt: "Acabei de ir ao seu prédio e você não estava lá",
+        en: "I just went to your building and you weren't there",
+        inicio: 4,
+        fim: 5.6,
+      },
+      {
+        pt: "e então esse cara com um grande martelo disse que você poderia estar aqui",
+        en: "and then this guy with a big hammer said you might be here",
+        inicio: 5.8,
+        fim: 8.15,
+      },
+      {
+        pt: "Você quer um café?",
+        en: "Can I get you some coffee?",
+        inicio: 10,
+        fim: 11.5,
+      },
+      {
+        pt: "OK Pessoal, esta é Rachel, outra sobrevivente da Lincoln High.",
+        en: "Okay everybody, this is Rachel, another Lincoln High survivor.",
+        inicio: 14,
+        fim: 18,
+      },
+      {
+        pt: "Então você quer nos contar agora,",
+        en: "Do you remember my brother Ross? Sure!",
+        inicio: 21.9,
+        fim: 24,
+      },
+      {
+        pt: "Então você quer nos contar agora,",
+        en: "So you wanna tell us now,",
+        inicio: 34.5,
+        fim: 35.7,
+      },
+      {
+        pt: "ou estamos esperando quatro madrinhas molhadas?",
+        en: "or are we waiting for four wet bridesmaids?",
+        inicio: 35.8,
+        fim: 38,
+      },
+      {
+        pt: "bem, começou cerca de meia hora antes do casamento.",
+        en: "well, it started about a half hour before the wedding.",
+        inicio: 41.2,
+        fim: 44.5,
+      },
+      {
+        pt: "Eu estava na sala onde guardávamos todos os presentes,",
+        en: "I was in the room where we were keeping all the presents,",
+        inicio: 45,
+        fim: 48,
+      },
+      {
+        pt: "e eu estava olhando para esta molheira.",
+        en: "and I was looking at this gravy boat.",
+        inicio: 48.1,
+        fim: 49.8,
+      },
+      {
+        pt: "Esta molheira Lamauge realmente linda.",
+        en: "This really gorgeous Lamauge gravy boat.",
+        inicio: 50,
+        fim: 53,
+      },
+      {
+        pt: "Percebi que estava mais excitado por essa molheira do que pelo Barry!",
+        en: "I realized that I was more turned on by this gravy boat than by Barry!",
+        inicio: 58,
+        fim: 61,
+      },
+      {
+        pt: "E então eu fiquei realmente assustado,",
+        en: "And then I got really freaked out,",
+        inicio: 62,
+        fim: 63.5,
+      },
+      {
+        pt: "e foi aí que me ocorreu",
+        en: "and that's when it hit me",
+        inicio: 63.6,
+        fim: 64.5,
+      },
+      {
+        pt: "<b>o quanto Barry se parece com o Sr. Cabeça de Batata.",
+        en: "<b>how much Barry looks like Mr. Potato Head.",
+        inicio: 64.9,
+        fim: 66.8,
+      },
+      {
+        pt: "Sabe, quero dizer, eu sempre soube que ele parecia familiar, mas...",
+        en: "Y'know, I mean, I always knew he looked familiar, but...",
+        inicio: 68.1,
+        fim: 70.5,
+      },
+      {
+        pt: "De qualquer forma, eu simplesmente tinha que sair de lá,",
+        en: "Anyway, I just had to get out of there,",
+        inicio: 73.6,
+        fim: 76.26,
+      },
+      {
+        pt: "e comecei a me perguntar 'Por que estou fazendo isso e para quem estou fazendo isso?'.",
+        en: "and I started wondering 'Why am I doing this, and who am I doing this for?'.",
+        inicio: 76.3,
+        fim: 80,
+      },
+      {
+        pt: "De qualquer forma, eu simplesmente não sabia para onde ir,",
+        en: "So anyway I just didn't know where to go,",
+        inicio: 81,
+        fim: 83,
+      },
+      {
+        pt: "e sei que você e eu meio que nos afastamos",
+        en: "and I know that you and I have kinda drifted apart",
+        inicio: 83.1,
+        fim: 85,
+      },
+      {
+        pt: "você é a única pessoa que eu conheci que morava aqui na cidade.",
+        en: "you're the only person I knew who lived here in the city.",
+        inicio: 86,
+        fim: 88.7,
+      },
+      {
+        pt: "Que não foi convidada para o casamento.",
+        en: "Who wasn't invited to the wedding.",
+        inicio: 88.8,
+        fim: 90.5,
+      },
+      {
+        pt: "Ah, eu meio que esperava que isso não fosse um problema...",
+        en: "Ooh, I was kinda hoping that wouldn't be an issue...",
+        inicio: 90.8,
+        fim: 92.5,
+      },
+    ];
+
+    // 2. LÓGICA PARA CRIAR A LISTA (IDÊNTICA À ANTERIOR)
+    // Este código não precisa de NENHUMA alteração. Ele apenas lê os dados acima.
+    document.addEventListener("DOMContentLoaded", () => {
+      const listaDialogoElement = document.getElementById("lista-dialogo");
+
+      dialogoData.forEach((item) => {
+        const li = document.createElement("li");
+        li.className = "linha-dialogo";
+
+        li.innerHTML = `
+          <div class="frases">
+            <span class="frase-pt">${item.pt}</span>
+            <span class="frase-en">${item.en}</span>
+          </div>
+          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
+        `;
+
+        listaDialogoElement.appendChild(li);
+      });
+    });
+  </script>
+  {% endblock script %}
+
+  <script src="script.js"></script>
+</body>
+
+</html>

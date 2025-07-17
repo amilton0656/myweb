@@ -8,6 +8,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 STATIC_DIR=os.path.join(BASE_DIR,'static')
 
+LOGOUT_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = 'entrou'
+
 # Adicionar essa tag para que nosso projeto encontre o .env
 load_dotenv(os.path.join(BASE_DIR, ".env")) 
 
@@ -251,3 +254,5 @@ MESSAGE_TAGS = {
 	constants.SUCCESS: 'alert-success',
 	constants.INFO: 'alert-info',
 }
+
+

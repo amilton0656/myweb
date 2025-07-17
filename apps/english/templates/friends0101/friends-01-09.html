@@ -1,0 +1,203 @@
+  {% extends 'friends-base.html' %}
+  {% load static %}
+  {% block title %}
+    <title>Friends - Parte 09</title>
+  {% endblock title %}
+
+<body>
+  {% block video %}
+      <video id="meuVideo" src="{% static 'videos/friends0101/friends-01-09.mp4' %}" controls></video>
+    {% endblock video %}
+  </div>
+
+  {% block script %}
+
+  <script>
+    // 1. DADOS DO DIÁLOGO (PARTE 8)
+    // ATENÇÃO: Os dados abaixo foram corrigidos e completados para refletir a cena real do episódio.
+    const dialogoData = [
+      {
+        pt: "Bom, é isso. Você vai dormir no sofá?",
+        en: "Well, that's it. You gonna crash on the couch?",
+        inicio: 0,
+        fim: 3.6,
+      },
+      {
+        pt: "Não, tenho que ir para casa algum dia.",
+        en: "No, I gotta go home sometime.",
+        inicio: 3.8,
+        fim: 5.7,
+      },
+      {
+        pt: "Você vai ficar bem? Sim.",
+        en: "You’ll be okay? Yeah.",
+        inicio: 5.8,
+        fim: 8,
+      },
+      {
+        pt: "Ei, Mon, olha o que acabei de encontrar no chão.",
+        en: "Hey Mon, look what I just found on the floor. ",
+        inicio: 9.8,
+        fim: 12,
+      },
+      {
+        pt: "O quê? Esse é o relógio do Paul.",
+        en: "What? That's Paul's watch.",
+        inicio: 13.2,
+        fim: 17.5,
+      },
+      {
+        pt: "Basta colocá-lo de volta onde o encontrou.",
+        en: "You just put it back where you found it.",
+        inicio: 17.6,
+        fim: 20,
+      },
+      {
+        pt: "OK, Tudo bem. Boa noite a todos.",
+        en: "Oh boy. Alright. Goodnight, everybody.",
+        inicio: 20.5,
+        fim: 25,
+      },
+      {
+        pt: "Você provavelmente não sabia disso, mas no ensino médio",
+        en: "You know you probably didn't know this, but back in high school",
+        inicio: 45.5,
+        fim: 48.3,
+      },
+      {
+        pt: "eu tinha uma grande queda por você.",
+        en: "I had a, um, major crush on you.",
+        inicio: 48.4,
+        fim: 52,
+      },
+      {
+        pt: "Sempre imaginei que você pensasse que eu era apenas o irmão mais velho e nerd da Monica.",
+        en: "I always figured you just thought I was Monica's geeky older brother.",
+        inicio: 57.7,
+        fim: 60.7,
+      },
+      {
+        pt: "Escuta, você acha",
+        en: "Listen, do you think",
+        inicio: 68,
+        fim: 69.5,
+      },
+      {
+        pt: "e tente não deixar que minha vulnerabilidade intensa",
+        en: "and try not to let my intense vulnerability",
+        inicio: 70,
+        fim: 72.5,
+      },
+      {
+        pt: "se torne um fator aqui",
+        en: "become any kind of a factor here",
+        inicio: 72.6,
+        fim: 73.7,
+      },
+      {
+        pt: "que tudo bem se eu te convidar para sair?",
+        en: "but do you think it would be okay if I asked you out?",
+        inicio: 76,
+        fim: 78,
+      },
+      {
+        pt: "Algum dia? Talvez?",
+        en: "Sometime? Maybe?",
+        inicio: 78.1,
+        fim: 79,
+      },
+      {
+        pt: "Até mais... Espera, espera, o que houve?",
+        en: "See ya.... Wait wait, what's with you?",
+        inicio: 114,
+        fim: 120,
+      },
+      {
+        pt: "Acabei de pegar uma colher.",
+        en: "I just grabbed a spoon.",
+        inicio: 122.5,
+        fim: 124,
+      },
+      {
+        pt: "Não acredito no que estou ouvindo aqui.",
+        en: "I can't believe what I'm hearing here.",
+        inicio: 133,
+        fim: 135,
+      },
+      {
+        pt: "O quê? Eu disse que você tinha um",
+        en: "What? I-I said you had a",
+        inicio: 136.7,
+        fim: 137.8,
+      },
+      {
+        pt: "Você poderia parar?",
+        en: "Would you stop?",
+        inicio: 140.3,
+        fim: 141,
+      },
+      {
+        pt: "Ah, eu estava fazendo isso de novo?",
+        en: "Oh, was I doing it again?",
+        inicio: 141.7,
+        fim: 142.7,
+      },
+      {
+        pt: "Alguém quer mais café?",
+        en: "Would anybody like more coffee?",
+        inicio: 145.5,
+        fim: 147.3,
+      },
+      {
+        pt: "Você fez ou está apenas servindo?",
+        en: "Did you make it, or are you just serving it?",
+        inicio: 149.6,
+        fim: 151.4,
+      },
+      {
+        pt: "Estou apenas servindo.",
+        en: "I'm just serving it.",
+        inicio: 152,
+        fim: 153,
+      },
+      {
+        pt: "Sim. Sim, vou tomar uma xícara de café.",
+        en: "Yeah. Yeah, I'll have a cup of coffee.",
+        inicio: 153.1,
+        fim: 154.5,
+      },
+      {
+        pt: "Crianças, um novo sonho... Estou em Las Vegas. Sou Liza Minelli.",
+        en: "Kids, new dream... I'm in Las Vegas. I'm Liza Minelli-",
+        inicio: 156.1,
+        fim: 160.4,
+      },
+    ];
+
+    // 2. LÓGICA PARA CRIAR A LISTA (INALTERADA)
+    // A mesma lógica de antes, funcionando agora com os dados corrigidos.
+    document.addEventListener("DOMContentLoaded", () => {
+      const listaDialogoElement = document.getElementById("lista-dialogo");
+
+      dialogoData.forEach((item) => {
+        const li = document.createElement("li");
+        li.className = "linha-dialogo";
+
+        li.innerHTML = `
+          <div class="frases">
+            <span class="frase-pt">${item.pt}</span>
+            <span class="frase-en">${item.en}</span>
+          </div>
+          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
+        `;
+
+        listaDialogoElement.appendChild(li);
+      });
+    });
+  </script>
+  {% endblock script %}
+
+  <script src="script.js"></script>
+</body>
+
+</html>

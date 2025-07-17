@@ -1,0 +1,191 @@
+  {% extends 'friends-base.html' %}
+  {% load static %}
+  {% block title %}
+    <title>Friends - Parte 04</title>
+  {% endblock title %}
+
+<body>
+  <div class="video-container">
+    {% block video %}
+      <video id="meuVideo" src="{% static 'videos/friends0101/friends-01-04.mp4' %}" controls></video>
+    {% endblock video %}
+  </div>
+
+  {% block script %}
+
+  <script>
+    // 1. DADOS DO DIÁLOGO (PARTE 4)
+    // Os novos dados do diálogo para este trecho do vídeo.
+    const dialogoData = [
+      {
+        pt: "Por favor, não faça isso de novo, é um som horrível.",
+        en: "Please don't do that again, it's a horrible sound.",
+        inicio: 0,
+        fim: 2.6,
+      },
+      {
+        pt: "Quem é Paul? Paul, o cara do vinho, Paul?",
+        en: "Who's Paul? Paul the Wine Guy, Paul?",
+        inicio: 6.4,
+        fim: 8.9,
+      },
+      {
+        pt: 'Espera aí. Seu "encontro não real" hoje à noite é com o Paul, o Cara do Vinho?',
+        en: "Wait a minute. Your 'not a real date' tonight is with Paul the Wine Guy?",
+        inicio: 10,
+        fim: 13.5,
+      },
+      {
+        pt: "Ele finalmente te chamou para sair?",
+        en: "He finally asked you out?",
+        inicio: 14,
+        fim: 15,
+      },
+      {
+        pt: "Ooh, esse é um momento Querido Diário.",
+        en: "Ooh, this is a Dear Diary moment.",
+        inicio: 15.9,
+        fim: 17.4,
+      },
+      {
+        pt: "Rach, espere, eu posso cancelar...",
+        en: "Rach, wait, I can cancel...",
+        inicio: 19.2,
+        fim: 20.7,
+      },
+      {
+        pt: "Por favor, não, vá, eu ficarei bem!",
+        en: "Please, no, go, I’ll be fine!",
+        inicio: 21,
+        fim: 22.6,
+      },
+      {
+        pt: "Ah, Ross, você está bem? Quer dizer, quer que eu fique?",
+        en: "Oh Ross, are you okay? I mean, do you want me to stay?",
+        inicio: 22.8,
+        fim: 25.8,
+      },
+      {
+        pt: "Isso seria bom...",
+        en: "That'd be good...",
+        inicio: 27,
+        fim: 28,
+      },
+      {
+        pt: "Não, vá em frente! É o Paul, o Cara do Vinho!",
+        en: "No, go on! It's Paul the Wine Guy!",
+        inicio: 30.4,
+        fim: 33.1,
+      },
+      {
+        pt: "Desculpe, não entendi seu nome.",
+        en: "I'm sorry, I didn't catch your name.",
+        inicio: 46.1,
+        fim: 47.1,
+      },
+      {
+        pt: "Opa, acabei de arrancar quatro cílios. Isso não pode ser bom.",
+        en: "Ooh, I just pulled out four eyelashes. That can't be good.",
+        inicio: 56,
+        fim: 58.5,
+      },
+      {
+        pt: "Então, Rachel, o que você... o que você vai fazer hoje à noite?",
+        en: "So, Rachel, what're you, uh... what're you up to tonight?",
+        inicio: 61,
+        fim: 64,
+      },
+      {
+        pt: "Bom, eu meio que deveria estar indo para Aruba na minha lua de mel, então nada!",
+        en: "Well, I was kinda supposed to be headed for Aruba on my honeymoon, so nothing!",
+        inicio: 64.1,
+        fim: 69,
+      },
+      {
+        pt: "Certo, você nem vai ter lua de mel, Deus...",
+        en: "Right, you're not even getting your honeymoon, God...",
+        inicio: 71.5,
+        fim: 74.2,
+      },
+      {
+        pt: "Não, não, embora, Aruba, nesta época do ano...",
+        en: "No, no, although, Aruba, this time of year... ",
+        inicio: 74.3,
+        fim: 77.5,
+      },
+      {
+        pt: "fale sobre seus... grandes lagartos",
+        en: "talk about your... big lizards",
+        inicio: 78.3,
+        fim: 81.44,
+      },
+      {
+        pt: "De qualquer forma, se você não quiser ficar sozinho esta noite,",
+        en: "Anyway, if you don't feel like being alone tonight,",
+        inicio: 86.6,
+        fim: 89.2,
+      },
+      {
+        pt: "Joey e Chandler virão para me ajudar a montar meus novos móveis.",
+        en: "Joey and Chandler are coming over to help me put together my new furniture.",
+        inicio: 89.7,
+        fim: 92.4,
+      },
+      {
+        pt: "Sim, e estamos muito animados com isso.",
+        en: "Yes, and we're very excited about it.",
+        inicio: 92.6,
+        fim: 94.5,
+      },
+      {
+        pt: "Bem, na verdade, obrigado, mas acho que vou ficar",
+        en: "Well actually thanks, but I think I'm just gonna hang out",
+        inicio: 96,
+        fim: 98.6,
+      },
+      {
+        pt: "aqui esta noite. Foi um longo dia.",
+        en: "here tonight. It's been a long day.",
+        inicio: 98.7,
+        fim: 100.7,
+      },
+      {
+        pt: "Ei Pheebs, você quer ajudar?",
+        en: "Hey Pheebs, you wanna help?",
+        inicio: 102,
+        fim: 103,
+      },
+      {
+        pt: "Ah, eu queria poder, mas não quero.",
+        en: "Oh, I wish I could, but I don't want to.",
+        inicio: 103.3,
+        fim: 105.5,
+      },
+    ];
+
+    // 2. LÓGICA PARA CRIAR A LISTA (A MESMA DE ANTES, TOTALMENTE REUTILIZÁVEL)
+    document.addEventListener("DOMContentLoaded", () => {
+      const listaDialogoElement = document.getElementById("lista-dialogo");
+
+      dialogoData.forEach((item) => {
+        const li = document.createElement("li");
+        li.className = "linha-dialogo";
+
+        li.innerHTML = `
+          <div class="frases">
+            <span class="frase-pt">${item.pt}</span>
+            <span class="frase-en">${item.en}</span>
+          </div>
+          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
+        `;
+
+        listaDialogoElement.appendChild(li);
+      });
+    });
+  </script>
+  {% endblock script %}
+
+  <script src="script.js"></script>
+</body>
+
+</html>

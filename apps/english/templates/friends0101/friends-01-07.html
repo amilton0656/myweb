@@ -1,0 +1,242 @@
+  {% extends 'friends-base.html' %}
+  {% load static %}
+  {% block title %}
+    <title>Friends - Parte 07</title>
+  {% endblock title %}
+
+<body>
+  {% block video %}
+      <video id="meuVideo" src="{% static 'videos/friends0101/friends-01-07.mp4' %}" controls></video>
+    {% endblock video %}
+  </div>
+
+  {% block script %}
+
+  <script>
+    // 1. DADOS DO DIÁLOGO (PARTE 7)
+    // Os dados para este trecho do vídeo.
+    const dialogoData = [
+      { pt: "Não é incrível?", en: "Isn't this amazing?", inicio: 0, fim: 1 },
+      {
+        pt: "Quer dizer, eu nunca fiz café na minha vida.",
+        en: "I mean, I have never made coffee before in my entire life.",
+        inicio: 1.4,
+        fim: 4,
+      },
+      {
+        pt: "Já que você está nessa,",
+        en: "While you're on a roll,",
+        inicio: 6.8,
+        fim: 7.6,
+      },
+      {
+        pt: "se sentir vontade de fazer uma omelete ocidental ou algo assim...",
+        en: "if you feel like you gotta make like a Western omelet or something...",
+        inicio: 7.8,
+        fim: 10.5,
+      },
+      {
+        pt: "Embora na verdade eu não esteja com tanta fome...",
+        en: "Although actually I'm really not that hungry...",
+        inicio: 14.5,
+        fim: 17,
+      },
+      {
+        pt: "Aquilo não foi um encontro de verdade?!",
+        en: "That wasn't a real date?!",
+        inicio: 53.5,
+        fim: 56.3,
+      },
+      {
+        pt: "O que diabos você faz em um encontro de verdade?",
+        en: "What the hell do you do on a real date?",
+        inicio: 57,
+        fim: 58.8,
+      },
+      {
+        pt: "Cale a boca e coloque minha mesa de volta.",
+        en: "Shut up, and put my table back.",
+        inicio: 60.8,
+        fim: 62.2,
+      },
+      {
+        pt: "Tudo bem, crianças, preciso trabalhar.",
+        en: "All right, kids, I gotta get to work.",
+        inicio: 64,
+        fim: 66,
+      },
+      {
+        pt: "Se eu não inserir esses números...",
+        en: "If I don't input those numbers... ",
+        inicio: 66.2,
+        fim: 68,
+      },
+      {
+        pt: "não faz muita diferença...",
+        en: "it doesn't make much of a difference...",
+        inicio: 69.2,
+        fim: 70.3,
+      },
+      {
+        pt: "Então, vocês todos têm empregos?",
+        en: "So, like, you guys all have jobs?",
+        inicio: 75,
+        fim: 77.4,
+      },
+      {
+        pt: "Sim, todos nós temos empregos.",
+        en: "Yeah, we all have jobs.",
+        inicio: 78,
+        fim: 79.5,
+      },
+      {
+        pt: "Veja, é assim que compramos coisas.",
+        en: "See, that's how we buy stuff.",
+        inicio: 79.8,
+        fim: 81.8,
+      },
+      {
+        pt: "Sim, sou ator.",
+        en: "Yeah, I'm an actor.",
+        inicio: 83.8,
+        fim: 84.7,
+      },
+      {
+        pt: "Nossa! Eu te teria visto em algum papel?",
+        en: "Wow! Would I have seen you in anything?",
+        inicio: 85.2,
+        fim: 87.8,
+      },
+      {
+        pt: "Duvido. Trabalho principalmente regional.",
+        en: "I doubt it. Mostly regional work.",
+        inicio: 88,
+        fim: 90.1,
+      },
+      {
+        pt: "A menos que você tenha assistido à produção de Pinóquio dos Wee Ones.",
+        en: "Unless you happened to catch the Wee One's production of Pinnocchio.",
+        inicio: 90.2,
+        fim: 94,
+      },
+      {
+        pt: "Olha, Gippetto, eu sou um garoto de verdade.",
+        en: "Look, Gippetto, I'm a real live boy.",
+        inicio: 94.3,
+        fim: 96.8,
+      },
+      {
+        pt: "Não vou aceitar esse abuso.",
+        en: "I will not take this abuse.",
+        inicio: 99.5,
+        fim: 101.5,
+      },
+      {
+        pt: 'Você tem razão, me desculpe. "Eu já fui um menino de madeira, um menininho de madeira..."',
+        en: "You're right, I'm sorry. \"Once I was a wooden boy, a little wooden boy...\"",
+        inicio: 101.6,
+        fim: 106,
+      },
+      {
+        pt: "Então, como você está hoje?",
+        en: "So how you doing today?",
+        inicio: 110.7,
+        fim: 111.8,
+      },
+      {
+        pt: "Você dormiu bem? Falou com o Barry?",
+        en: "Did you sleep okay? Talk to Barry?",
+        inicio: 112,
+        fim: 114,
+      },
+      {
+        pt: "<b>Não consigo parar de sorrir.</b>",
+        en: "<b>I can't stop smiling.</b>",
+        inicio: 115,
+        fim: 116,
+      },
+      {
+        pt: "Eu consigo ver. Parece que você dormiu com um cabide na boca.",
+        en: "I can see that. You look like you slept with a hanger in your mouth.",
+        inicio: 117.4,
+        fim: 120.3,
+      },
+      {
+        pt: "Você se lembra de você e Tony DeMarco?",
+        en: "Do you remember you and Tony DeMarco?",
+        inicio: 130,
+        fim: 131.8,
+      },
+      {
+        pt: "Pois é, é assim mesmo. Com sentimentos.",
+        en: "Well, it's like that. With feelings.",
+        inicio: 132.8,
+        fim: 134.9,
+      },
+      {
+        pt: "Oh Uau! Você está com problemas.",
+        en: "Oh wow! Are you in trouble.",
+        inicio: 136.9,
+        fim: 138.7,
+      },
+      {
+        pt: "Vou simplesmente levantar, ir trabalhar e não pensar nele o dia todo.",
+        en: "I am just going to get up, go to work and not think about him all day.",
+        inicio: 140.6,
+        fim: 144.5,
+      },
+      {
+        pt: "Ou então vou simplesmente levantar e ir trabalhar.",
+        en: "Or else I'm just gonna get up and go to work.",
+        inicio: 145.6,
+        fim: 147.8,
+      },
+      {
+        pt: "Ah, me desejem sorte! Pra quê?",
+        en: "Oh, wish me luck! What for?",
+        inicio: 149,
+        fim: 150.6,
+      },
+      {
+        pt: "Vou conseguir um desses trabalhos.",
+        en: "I'm gonna go get one of those job things.",
+        inicio: 150.7,
+        fim: 154,
+      },
+    ];
+
+    // 2. LÓGICA PARA CRIAR A LISTA (INALTERADA)
+    // A mesma lógica de antes, provando a eficiência do método.
+    document.addEventListener("DOMContentLoaded", () => {
+      const listaDialogoElement = document.getElementById("lista-dialogo");
+
+      dialogoData.forEach((item) => {
+        // A linha abaixo com o erro de digitação foi corrigida no código para pt/en
+        if (
+          item.pt === "O que diabos você faz em um encontro de verdade?" &&
+          item.en === "O que diabos você faz em um encontro de verdade?"
+        ) {
+          item.en = "What the hell do you do on a real date?";
+        }
+
+        const li = document.createElement("li");
+        li.className = "linha-dialogo";
+
+        li.innerHTML = `
+          <div class="frases">
+            <span class="frase-pt">${item.pt}</span>
+            <span class="frase-en">${item.en}</span>
+          </div>
+          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
+        `;
+
+        listaDialogoElement.appendChild(li);
+      });
+    });
+  </script>
+  {% endblock script %}
+
+  <script src="script.js"></script>
+</body>
+
+</html>

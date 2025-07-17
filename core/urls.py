@@ -23,8 +23,10 @@ def test_logging_view(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('test-logging/', test_logging_view, name='test_logging'),
     path('', include('pages.urls')),
+    path('english/', include('english.urls')),
+    path('portugues/', include('portugues.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
 if settings.DEBUG: # update 03/11/2024: (em homologa com debug true adiciona rota static)

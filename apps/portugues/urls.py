@@ -1,0 +1,6 @@
+from django.urls import path
+from portugues import views
+
+urlpatterns = [
+    path('', views.portugues_main, name='portugues_main'),
+]
