@@ -1,3 +1,5 @@
 .venv
 .env
 static
+apps\base\static\tapas01
+apps\base\static\videos
