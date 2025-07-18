@@ -1,0 +1,156 @@
+/* Reset básico e configurações globais */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f7f9;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Container principal */
+.container {
+  width: 100%;
+  max-width: 800px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+header {
+  padding: 24px 32px;
+  background-color: #0077b6;
+  color: #ffffff;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+header p {
+  margin: 8px 0 0;
+  opacity: 0.9;
+}
+
+.video-container {
+  width: 100%;
+}
+
+video {
+  width: 100%;
+  display: block;
+}
+
+/* Container dos diálogos */
+.dialogue-container {
+  padding: 24px;
+}
+
+/* Card de cada entrada de diálogo */
+.dialogue-entry {
+  display: grid;
+  grid-template-columns: 1fr auto; /* Coluna para texto, coluna para o botão */
+  align-items: center;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  gap: 16px;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.dialogue-entry:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Estilo dos textos */
+.dialogue-entry p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.portuguese {
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #212529;
+}
+
+.english {
+  font-style: italic;
+  color: #0077b6; /* O mesmo azul do header */
+  font-size: 1em;
+}
+
+/* Estilo do botão de áudio */
+.audio-controls .play-btn {
+  background: #e9ecef;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.audio-controls .play-btn:hover {
+  background-color: #ced4da;
+  transform: scale(1.1);
+}
+
+/* Galeria de imagens */
+.dialogue-entry.with-image {
+    grid-template-columns: 1fr; /* Muda o layout quando tem imagem */
+}
+
+.image-gallery {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.image-gallery figure {
+    margin: 0;
+    flex: 1;
+    text-align: center;
+}
+
+.image-gallery img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.image-gallery figcaption {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-top: 8px;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+  }
+  .container {
+    border-radius: 0;
+  }
+  header {
+    padding: 16px;
+  }
+  header h1 {
+    font-size: 1.5em;
+  }
+  .dialogue-container {
+    padding: 16px;
+  }
+}

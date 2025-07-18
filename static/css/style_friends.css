@@ -1,0 +1,103 @@
+:root {
+    --cor-fundo: #1e1e1e;
+    --cor-fundo-lista: #252526;
+    --cor-borda: #333333;
+    --cor-texto-pt: #d4d4d4;
+    --cor-texto-en: #9cdcfe;
+    --cor-botao: #4a4a4a;
+    --cor-botao-hover: #61afef;
+    --cor-linha-ativa: #37373d;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-pt);
+    margin: 0;
+    padding-top: 280px;
+    /* Espaço para o vídeo fixo */
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- Estilos do Vídeo Fixo --- */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--cor-fundo);
+    padding: 20px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+}
+
+#meuVideo {
+    width: 90%;
+    max-width: 600px;
+    height: 240px;
+    border-radius: 8px;
+}
+
+/* --- Estilos da Lista de Diálogos --- */
+#lista-dialogo {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.linha-dialogo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid var(--cor-borda);
+    background-color: var(--cor-fundo-lista);
+    transition: background-color 0.3s;
+}
+
+.linha-dialogo.active {
+    background-color: var(--cor-linha-ativa);
+    border-left: 4px solid var(--cor-botao-hover);
+    padding-left: 11px;
+}
+
+.frases {
+    display: flex;
+    flex-direction: column;
+}
+
+.frase-pt {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.frase-en {
+    font-size: 18px;
+    color: var(--cor-texto-en);
+    font-weight: 500;
+}
+
+.btn-play {
+    background-color: var(--cor-botao);
+    border: 1px solid var(--cor-borda);
+    color: #fff;
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 20px;
+    flex-shrink: 0;
+    transition: background-color 0.3s;
+}
+
+.btn-play:hover {
+    background-color: var(--cor-botao-hover);
+}

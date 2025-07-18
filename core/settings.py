@@ -168,7 +168,7 @@ REST_FRAMEWORK={
     'EXCEPTION_HANDLER': 'requestlogs.views.exception_handler',
 }
 
-# Configuração padrão de Logs 
+# # Configuração padrão de Logs 
 LOGGING = { # update 03/11/2024 
     'version': 1,
     'disable_existing_loggers': False,
@@ -197,10 +197,6 @@ LOGGING = { # update 03/11/2024
     },
 }
 
-REQUESTLOGS = {
-    'SECRETS': ['password', 'token'],
-    'METHODS': ('PUT', 'PATCH', 'POST', 'DELETE'),
-}
 
 
 # Internationalization

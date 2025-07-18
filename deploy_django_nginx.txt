@@ -1,0 +1,223 @@
+🧱 Estrutura esperada do projeto:
+bash
+Copiar
+Editar
+/var/www/myweb/
+│
+├── core/              # Pasta do projeto Django
+│   ├── settings.py
+│   └── wsgi.py
+├── db.sqlite3
+├── manage.py
+└── venv/              # Ambiente virtual Python
+🔧 Passos para o deploy
+1. Instale dependências no servidor
+bash
+Copiar
+Editar
+sudo apt update
+sudo apt install python3-pip python3-venv nginx
+2. Crie o ambiente virtual (caso não tenha)
+bash
+Copiar
+Editar
+cd /var/www/myweb
+python3 -m venv venv
+source venv/bin/activate
+pip install wheel gunicorn django
+3. Faça as migrações e colete os arquivos estáticos
+bash
+Copiar
+Editar
+cd /var/www/myweb
+source venv/bin/activate
+python manage.py migrate
+python manage.py collectstatic
+4. Teste o Gunicorn manualmente
+bash
+Copiar
+Editar
+gunicorn core.wsgi:application --bind 127.0.0.1:8000
+Acesse http://SEU_IP:8000 e veja se abre o site.
+
+🧠 5. Crie o serviço systemd para o Gunicorn
+Crie o arquivo:
+
+bash
+Copiar
+Editar
+sudo nano /etc/systemd/system/gunicorn.service
+Conteúdo:
+
+ini
+Copiar
+Editar
+[Unit]
+Description=Gunicorn service for Django app
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/myweb
+ExecStart=/var/www/myweb/venv/bin/gunicorn \
+          --workers 3 \
+          --bind 127.0.0.1:8000 \
+          core.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+Ative o serviço
+bash
+Copiar
+Editar
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl start gunicorn
+sudo systemctl enable gunicorn
+🌐 6. Configure o Nginx
+Crie o arquivo:
+
+bash
+Copiar
+Editar
+sudo nano /etc/nginx/sites-available/core
+Conteúdo:
+
+nginx
+Copiar
+Editar
+server {
+    listen 80;
+    server_name amilton.com.br;  # troque para seu domínio ou IP
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /var/www/myweb;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://127.0.0.1:8000;
+    }
+}
+Ative o site:
+bash
+Copiar
+Editar
+sudo ln -s /etc/nginx/sites-available/core /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl restart nginx
+🛠️ 7. Ajustes finais no Django
+settings.py
+DEBUG = False
+
+ALLOWED_HOSTS = ['AMILTON.COM.BR', '191.252.109.21'] (ou seu IP)
+
+🔐 8. Permissões e firewall
+Ajustar permissões
+bash
+Copiar
+Editar
+sudo chown -R www-data:www-data /var/www/myweb
+Abrir portas
+bash
+Copiar
+Editar
+sudo ufw allow 'Nginx Full'
+🧪 Testar
+Abra no navegador:
+
+cpp
+Copiar
+Editar
+http://AMILTON.COM.BR
+ou
+http://191.252.109.21
+Se quiser, posso gerar os arquivos .service e .conf prontos para você. Deseja isso?
+
+
+
+
+
+
+
+
+Você disse:
+sim
+
+
+O ChatGPT disse:
+Perfeito! Aqui estão os dois arquivos prontos para o seu projeto Django chamado core, localizado em /var/www/myweb.
+
+🔹 1. Arquivo do serviço Gunicorn:
+Salve em /etc/systemd/system/gunicorn.service
+
+ini
+Copiar
+Editar
+[Unit]
+Description=Gunicorn service for Django app 'core'
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/myweb
+ExecStart=/var/www/myweb/venv/bin/gunicorn \
+          --workers 3 \
+          --bind 127.0.0.1:8000 \
+          core.wsgi:application
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+Comandos para ativar:
+bash
+Copiar
+Editar
+sudo systemctl daemon-reload
+sudo systemctl start gunicorn
+sudo systemctl enable gunicorn
+🔹 2. Arquivo de configuração do Nginx
+Salve em /etc/nginx/sites-available/core
+
+nginx
+Copiar
+Editar
+server {
+    listen 80;
+    server_name amilton.com.br 191.252.109.21;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location /static/ {
+        root /var/www/myweb;
+    }
+
+    location /media/ {
+        root /var/www/myweb;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://127.0.0.1:8000;
+    }
+}
+Ative com:
+bash
+Copiar
+Editar
+sudo ln -s /etc/nginx/sites-available/core /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl restart nginx
+📁 Estrutura esperada:
+swift
+Copiar
+Editar
+/var/www/myweb/
+├── core/
+├── static/
+├── db.sqlite3
+├── manage.py
+└── venv/

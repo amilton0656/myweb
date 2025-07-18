@@ -3,4 +3,5 @@ from portugues import views
 
 urlpatterns = [
     path('', views.portugues_main, name='portugues_main'),
+    path('tapas01/', views.tapas01, name='tapas01'),
 ]

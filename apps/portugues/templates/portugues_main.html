@@ -1,11 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+      <style>
+            .container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .horizontal {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .coluna {
+            flex-grow: 1;
+            font-size: 30px;
+            margin-top: 20px;
+        }
+
+        .azul {
+            color: green;
+        }
+
+        .som {
+            margin-bottom: 10px;
+        }
+
+        .parte {
+            text-decoration: none;
+            font-size: 30px;
+        }
+  </style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Portugues</title>
 </head>
 <body>
-    <h1>Português main</h1>
+    <a class="parte" href="{% url 'tapas01' %}" target="_blank" class="part-link">Parte 01</a></li>
 </body>
 </html>

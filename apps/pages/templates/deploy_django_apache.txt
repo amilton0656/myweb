@@ -1,0 +1,71 @@
+
+# Deploy de Projeto Django com Apache no Ubuntu
+
+## ✅ Situação:
+- Projeto está em: /var/www/abc
+- Projeto Django: setup
+- App Django: aaa
+- Usando Apache no Ubuntu
+
+## 🔧 1. Instalar Dependências
+sudo apt update
+sudo apt install python3-pip python3-venv apache2 libapache2-mod-wsgi-py3
+
+## 📁 2. Criar ambiente virtual e instalar dependências
+cd /var/www/abc
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+## 🛠 3. Configurar settings.py
+- Edite setup/settings.py:
+
+ALLOWED_HOSTS = ['seu_dominio.com', 'IP_DA_VPS']
+DEBUG = False
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+## 📦 4. Coletar arquivos estáticos
+source venv/bin/activate
+python manage.py collectstatic
+
+## 📝 5. Criar arquivo de configuração do Apache
+sudo nano /etc/apache2/sites-available/abc.conf
+
+Conteúdo do arquivo:
+<VirtualHost *:80>
+    ServerName seu_dominio.com
+    ServerAdmin admin@seu_dominio.com
+
+    DocumentRoot /var/www/abc
+
+    Alias /static /var/www/abc/static
+    <Directory /var/www/abc/static>
+        Require all granted
+    </Directory>
+
+    <Directory /var/www/abc/setup>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+
+    WSGIDaemonProcess abc python-path=/var/www/abc python-home=/var/www/abc/venv
+    WSGIProcessGroup abc
+    WSGIScriptAlias / /var/www/abc/setup/wsgi.py
+</VirtualHost>
+
+## 🔒 6. Permissões
+sudo chown -R www-data:www-data /var/www/abc
+sudo chmod -R 755 /var/www/abc
+
+## 🚀 7. Ativar site e reiniciar Apache
+sudo a2ensite abc.conf
+sudo a2enmod wsgi
+sudo systemctl restart apache2
+
+## 🧪 8. Testar
+Acesse: http://IP_DA_VPS/
+
+## ⚠️ Erros comuns
+- Forbidden: verificar permissões
+  sudo chmod -R o+rx /var/www/abc
