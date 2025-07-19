@@ -33,5 +33,12 @@
       {% endfor %}
     </form>
   </div>
+  <script>
+    window.onload = function() {
+        if (performance.navigation.type === 2) { // O tipo 2 indica que a página foi acessada pelo botão "voltar" ou "avançar"
+            location.reload(true);
+        }
+    };
+</script>
 </body>
 </html>

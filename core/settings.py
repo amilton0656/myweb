@@ -146,6 +146,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -169,33 +170,33 @@ REST_FRAMEWORK={
 }
 
 # # Configuração padrão de Logs 
-LOGGING = { # update 03/11/2024 
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'requestlogs_to_file': {
-            'level': 'INFO',
-            'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': 'info.log',
-            'when': 'midnight',  # Rotaciona a cada meia-noite
-            'backupCount': 7,  # Mantém logs dos últimos 7 dias
-            'formatter': 'verbose',  # Configuração de formatação
-        },
-    },
-    'loggers': {
-        'requestlogs': {
-            'handlers': ['requestlogs_to_file'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-    },
-    'formatters': {
-        'verbose': {
-            'format': '{asctime} {levelname} {message}',
-            'style': '{',
-        },
-    },
-}
+# LOGGING = { # update 03/11/2024 
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'requestlogs_to_file': {
+#             'level': 'INFO',
+#             'class': 'logging.handlers.TimedRotatingFileHandler',
+#             'filename': 'info.log',
+#             'when': 'midnight',  # Rotaciona a cada meia-noite
+#             'backupCount': 7,  # Mantém logs dos últimos 7 dias
+#             'formatter': 'verbose',  # Configuração de formatação
+#         },
+#     },
+#     'loggers': {
+#         'requestlogs': {
+#             'handlers': ['requestlogs_to_file'],
+#             'level': 'INFO',
+#             'propagate': False,
+#         },
+#     },
+#     'formatters': {
+#         'verbose': {
+#             'format': '{asctime} {levelname} {message}',
+#             'style': '{',
+#         },
+#     },
+# }
 
 
 
