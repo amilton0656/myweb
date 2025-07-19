@@ -28,11 +28,14 @@ def entrou(request):
             elif user.groups.filter(name='portugues').exists():
                 return redirect('portugues_main')
             else:
+                messages.warning(request, "Usuário ou Senha inválidos")
                 # Se não pertencer a nenhum grupo, pode redirecionar para um painel padrão ou mostrar erro
                 return redirect('login') # Por simplicidade, volta ao login
         else:
             # Se usuário ou senha forem inválidos
             context['error_message'] = 'Usuário ou senha inválidos.'
-            return render(request, 'login.html', context)
+            messages.warning(request, "Usuário ou Senha inválidos")
+            # return render(request, 'login.html', context)
+            return redirect('login')
 
     return render(request, 'login.html', context)

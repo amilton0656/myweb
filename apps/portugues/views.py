@@ -5,3 +5,6 @@ def portugues_main(request):
 
 def tapas01(request):
     return render(request, 'tapas01.html')
+
+def tapas02(request):
+    return render(request, 'tapas02.html')
