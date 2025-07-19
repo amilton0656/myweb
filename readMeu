@@ -5,6 +5,8 @@ source .venv/bin/activate
 pip install wheel gunicorn django pillow python-dotenv django-cors-headers django-requestlogs
 python manage.py collectstatic
 
+pip install django gunicorn pillow python-dotenv django-cors-headers django-requestlogs
+
 pip install django
 pip install pillow
 
