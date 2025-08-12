@@ -1,0 +1,326 @@
+  {% extends 'english/friends-base.html' %}
+  {% load static %}
+  {% block title %}
+    <title>Friends - Parte 01</title>
+  {% endblock title %}
+
+<body>
+  <div class="video-container">
+    {% block video %}
+      <video id="meuVideo" src="{% static 'videos/friends0101/friends-01-01.mp4' %}" controls></video>
+    {% endblock video %}
+  </div>
+
+  {% block script %}
+  
+    <script>
+      const dialogoData = [
+        {
+          pt: "Não há nada a dizer.",
+          en: "There's nothing to tell.",
+          inicio: 1,
+          fim: 2.2,
+        },
+        {
+          pt: "Ele é só um cara com quem trabalho.",
+          en: "He's just some guy I work with.",
+          inicio: 2.3,
+          fim: 3.5,
+        },
+        {
+          pt: "Vamos lá, você vai sair com o cara.",
+          en: "C'mon, you're going out with the guy.",
+          inicio: 3.8,
+          fim: 6.42,
+        },
+        {
+          pt: "Deve haver algo errado com ele.",
+          en: "There's gotta be something wrong with him.",
+          inicio: 6.6,
+          fim: 8,
+        },
+        {
+          pt: "Então ele tem uma corcunda?",
+          en: "So does he have a hump?",
+          inicio: 9.3,
+          fim: 10,
+        },
+        {
+          pt: "Uma corcunda e um aplique?",
+          en: "A hump and a hairpiece?",
+          inicio: 10.2,
+          fim: 11,
+        },
+        {
+          pt: "Espera, ele come giz?",
+          en: "Wait, does he eat chalk?",
+          inicio: 13.5,
+          fim: 15,
+        },
+        {
+          pt: "Só porque eu não quero que ela passe pelo que eu passei com Carl- oh!",
+          en: "Just, 'cause, I don't want her to go through what I went through with Carl- oh!",
+          inicio: 16,
+          fim: 19.2,
+        },
+        {
+          pt: "Ok, relaxem todos.",
+          en: "Okay, everybody relax.",
+          inicio: 19.7,
+          fim: 20.7,
+        },
+        {
+          pt: "Isso nem é um encontro.",
+          en: "This is not even a date.",
+          inicio: 21.5,
+          fim: 22.5,
+        },
+        {
+          pt: "São apenas duas pessoas saindo para jantar e não fazendo sexo.",
+          en: "It's just two people going out to dinner and- not having sex.",
+          inicio: 22.5,
+          fim: 25.5,
+        },
+        {
+          pt: "Parece um encontro para mim.",
+          en: "Sounds like a date to me.",
+          inicio: 25.8,
+          fim: 26.78,
+        },
+        {
+          pt: "Tudo bem, então estou de volta ao ensino médio,",
+          en: "Alright, so I'm back in high school,",
+          inicio: 30,
+          fim: 31.5,
+        },
+        {
+          pt: "Estou parado no meio do refeitório,",
+          en: "I'm standing in the middle of the cafeteria,",
+          inicio: 31.6,
+          fim: 33,
+        },
+        {
+          pt: "e percebo que estou totalmente nu.",
+          en: "and I realize I am totally naked.",
+          inicio: 33.2,
+          fim: 36.5,
+        },
+        {
+          pt: "Então olho para baixo e percebo que há um telefone... ali.",
+          en: "Then I look down, and I realize there's a phone... there.",
+          inicio: 38.5,
+          fim: 44.5,
+        },
+        {
+          pt: "Em vez de...? Isso mesmo.",
+          en: "Instead of...?     That's right.",
+          inicio: 46,
+          fim: 47.4,
+        },
+        {
+          pt: "<b>De repente</b>, o telefone começa a tocar.",
+          en: "<b>All of a sudden</b>, the phone starts to ring.",
+          inicio: 49.5,
+          fim: 52.6,
+        },
+        {
+          pt: "E <b>acontece que</b> é minha mãe,",
+          en: "And <b>it turns out</b> it's my mother,",
+          inicio: 54.2,
+          fim: 56,
+        },
+        {
+          pt: "o que é muito, muito estranho, porque ela nunca me liga!",
+          en: "which is very-very weird, because - she never calls me!",
+          inicio: 57.6,
+          fim: 61.7,
+        },
+        {
+          pt: "Esse cara diz olá, eu quero me matar.",
+          en: "This guy says hello, I wanna kill myself.",
+          inicio: 70.1,
+          fim: 71.8,
+        },
+        {
+          pt: "Você está bem, querido?",
+          en: "Are you okay, sweetie?",
+          inicio: 73.5,
+          fim: 74.5,
+        },
+        {
+          pt: "Sinto como se alguém tivesse enfiado a mão na minha garganta,",
+          en: "I just feel like someone reached down my throat,",
+          inicio: 74.8,
+          fim: 76.65,
+        },
+        {
+          pt: "agarrado meu intestino delgado,",
+          en: "grabbed my small intestine,",
+          inicio: 76.8,
+          fim: 78.4,
+        },
+        {
+          pt: "puxado para fora da minha boca",
+          en: "pulled it out of my mouth",
+          inicio: 78.6,
+          fim: 79.5,
+        },
+        {
+          pt: "e amarrado em volta do meu pescoço.",
+          en: "and tied it around my neck.",
+          inicio: 79.6,
+          fim: 81,
+        },
+        {
+          pt: "Carol tirou suas coisas hoje.",
+          en: "Carol moved her stuff out today.",
+          inicio: 84.6,
+          fim: 86,
+        },
+        {
+          pt: "Deixe-me pegar um café para você.",
+          en: "Let me get you some coffee.",
+          inicio: 87.2,
+          fim: 87.8,
+        },
+        {
+          pt: "Pare de limpar minha aura!",
+          en: "Stop cleansing my aura!",
+          inicio: 95.2,
+          fim: 97,
+        },
+        {
+          pt: "Não, apenas deixe minha aura em paz, ok?",
+          en: "No, just leave my aura alone, okay?",
+          inicio: 98.7,
+          fim: 101,
+        },
+        {
+          pt: "Eu vou ficar bem, tá? Sério, pessoal.",
+          en: "I'll be fine, alright? Really, everyone.",
+          inicio: 102.5,
+          fim: 104.5,
+        },
+        {
+          pt: "Espero que ela fique muito feliz.",
+          en: "I hope she'll be very happy.",
+          inicio: 104.6,
+          fim: 105.8,
+        },
+        {
+          pt: "Não, você não quer. Não, eu não quero, que se dane ela, ela me deixou!",
+          en: "No you don't. No I don't, to hell with her, she left me!",
+          inicio: 105.9,
+          fim: 108.7,
+        },
+        {
+          pt: "E você nunca soube que ela era lésbica...",
+          en: "And you never knew she was a lesbian...",
+          inicio: 110.5,
+          fim: 112,
+        },
+        {
+          pt: "Por que todo mundo continua fixado nisso?",
+          en: "Why does everyone keep fixating on that?",
+          inicio: 118.7,
+          fim: 121.2,
+        },
+        {
+          pt: "Ela não sabia, como eu poderia saber?",
+          en: "She didn't know, how should I know?",
+          inicio: 123.1,
+          fim: 124.8,
+        },
+        {
+          pt: "Às vezes eu queria ser lésbica...",
+          en: "Sometimes I wish I was a lesbian...",
+          inicio: 127.7,
+          fim: 129.7,
+        },
+        {
+          pt: "Eu disse isso em voz alta?",
+          en: "Did I say that out loud?",
+          inicio: 132,
+          fim: 133.2,
+        },
+        {
+          pt: "Você está sentindo muita dor agora.",
+          en: "You're feeling a lot of pain right now.",
+          inicio: 137.8,
+          fim: 140,
+        },
+        {
+          pt: "Você está com raiva. Você está sofrendo.",
+          en: "You're angry. You're hurting.",
+          inicio: 140,
+          fim: 142,
+        },
+        {
+          pt: "Posso lhe dizer qual é a resposta?",
+          en: "Can I tell you what the answer is?",
+          inicio: 143,
+          fim: 144,
+        },
+        {
+          pt: "Bar de striptease!",
+          en: "Strip joint!",
+          inicio: 145.2,
+          fim: 146.5,
+        },
+        {
+          pt: "Vamos lá, você é solteiro! Tem hormônios!",
+          en: "C'mon, you're single! Have some hormones!",
+          inicio: 148.8,
+          fim: 151.1,
+        },
+        {
+          pt: "Eu não quero ficar solteiro, ok?",
+          en: "I don't want to be single, okay?",
+          inicio: 151.4,
+          fim: 153.3,
+        },
+        {
+          pt: "só quero me casar de novo!",
+          en: "I just wanna be married again!",
+          inicio: 154.4,
+          fim: 156,
+        },
+        {
+          pt: "E eu só quero um milhão de dólares!",
+          en: "And I just want a million dollars!",
+          inicio: 161,
+          fim: 162.9,
+        },
+      ];
+
+      // 2. LÓGICA PARA CRIAR A LISTA
+      // Este código será executado assim que o HTML da página for carregado.
+      document.addEventListener("DOMContentLoaded", () => {
+        const listaDialogoElement = document.getElementById("lista-dialogo");
+
+        // Itera sobre cada item do nosso array de dados
+        dialogoData.forEach((item) => {
+          // Cria um novo elemento <li>
+          const li = document.createElement("li");
+          li.className = "linha-dialogo";
+
+          // Define o conteúdo HTML do <li> usando os dados do item atual
+          li.innerHTML = `
+            <div class="frases">
+              <span class="frase-pt">${item.pt}</span>
+              <span class="frase-en">${item.en}</span>
+            </div>
+            <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
+          `;
+
+          // Adiciona o <li> recém-criado à lista <ul> no HTML
+          listaDialogoElement.appendChild(li);
+        });
+      });
+    </script>
+  {% endblock script %}
+
+  <script src="{% static 'js/script_friends.js' %}"></script>
+</body>
+
+</html>

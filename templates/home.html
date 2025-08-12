@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Início - Minha App{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm rounded-4">
+      <div class="card-body p-4 p-md-5">
+        <h2 class="h4 mb-3">Português / English</h2>
+        <p class="text-secondary mb-0">
+          Olá <strong>{{ request.user.username }}</strong>, bons estudos!!!
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,155 @@
+  {% extends 'friends-base.html' %}
+  {% load static %}
+  {% block title %}
+    <title>Friends - Parte 06</title>
+  {% endblock title %}
+
+<body>
+  {% block video %}
+      <video id="meuVideo" src="{% static 'videos/friends0101/friends-01-06.mp4' %}" controls></video>
+    {% endblock video %}
+  </div>
+
+  {% block script %}
+
+  <script>
+    // 1. DADOS DO DIÁLOGO (PARTE 6)
+    // Os dados para este trecho foram atualizados.
+    const dialogoData = [
+      {
+        pt: "Desde que ela me abandonou, eu, uh...",
+        en: "Ever since she walked out on me, I, uh...",
+        inicio: 0,
+        fim: 3.2,
+      },
+      {
+        pt: "O quê, você quer soletrar com macarrão?",
+        en: "What, you wanna spell it out with noodles?",
+        inicio: 6,
+        fim: 8,
+      },
+      {
+        pt: "Não, é mais uma revelação de quinto encontro.",
+        en: "No, it's, it's more of a fifth date kinda revelation.",
+        inicio: 8.2,
+        fim: 12,
+      },
+      {
+        pt: "Ah, então vai ter um quinto encontro?",
+        en: "Oh, so there is gonna be a fifth date?",
+        inicio: 13,
+        fim: 15.4,
+      },
+      {
+        pt: "Sim... sim, acho que há.",
+        en: "Yeah... yeah, I think there is.",
+        inicio: 19,
+        fim: 21,
+      },
+      {
+        pt: "O que você ia dizer?",
+        en: "What were you gonna say?",
+        inicio: 22.5,
+        fim: 24,
+      },
+      {
+        pt: "desde que ela me deixou, hum",
+        en: "ever since she left me, um",
+        inicio: 29.5,
+        fim: 31.2,
+      },
+      {
+        pt: "Eu não tenho conseguido... ter um desempenho... sexual.",
+        en: "I haven't been able to, uh, perform.... Sexually.",
+        inicio: 33,
+        fim: 37,
+      },
+      {
+        pt: "Eu sei que ser cuspido provavelmente não é o que você precisa agora.",
+        en: "I know being spit on is probably not what you need right now.",
+        inicio: 43.9,
+        fim: 46.4,
+      },
+      {
+        pt: "Que bom que você quebrou o relógio dela!",
+        en: "I'm glad you smashed her watch!",
+        inicio: 55,
+        fim: 57.8,
+      },
+      {
+        pt: "Então você ainda acha que...",
+        en: "So you still think you, um...",
+        inicio: 60,
+        fim: 62,
+      },
+      {
+        pt: "pode querer aquele quinto encontro?",
+        en: "might want that fifth date?",
+        inicio: 62.1,
+        fim: 64,
+      },
+      {
+        pt: "Mas Joanne amava Chaci! Essa é a diferença!",
+        en: "but Joanne loved Chaci! That's the difference!",
+        inicio: 77.5,
+        fim: 81.8,
+      },
+      {
+        pt: "Você sabe quanto tempo faz que não pego numa colher?",
+        en: "Do you know how long it's been since I've grabbed a spoon?",
+        inicio: 86.1,
+        fim: 89,
+      },
+      {
+        pt: "As palavras 'Billy, não seja um herói' significam alguma coisa?",
+        en: "Do the words 'Billy, don't be a hero' mean anything? ",
+        inicio: 89.7,
+        fim: 91.8,
+      },
+      {
+        pt: "Sabe, aqui está a questão.",
+        en: "Y'know, here's the thing.",
+        inicio: 94.7,
+        fim: 96,
+      },
+      {
+        pt: "Mesmo que eu conseguisse me recompor o suficiente para convidar uma mulher para sair...",
+        en: "Even if I could get it together enough to- to ask a woman out...",
+        inicio: 96.8,
+        fim: 100.6,
+      },
+      {
+        pt: "a quem vou perguntar?",
+        en: "who am I gonna ask?",
+        inicio: 102.1,
+        fim: 103.8,
+      },
+    ];
+
+    // 2. LÓGICA PARA CRIAR A LISTA (A MESMA DE ANTES)
+    // Este bloco permanece inalterado, demonstrando sua reutilização.
+    document.addEventListener("DOMContentLoaded", () => {
+      const listaDialogoElement = document.getElementById("lista-dialogo");
+
+      dialogoData.forEach((item) => {
+        const li = document.createElement("li");
+        li.className = "linha-dialogo";
+
+        li.innerHTML = `
+          <div class="frases">
+            <span class="frase-pt">${item.pt}</span>
+            <span class="frase-en">${item.en}</span>
+          </div>
+          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
+        `;
+
+        listaDialogoElement.appendChild(li);
+      });
+    });
+  </script>
+  {% endblock script %}
+
+  <script src="script.js"></script>
+</body>
+
+</html>

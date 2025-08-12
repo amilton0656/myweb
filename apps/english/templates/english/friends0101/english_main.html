@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Friends - Menu de Episódios</title>
+
+  <style>
+    /* Estilos Gerais */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f0f2f5;
+      color: #333;
+      margin: 0;
+      padding: 40px 20px;
+      /* Adiciona espaçamento no topo e na base */
+
+      /* PASSO 1: Organizar os elementos na vertical.
+        - 'display: flex' ativa o Flexbox.
+        - 'flex-direction: column' empilha os itens verticalmente.
+        - 'align-items: center' centraliza os itens horizontalmente.
+        - 'gap' cria um espaço entre os containers dos episódios.
+      */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      /* Espaço entre os containers dos episódios */
+    }
+
+    /* Container de cada episódio */
+    .episode-container {
+      background-color: #ffffff;
+      padding: 25px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    /* Título do episódio (agora H2) */
+    .episode-container h2 {
+      color: #1c1e21;
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+
+    /* Lista de links (partes) */
+    .episode-parts-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      /* Permite que os botões quebrem a linha */
+      justify-content: center;
+      gap: 15px;
+      /* Espaço entre os botões */
+    }
+
+    /* Estilo do link/botão */
+    .part-link {
+      display: block;
+      background-color: #007bff;
+      color: #ffffff;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .part-link:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .part-link:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <section class="episode-container">
+    <h2>Friends - Episódio 01 - 1ª Temporada</h2>
+    <ul class="episode-parts-list">
+      <li><a href="{% url 'friends0101' %}" class="part-link">Parte 01</a></li>
+      <li><a href="{% url 'friends0102' %}" class="part-link">Parte 02</a></li>
+      <li><a href="{% url 'friends0103' %}" class="part-link">Parte 03</a></li>
+      <li><a href="{% url 'friends0104' %}" class="part-link">Parte 04</a></li>
+      <li><a href="{% url 'friends0105' %}" class="part-link">Parte 05</a></li>
+      <li><a href="{% url 'friends0106' %}" class="part-link">Parte 06</a></li>
+      <li><a href="{% url 'friends0107' %}" class="part-link">Parte 07</a></li>
+      <li><a href="{% url 'friends0108' %}" class="part-link">Parte 08</a></li>
+      <li><a href="{% url 'friends0109' %}" class="part-link">Parte 09</a></li>
+    </ul>
+  </section>
+
+  <section class="episode-container">
+    <h2>Friends - Episódio 02 - 1ª Temporada</h2>
+    <ul class="episode-parts-list">
+      <li><a href="friends-02-01.html" target="_blank" class="part-link">Parte 01</a></li>
+      <li><a href="friends-02-02.html" target="_blank" class="part-link">Parte 02</a></li>
+      <li><a href="friends-02-03.html" target="_blank" class="part-link">Parte 03</a></li>
+      <li><a href="friends-02-04.html" target="_blank" class="part-link">Parte 04</a></li>
+      <li><a href="friends-02-05.html" target="_blank" class="part-link">Parte 05</a></li>
+      <li><a href="friends-02-06.html" target="_blank" class="part-link">Parte 06</a></li>
+      <li><a href="friends-02-07.html" target="_blank" class="part-link">Parte 07</a></li>
+      <li><a href="friends-02-08.html" target="_blank" class="part-link">Parte 08</a></li>
+      <li><a href="friends-02-09.html" target="_blank" class="part-link">Parte 09</a></li>
+      <li><a href="friends-02-10.html" target="_blank" class="part-link">Parte 10</a></li>
+      <li><a href="friends-02-11.html" target="_blank" class="part-link">Parte 11</a></li>
+    </ul>
+  </section>
+
+</body>
+
+</html>

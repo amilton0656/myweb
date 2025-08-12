@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="{% static 'css/style_login.css' %}">
+</head>
+<body>
+  <body onload="javascript:autoRefresh(1);">
+  <div class="login-container">
+    <h2>Login</h2>
+    <form method="post" action="{% url 'entrou' %}">  
+      {% csrf_token %}
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="username" name="username" placeholder="Usuário" required>
+      </div>
+
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" name="password" placeholder="Senha" required>
+      </div>
+
+      <button type="submit">Entrar</button>
+      {% for k, v in form.errors.items %}
+        {{ v }}
+      {% endfor %}
+    </form>
+  </div>
+  <script>
+    window.onload = function() {
+        if (performance.navigation.type === 2) { // O tipo 2 indica que a página foi acessada pelo botão "voltar" ou "avançar"
+            location.reload(true);
+        }
+    };
+</script>
+</body>
+</html>

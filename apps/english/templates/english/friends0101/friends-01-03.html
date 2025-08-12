@@ -1,0 +1,222 @@
+  {% extends 'friends-base.html' %}
+  {% load static %}
+  {% block title %}
+    <title>Friends - Parte 03</title>
+  {% endblock title %}
+
+<body>
+  <div class="video-container">
+    {% block video %}
+      <video id="meuVideo" src="{% static 'videos/friends0101/friends-01-03.mp4' %}" controls></video>
+    {% endblock video %}
+  </div>
+
+  {% block script %}
+
+  <script>
+    // 1. DADOS DO DIÁLOGO (PARTE 3)
+    // Apenas esta seção de dados foi alterada para refletir o novo conteúdo.
+    const dialogoData = [
+      {
+        pt: "Imagino que ele comprou para ela o grande órgão de tubos",
+        en: "I'm guessing that he bought her the big pipe organ",
+        inicio: 3,
+        fim: 5.2,
+      },
+      {
+        pt: "e ela não ficou nada feliz com isso.",
+        en: "and she's really not happy about it.",
+        inicio: 5.3,
+        fim: 6.6,
+      },
+      {
+        pt: "Papai, eu só... não posso me casar com ele!",
+        en: "Daddy, I just... I can't marry him!",
+        inicio: 9.3,
+        fim: 12,
+      },
+      {
+        pt: "Desculpa. Eu simplesmente não o amo. Bom, isso importa para mim!",
+        en: "I'm sorry. I just don't love him. Well, it matters to me!",
+        inicio: 12.1,
+        fim: 19.1,
+      },
+      {
+        pt: "Ooh, ela não deveria estar usando essas calças.",
+        en: "Ooh, she should not be wearing those pants.",
+        inicio: 22.6,
+        fim: 25.5,
+      },
+      {
+        pt: "Eu digo para empurrá-la escada abaixo.",
+        en: "I say push her down the stairs.",
+        inicio: 26.8,
+        fim: 28.7,
+      },
+      {
+        pt: "Vamos, papai, me escute!",
+        en: "C'mon Daddy, listen to me!",
+        inicio: 36,
+        fim: 37.6,
+      },
+      {
+        pt: "É como se, durante toda a minha vida, todo mundo sempre me dissesse: 'Você é um sapato!",
+        en: "It's like, all of my life, everyone has always told me, 'You're a shoe!",
+        inicio: 37.7,
+        fim: 42,
+      },
+      {
+        pt: "E então hoje eu simplesmente parei e disse:",
+        en: "And then today I just stopped and I said,",
+        inicio: 45,
+        fim: 47,
+      },
+      {
+        pt: "E se eu não quiser ser um sapato?",
+        en: "What if I don't wanna be a shoe?",
+        inicio: 47.1,
+        fim: 48.1,
+      },
+      {
+        pt: "E se eu quiser ser uma bolsa,",
+        en: "What if I wanna be a- a purse,",
+        inicio: 48.3,
+        fim: 50.5,
+      },
+      {
+        pt: "Não, eu não quero que você me compre um chapéu, estou dizendo que sou um ha-",
+        en: "No, I don’t want you to buy me a hat, I'm saying I am a ha-",
+        inicio: 54.7,
+        fim: 57.1,
+      },
+      {
+        pt: "É uma metáfora, papai!",
+        en: "It's a metaphor, Daddy!",
+        inicio: 57.2,
+        fim: 58.5,
+      },
+      {
+        pt: "Você pode ver onde ele teria problemas.",
+        en: "You can see where he'd have trouble.",
+        inicio: 61.2,
+        fim: 62.6,
+      },
+      {
+        pt: "Olha, papai, a vida é minha.",
+        en: "Look Daddy, it's my life.",
+        inicio: 66.4,
+        fim: 68.1,
+      },
+      {
+        pt: "Bem, talvez eu fique aqui com a Monica.",
+        en: "Well maybe I'll just stay here with Monica.",
+        inicio: 70,
+        fim: 72.1,
+      },
+      {
+        pt: "Bem, acho que já sabemos quem vai ficar aqui com a Monica...",
+        en: "Well, I guess we've established who's staying here with Monica...",
+        inicio: 75.47,
+        fim: 77.45,
+      },
+      {
+        pt: "Bem, talvez essa seja minha decisão.",
+        en: "Well, maybe that's my decision.",
+        inicio: 79.8,
+        fim: 81.4,
+      },
+      {
+        pt: "Bom, talvez eu não precise do seu dinheiro. Espera!! Espera, eu disse talvez!!",
+        en: "Well, maybe I don't need your money. Wait!! Wait, I said maybe!!",
+        inicio: 83,
+        fim: 86.6,
+      },
+      {
+        pt: "Tente pensar em coisas boas e calmas...",
+        en: "Just try to think of nice calm things...",
+        inicio: 97,
+        fim: 99.5,
+      },
+      {
+        pt: "Estou melhor agora. Eu ajudei!",
+        en: "I'm all better now.  I helped!",
+        inicio: 112.5,
+        fim: 116.5,
+      },
+      {
+        pt: "Certo, olha, provavelmente é melhor assim, sabe?",
+        en: "Okay, look, this is probably for the best, y'know?",
+        inicio: 119.7,
+        fim: 122.1,
+      },
+      {
+        pt: "Independência. Assumindo o controle da sua vida.",
+        en: "Independence. Taking control of your life.",
+        inicio: 122.2,
+        fim: 125,
+      },
+      {
+        pt: "E ei, você precisa de alguma coisa,",
+        en: "And hey, you need anything,",
+        inicio: 125.1,
+        fim: 127,
+      },
+      {
+        pt: "você sempre pode vir até o Joey.",
+        en: "you can always come to Joey.",
+        inicio: 127.1,
+        fim: 129,
+      },
+      {
+        pt: "Eu e Chandler moramos do outro lado do corredor.",
+        en: "Me and Chandler live across the hall.",
+        inicio: 129.5,
+        fim: 131.4,
+      },
+      {
+        pt: "E ele fica muito tempo fora.",
+        en: "And he's away a lot.",
+        inicio: 132,
+        fim: 132.9,
+      },
+      {
+        pt: "Joey, para de dar em cima dela! É o dia do casamento dela!",
+        en: "Joey, stop hitting on her! It's her wedding day!",
+        inicio: 135,
+        fim: 137.5,
+      },
+      {
+        pt: "O quê, como se houvesse uma regra ou algo assim?",
+        en: "What, like there's a rule or something?",
+        inicio: 137.8,
+        fim: 139.7,
+      },
+    ];
+
+    // 2. LÓGICA PARA CRIAR A LISTA (INALTERADA)
+    // Este bloco de código permanece idêntico, mostrando a reutilização do código.
+    document.addEventListener("DOMContentLoaded", () => {
+      const listaDialogoElement = document.getElementById("lista-dialogo");
+
+      dialogoData.forEach((item) => {
+        const li = document.createElement("li");
+        li.className = "linha-dialogo";
+
+        li.innerHTML = `
+          <div class="frases">
+            <span class="frase-pt">${item.pt}</span>
+            <span class="frase-en">${item.en}</span>
+          </div>
+          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
+        `;
+
+        listaDialogoElement.appendChild(li);
+      });
+    });
+  </script>
+  {% endblock script %}
+
+  <script src="script.js"></script>
+</body>
+
+</html>

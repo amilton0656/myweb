@@ -1,0 +1,7 @@
+py -m venv .venv
+.\.venv\Scripts\activate
+
+pip install django
+pip install python-decouple psycopg[binary]
+
+python manage.py startapp portugues
