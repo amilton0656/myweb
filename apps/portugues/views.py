@@ -12,3 +12,7 @@ def tapas01(request):
 @login_required
 def tapas02(request):
     return render(request, 'portugues/tapas02.html')
+
+@login_required
+def tapas03(request):
+    return render(request, 'portugues/tapas03.html')

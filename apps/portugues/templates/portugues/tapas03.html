@@ -1,0 +1,435 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tapas e Beijos - Parte 01</title>
+  <link rel="stylesheet" href="{% static 'tapas03/style.css' %}" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #1a1a1a;
+      color: #f1f1f1;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .bloco-frase {
+      background-color: #262626;
+      border: 1px solid #444;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      padding: 16px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    .frase {
+      margin-bottom: 10px;
+      color: #ffffff;
+      font-size: 1.5rem;
+    }
+
+    .traducao {
+      color: #87cefa;
+      font-style: italic;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+
+    .audios {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    audio {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    img {
+      max-width: 48%;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #444;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <video src="{% static 'tapas03/tapas-03.mp4' %}" controls></video>
+
+    <div class="bloco-frase">
+      <div class="frase">Tá gostando?</div>
+      <div class="traducao">Are you enjoying it?</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases301.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha301.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Você vai ter que dar satisfação pra aquela fedelha tonta </div>
+      <div class="traducao">You're going to have give that silly brat an explanation.</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases302.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha302.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Tonta? Tonta somos nós, meu amor</div>
+      <div class="traducao">Fool? We are fools, my love</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases303.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha303.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Que ela entrou na loja. Balançou aquele cabelinho. E levou o patrão.</div>
+      <div class="traducao">She came into the store, shook her hair and took the boss.</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases304.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha304.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">A gente ainda vai ver ela ficar rica.</div>
+      <div class="traducao">We're still going to see her get rich.</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases305.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha305.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Ficar rica alugando vestido de noiva?</div>
+      <div class="traducao">Get rich by renting wedding dress?</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases306.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha306.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">É! Casasmento tá na moda.</div>
+      <div class="traducao">Yes. Marriage is in fashion.</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases307.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha307.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">É. Menos pra nós duas.</div>
+      <div class="traducao">Yeah. Except for the two of us.</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases308.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha308.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Nós duas não. Vira essa boca prá lá porque eu tenho o Armani...</div>
+      <div class="traducao">Not both of us. Turn your mouth away because I have Armani...</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases309.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha309.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Armani...!? Quem é a vagabunda?</div>
+      <div class="traducao">Armani? Who's the bitch?.</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases310.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha310.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Que é isso Fafá. Que é isso?</div>
+      <div class="traducao">What is this, Fafá? What is this?</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases311.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha311.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">A menina trabalha aqui do lado. A menina...</div>
+      <div class="traducao">The girl works next door. The girl...</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases312.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha312.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Eu não quero saber onde é que ela faz ponto.</div>
+      <div class="traducao">I don't care where she hangs out.</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases313.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha313.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Eu quero saber o que é que o pescoço dela táva fazendo no seu nariz?</div>
+      <div class="traducao">I want to know what her neck was doing to your nose?</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases314.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha314.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Acabei de receber uma remessa nova de perfume aqui na minha loja...</div>
+      <div class="traducao">I just received a new shipment of perfume, here in my store...</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases315.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha315.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">...e eu preciso abrir o mercado.</div>
+      <div class="traducao">.. and I need to open the market.</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases316.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha316.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Expandir. Buscar novas oportunidades. Entendeu?</div>
+      <div class="traducao">Expand. Seek new opportunities. Got it?</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases317.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha317.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">No pescoço da garota? </div>
+      <div class="traducao">On the girl's neck?</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases318.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha318.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Ô Sueli, assim você me quebra. Né Sueli?</div>
+      <div class="traducao">Oh Sueli. Your're breaking me like that. Right Sueli?</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases319.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha319.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Não. Quem te quebra sou eu, desgraçado. </div>
+      <div class="traducao">No. I'm the one who breaks you, you wretch.</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases320.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha320.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Ela sabe que você é casado?</div>
+      <div class="traducao">Does she know you're married?</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases321.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha321.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Ele é casado.</div>
+      <div class="traducao">He is married.</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases322.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha322.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Ah... e você que é a esposa dele?</div>
+      <div class="traducao">Oh... and you're his wife?</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases323.mp3' %}" type="audio/mp3" />
+          
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha323.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Não ela é a amante dele.</div>
+      <div class="traducao">No, she's his lover.</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases324.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha324.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+    
+    <div class="bloco-frase">
+      <div class="frase">É uma amante que fica aqui sendo tratado como se fosse uma esposa...</div>
+      <div class="traducao">It's a lover who stays here being treated as if she were a wife..</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases325.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha325.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+
+    <div class="bloco-frase">
+      <div class="frase">Pra tu ver que eu te boto no mesmo patamar que a minha mulher. Entendeu?</div>
+      <div class="traducao">So you can see that I put you on the same level as my wife. Got it?</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases326.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha326.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    <div class="bloco-frase">
+      <div class="frase">Lou...cu...ra!!!</div>
+      <div class="traducao">Crazy...ness!!!</div>
+      <div class="audios">
+        <audio controls>
+          <source src="{% static 'tapas03/frases327.mp3' %}" type="audio/mp3" />
+        </audio>
+        <audio controls>
+          <source src="{% static 'tapas03/trilha327.mp3' %}" type="audio/mp3" />
+        </audio>
+      </div>
+    </div>
+
+    
+
+    <!-- Adicione mais blocos aqui -->
+  </div>
+</body>
+
+</html>

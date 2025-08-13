@@ -12,7 +12,4 @@ urlpatterns = [
     ),
     path("logout/", do_logout, name="logout"),
 
-    # Rotas para as telas principais
-    # path('portugues/', lambda r: render(r, 'portugues_main.html'), name='portugues_main'),
-    # path('english/',   lambda r: render(r, 'english_main.html'),   name='english_main'),
 ]
