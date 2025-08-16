@@ -1,3 +1,6 @@
 .env
-static
 .venv
+static
+portugues/static
+english/static
+accounts/static

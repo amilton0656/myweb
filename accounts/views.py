@@ -13,6 +13,7 @@ def login_view(request):
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
+            
             login(request, user)
 
             # fallback (sem grupo)
@@ -25,7 +26,25 @@ def login_view(request):
 @login_required
 @never_cache
 def home(request):
-    return render(request, 'home.html')  # fallback
+    grupos = list(request.user.groups.values_list("name", flat=True))
+    print(grupos)
+
+    if request.user.groups.filter(name='portugues').exists():
+        return render(request, 'home_portugues.html')
+    elif request.user.groups.filter(name='english').exists():
+        return render(request, 'home_english.html')
+    else:
+        return render(request, 'home.html')
+
+@login_required
+@never_cache
+def home_portugues(request):
+    return render(request, 'home_portugues.html')
+
+@login_required
+@never_cache
+def home_english(request):
+    return render(request, 'home_english.html')
 
 @login_required
 @never_cache

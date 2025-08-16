@@ -100,7 +100,7 @@ USE_TZ = True
 
 # --- Static ---
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]  # arquivos estáticos do projeto
-STATIC_ROOT = BASE_DIR / "staticfiles"    # destino do collectstatic em prod
+STATICFILES_DIRS = [BASE_DIR / "static/"]  # arquivos estáticos do projeto
+STATIC_ROOT = BASE_DIR / "staticfiles/"    # destino do collectstatic em prod
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

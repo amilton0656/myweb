@@ -5,6 +5,8 @@ from django.shortcuts import render
 
 urlpatterns = [
     path('', home, name='home'),
+    path('home_portugues/', home, name='home_portugues'),
+    path('home_english/', home, name='home_english'),
     path(
         "login/",
         LoginView.as_view(template_name="registration/login.html"),
