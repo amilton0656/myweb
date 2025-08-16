@@ -32,6 +32,9 @@
             <li><a class="dropdown-item" href="{% url 'tapas03' %}">Parte 03</a></li>
           </ul>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'praca' %}">Praça/Parque</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Friends 01
@@ -69,7 +72,6 @@
         
       </ul>
       <div class="ms-auto text-white">
-        <span class="me-3">Olá, <strong>{{ request.user.first_name|default:request.user.username }}</strong></span>
         <a class="text-white text-decoration-none link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
           href="{% url 'logout' %}">Sair</a>
       </div>
