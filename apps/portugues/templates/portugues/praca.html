@@ -6,183 +6,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="{% static 'accounts/images/favicon.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'portugues/css/style_texto.css' %}" />
   <title>Vídeo com Transcrição (PT/EN)</title>
-  <style>
-    :root {
-      --bg: #0f172a;
-      --panel: #111827;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --accent: #22d3ee;
-      --border: #1f2937;
-    }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial;
-      line-height: 1.5;
-    }
-
-    header {
-      padding: 28px 20px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-    }
-
-    header h1 {
-      margin: 0 0 6px;
-      font-size: clamp(20px, 3vw, 28px);
-    }
-
-    header p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    main {
-      max-width: 1100px;
-      margin: 24px auto;
-      padding: 0 16px;
-    }
-
-    .player {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      padding: 14px;
-      border-radius: 14px;
-    }
-
-    video {
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-      display: block;
-      border-radius: 10px;
-    }
-
-    .audio-card {
-      margin-top: 14px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-      display: grid;
-      gap: 10px;
-      justify-items: start;
-    }
-
-    .audio-card h3 {
-      margin: 0;
-      font-size: 18px;
-      color: var(--accent);
-    }
-
-    .btn {
-      appearance: none;
-      border: 1px solid var(--border);
-      background: #0b1220;
-      color: var(--text);
-      padding: 10px 14px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    .btn:focus {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    .hint {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    @media (min-width:880px) {
-      .grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .col {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 16px;
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .col h2 {
-      margin: 0;
-      font-size: 20px;
-      letter-spacing: .3px;
-      color: var(--accent);
-      text-transform: uppercase;
-    }
-
-    .text {
-      font-size: 1.5rem;
-      text-justify: auto;
-    }
-
-    .footer {
-      color: var(--muted);
-      font-size: 13px;
-      text-align: center;
-      padding: 22px 16px 36px;
-    }
-
-    .cue {
-      transition: background .15s ease, color .15s ease;
-      cursor: pointer;
-    }
-
-    .cue.active {
-      background: rgba(34, 211, 238, 0.25);
-      color: var(--accent);
-      padding: 2px 4px;
-      border-radius: 6px;
-    }
-
-    /* Esconde visualmente sem quebrar o player */
-    .sr-only {
-      position: absolute !important;
-      width: 1px !important;
-      height: 1px !important;
-      padding: 0 !important;
-      margin: -1px !important;
-      overflow: hidden !important;
-      clip: rect(0 0 0 0) !important;
-      white-space: nowrap !important;
-      border: 0 !important;
-    }
-
-    .sr-only::-webkit-media-controls,
-    .sr-only::-webkit-media-controls-enclosure,
-    .sr-only::-webkit-media-controls-panel {
-      display: none !important;
-    }
-
-    #statusEN, #statusPT { display: none !important; }
-
-    
-  </style>
 </head>
 
 <body>
@@ -222,11 +48,11 @@
           <span class="cue" data-start="2.61" data-end="06.53">Hoje eu vou mostrar para você</span>
           <span class="cue" data-start="06.54" data-end="10.60">duas palavras em português,</span>
           <span class="cue" data-start="10.61" data-end="14.88">o que elas representam, o que elas significam</span>
-            <span class="cue" data-start="14.89" data-end="17.94">e a diferença entre elas.</span>
+          <span class="cue" data-start="14.89" data-end="17.94">e a diferença entre elas.</span>
           <br><br>
           <span class="cue" data-start="17.95" data-end="24.37">Uma é <b>praça</b> e a outra é <b>parque</b>.</span>
           <span class="cue" data-start="24.38" data-end="29.12">Praça é um lugar, geralmente público,</span>
-            <span class="cue" data-start="29.13" data-end="38.39">onde você pode sentar e descansar.</span>
+          <span class="cue" data-start="29.13" data-end="38.39">onde você pode sentar e descansar.</span>
           <br><br>
           <span class="cue" data-start="38.40" data-end="43.93">Normalmente é um lugar arborizado,</span>
           <span class="cue" data-start="43.94" data-end="47.53">cheio de verde, bastante árvores,</span>
@@ -237,7 +63,8 @@
           <br><br>
           <span class="cue" data-start="62.19" data-end="66.07">Esta é a praça Getúlio Vargas.</span>
           <span class="cue" data-start="66.08" data-end="70.37">Getúlio Vargas foi um presidente do Brasil</span>
-            <span class="cue" data-start="70.38" data-end="75.17">durante muito tempo e que no final do mandato ele se matou</span>
+          <span class="cue" data-start="70.38" data-end="75.17">durante muito tempo e que no final do mandato ele se
+            matou</span>
           <br><br>
           <span class="cue" data-start="75.18" data-end="80.00">e aqui é uma homenagem a ele, essa praça.</span>
           <br><br>
@@ -254,11 +81,11 @@
           <span class="cue" data-start="110.96" data-end="114.23">pública para o pessoal se exercitar.</span>
           <br><br>
           <span class="cue" data-start="114.24" data-end="118.06">É uma praça...Esta é uma praça grande,</span>
-            <span class="cue" data-start="118.07" data-end="120.28">ocupa toda a quadra.</span>
+          <span class="cue" data-start="118.07" data-end="120.28">ocupa toda a quadra.</span>
           <br><br>
           <span class="cue" data-start="120.29" data-end="126.22">No meio da praça temos uma fonte.</span>
           <span class="cue" data-start="126.23" data-end="129.52">No momento ela está desligada,</span>
-            <span class="cue" data-start="129.53" data-end="131.25">não está funcionando.</span>
+          <span class="cue" data-start="129.53" data-end="131.25">não está funcionando.</span>
           <span class="cue" data-start="131.25" data-end="133.38">Vamos passar por ela.</span>
           <br><br>
           <span class="cue" data-start="133.39" data-end="136.84">Então o conceito de praça é esse, </span>
@@ -272,13 +99,14 @@
           <span class="cue" data-start="159.80" data-end="164.21">Um parque é um lugar para se divertir,</span>
           <span class="cue" data-start="164.22" data-end="166.96">para praticar alguma atividade.</span>
           <br><br>
-          <span class="cue" data-start="166.97" data-end="171.24">Então por exemplo, aqui nós temos um parque infantil</span>
+          <span class="cue" data-start="166.97" data-end="171.24">Então por exemplo, aqui nós temos um parque
+            infantil</span>
           <span class="cue" data-start="171.25" data-end="173.84">chamado Dona Tilinha.</span>
           <span class="cue" data-start="173.85" data-end="181.24">Dona Tilinha foi a mulher que idealizou esse parque
             aqui dentro da praça.</span>
           <br><br>
           <span class="cue" data-start="181.25" data-end="184.24">Então aqui nós temos vários equipamentos</span>
-            <span class="cue" data-start="184.25" data-end="187.08">para as crianças brincarem.</span>
+          <span class="cue" data-start="184.25" data-end="187.08">para as crianças brincarem.</span>
 
           <span class="cue" data-start="187.09" data-end="188.99">Há bastante espaço.</span>
           <br><br>
@@ -288,7 +116,7 @@
           <br><br>
           <span class="cue" data-start="200.66" data-end="205.14">Aqui nós temos algumas gangorras.</span>
           <span class="cue" data-start="205.15" data-end="208.40">E aqui nós temos o que nós chamamos de balanço,</span>
-            <span class="cue" data-start="208.41" data-end="211.60">para as crianças brincarem também.</span>
+          <span class="cue" data-start="208.41" data-end="211.60">para as crianças brincarem também.</span>
           <br><br>
           <span class="cue" data-start="211.61" data-end="217.03">E geralmente dentro da praça, de cada praça, há um
             quiosque, </span>
@@ -298,25 +126,29 @@
           <br><br>
           <span class="cue" data-start="226.79" data-end="233.96">Aqui nós temos outro exemplo de praça e parque.</span>
           <span class="cue" data-start="233.97" data-end="237.19">Aqui há uma pequena praça</span>
-            <span class="cue" data-start="237.20" data-end="243.93">com um parque, pequeno parque dentro da praça.</span>
+          <span class="cue" data-start="237.20" data-end="243.93">com um parque, pequeno parque dentro da praça.</span>
           <br><br>
           <span class="cue" data-start="243.93" data-end="249.74">Veja, essa é uma praça com bastante árvores.</span>
           <span class="cue" data-start="249.75" data-end="252.92">Dentro da praça, </span>
-            <span class="cue" data-start="252.93" data-end="262.93">aqui nós temos um espaço para jogar xadrez ou dama.</span>
+          <span class="cue" data-start="252.93" data-end="262.93">aqui nós temos um espaço para jogar xadrez ou
+            dama.</span>
           <span class="cue" data-start="262.94" data-end="268.46">Dominó.</span>
           <br><br>
-          <span class="cue" data-start="268.47" data-end="275.15">Essa praça...Normalmente a praça tem bastante verde,</span>
-            <span class="cue" data-start="275.16" data-end="280.06">flores, folhagens, árvores.</span>
+          <span class="cue" data-start="268.47" data-end="275.15">Essa praça...Normalmente a praça tem bastante
+            verde,</span>
+          <span class="cue" data-start="275.16" data-end="280.06">flores, folhagens, árvores.</span>
           <span class="cue" data-start="280.07" data-end="283.60">E nesse caso aqui, dentro da praça,</span>
-            <span class="cue" data-start="283.61" data-end="288.36">nós também temos um pequeno parque para as crianças brincarem.</span>
+          <span class="cue" data-start="283.61" data-end="288.36">nós também temos um pequeno parque para as crianças
+            brincarem.</span>
           <br><br>
           <span class="cue" data-start="288.36" data-end="293.41">Aqui nós temos alguns patinetes elétricos.</span>
           <br><br>
           <span class="cue" data-start="293.42" data-end="295.54">Essa é uma pequena praça.</span>
           <span class="cue" data-start="295.55" data-end="298.72">Dentro dessa praça, nós temos </span>
-            <span class="cue" data-start="298.73" data-end="302.37">um parquinho para as crianças brincarem.</span>
+          <span class="cue" data-start="298.73" data-end="302.37">um parquinho para as crianças brincarem.</span>
           <br><br>
-          <span class="cue" data-start="302.37" data-end="306.78">Aqui dentro da praça, nós temos um outro quiosque,</span>
+          <span class="cue" data-start="302.37" data-end="306.78">Aqui dentro da praça, nós temos um outro
+            quiosque,</span>
           <span class="cue" data-start="306.79*" data-end="309.70">que é uma floricultura.</span>
           <span class="cue" data-start="309.70" data-end="315.32">Floricultura é um lugar onde se vende flores.</span>
           <br><br>

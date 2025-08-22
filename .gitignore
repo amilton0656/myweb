@@ -1,6 +1,11 @@
 .env
 .venv
 static
-portugues/static
-english/static
-accounts/static
+apps/portugues/static/portugues/praca
+apps/portugues/static/portugues/tapas01
+apps/portugues/static/portugues/tapas02
+apps/portugues/static/portugues/tapas03
+
+english/static/english/friends
+english/static/english/textos
+english/static/english/videos
