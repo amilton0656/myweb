@@ -180,6 +180,59 @@
     }
 
     #statusEN, #statusPT { display: none !important; }
+
+    :root{
+    --brand-body: #eaf2ff; /* azul MUITO clarinho */
+
+  --brand-navy: #0f2d55;
+    --brand-navy-border: #0b2241;
+
+    /* CARDS em steelblue */
+    --brand-card: #4682b4;        /* steelblue */
+    --brand-card-border: #2f5e86; /* tom p/ borda */
+    --brand-contrast: #ffffff;
+  }
+  html, body{
+    background-color: var(--brand-body) !important;
+  }
+
+  /* Tudo que era "dark" agora navy */
+  .bg-dark{
+    background-color: var(--brand-navy) !important;
+    color: var(--brand-contrast) !important;
+  }
+
+  .text-bg-dark,
+  .card.text-bg-dark,
+  .card.text-bg-dark .card-body{
+    background-color: var(--brand-navy) !important;
+    color: var(--brand-contrast) !important;
+    border-color: var(--brand-navy-border) !important;
+  }
+
+  /* Bordas secundárias combinando com o navy */
+  .border-secondary{
+    border-color: var(--brand-navy-border) !important;
+  }
+  .border-secondary-subtle{
+    border-color: #b9c6d8 !important;
+  }
+
+  /* Links dentro dos cards escuros */
+  .card.text-bg-dark a{
+    color: #eaf2ff;
+  }
+  .card.text-bg-dark a:hover{
+    color: #ffffff;
+  }
+
+  /* Botão primário em navy */
+  .btn-primary{
+    background-color: var(--brand-navy) !important;
+    border-color: var(--brand-navy-border) !important;
+    color: var(--brand-contrast) !important;
+  }
+  .btn-primary:hover{ filter: brightness(1.06); }
   </style>
 </head>
 
