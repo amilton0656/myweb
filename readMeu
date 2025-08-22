@@ -7,3 +7,4 @@ pip install python-decouple psycopg[binary]
 python manage.py startapp portugues
 
 python manage.py collectstatic --noinput
+sudo systemctl restart apache2
