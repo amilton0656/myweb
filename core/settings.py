@@ -99,7 +99,7 @@ USE_I18N = True
 USE_TZ = True
 
 # --- Static ---
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static/"]  # arquivos estáticos do projeto
 STATIC_ROOT = BASE_DIR / "staticfiles"    # destino do collectstatic em prod
 

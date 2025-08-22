@@ -1,9 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="{% static 'accounts/images/favicon.ico' %}" type="image/x-icon">
   <title>{% block title %}Minha App{% endblock %}</title>
 
   <!-- Bootstrap 5 (CDN) -->
@@ -13,65 +15,69 @@
   <!-- CSS próprio -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body class="{% block body_class %}{% endblock %}">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">English</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Friends 01
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{% url 'friends0101' %}">Parte 01</a></li>
-            <li><a class="dropdown-item" href="{% url 'friends0102' %}">Parte 02</a></li>
-            <li><a class="dropdown-item" href="{% url 'friends0103' %}">Parte 03</a></li>
-            <li><a class="dropdown-item" href="{% url 'friends0104' %}">Parte 04</a></li>
-            <li><a class="dropdown-item" href="{% url 'friends0105' %}">Parte 05</a></li>
-            <li><a class="dropdown-item" href="{% url 'friends0106' %}">Parte 06</a></li>
-            <li><a class="dropdown-item" href="{% url 'friends0107' %}">Parte 07</a></li>
-            <li><a class="dropdown-item" href="{% url 'friends0108' %}">Parte 08</a></li>
-            <li><a class="dropdown-item" href="{% url 'friends0109' %}">Parte 09</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Friends 02
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Parte 01</a></li>
-            <li><a class="dropdown-item" href="#">Parte 02</a></li>
-            <li><a class="dropdown-item" href="#">Parte 03</a></li>
-            <li><a class="dropdown-item" href="#">Parte 04</a></li>
-            <li><a class="dropdown-item" href="#">Parte 05</a></li>
-            <li><a class="dropdown-item" href="#">Parte 06</a></li>
-            <li><a class="dropdown-item" href="#">Parte 07</a></li>
-            <li><a class="dropdown-item" href="#">Parte 08</a></li>
-            <li><a class="dropdown-item" href="#">Parte 09</a></li>
-            <li><a class="dropdown-item" href="#">Parte 10</a></li>
-            <li><a class="dropdown-item" href="#">Parte 11</a></li>
-          </ul>
-        </li>
-        
-      </ul>
-      <div class="ms-auto text-white">
-        <a class="text-white text-decoration-none link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-          href="{% url 'logout' %}">Sair</a>
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">English</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Friends 01
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'friends0101' %}">Parte 01</a></li>
+              <li><a class="dropdown-item" href="{% url 'friends0102' %}">Parte 02</a></li>
+              <li><a class="dropdown-item" href="{% url 'friends0103' %}">Parte 03</a></li>
+              <li><a class="dropdown-item" href="{% url 'friends0104' %}">Parte 04</a></li>
+              <li><a class="dropdown-item" href="{% url 'friends0105' %}">Parte 05</a></li>
+              <li><a class="dropdown-item" href="{% url 'friends0106' %}">Parte 06</a></li>
+              <li><a class="dropdown-item" href="{% url 'friends0107' %}">Parte 07</a></li>
+              <li><a class="dropdown-item" href="{% url 'friends0108' %}">Parte 08</a></li>
+              <li><a class="dropdown-item" href="{% url 'friends0109' %}">Parte 09</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Friends 02
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Parte 01</a></li>
+              <li><a class="dropdown-item" href="#">Parte 02</a></li>
+              <li><a class="dropdown-item" href="#">Parte 03</a></li>
+              <li><a class="dropdown-item" href="#">Parte 04</a></li>
+              <li><a class="dropdown-item" href="#">Parte 05</a></li>
+              <li><a class="dropdown-item" href="#">Parte 06</a></li>
+              <li><a class="dropdown-item" href="#">Parte 07</a></li>
+              <li><a class="dropdown-item" href="#">Parte 08</a></li>
+              <li><a class="dropdown-item" href="#">Parte 09</a></li>
+              <li><a class="dropdown-item" href="#">Parte 10</a></li>
+              <li><a class="dropdown-item" href="#">Parte 11</a></li>
+            </ul>
+          </li>
+
+        </ul>
+        <div class="ms-auto text-white">
+          <a class="text-white text-decoration-none link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+            href="{% url 'logout' %}">Sair</a>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
   <main class="py-4">
     <div class="container">
       {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} shadow-sm mb-3" role="alert">
-          {{ message }}
-        </div>
+      <div class="alert alert-{{ message.tags }} shadow-sm mb-3" role="alert">
+        {{ message }}
+      </div>
       {% endfor %}
       {% block content %}{% endblock %}
     </div>
@@ -79,4 +85,5 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

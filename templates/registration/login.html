@@ -2,51 +2,54 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <link rel="icon" href="{% static 'accounts/images/favicon.ico' %}" type="image/x-icon">
   <title>Login</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="{% static 'accounts/css/style_login.css' %}">
 </head>
+
 <body>
 
-<div class="d-flex justify-content-center align-items-center vh-75">
-  <div class="login-card p-4 p-md-5 rounded-4 shadow-lg">
-    <form method="post" novalidate>
-      {% csrf_token %}
-      {% if form.non_field_errors %}
+  <div class="d-flex justify-content-center align-items-center vh-75">
+    <div class="login-card p-4 p-md-5 rounded-4 shadow-lg">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
         <div class="alert alert-danger py-2">{{ form.non_field_errors }}</div>
-      {% endif %}
+        {% endif %}
 
-      <div class="input-group">
+        <div class="input-group">
           <span class="input-group-text"><i class="fas fa-user"></i></span>
           {{ form.username|add_class:"form-control form-control-lg" }}
-      </div>
+        </div>
 
-      <div class="input-group">
+        <div class="input-group">
           <span class="input-group-text"><i class="fas fa-lock"></i></span>
           {{ form.password|add_class:"form-control form-control-lg" }}
-      </div>
+        </div>
 
-      <div class="d-flex justify-content-center align-items-center mt-3">
-                <button class="btn btn-primary btn-lg px-4" type="submit">
-          <i class="bi bi-box-arrow-in-right me-1"></i> Entrar
-        </button>
-      </div>
-    </form>
+        <div class="d-flex justify-content-center align-items-center mt-3">
+          <button class="btn btn-primary btn-lg px-4" type="submit">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Entrar
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
- <script>
-    window.onload = function() {
-        if (performance.navigation.type === 2) { // O tipo 2 indica que a página foi acessada pelo botão "voltar" ou "avançar"
-            location.reload(true);
-        }
+  <script>
+    window.onload = function () {
+      if (performance.navigation.type === 2) { // O tipo 2 indica que a página foi acessada pelo botão "voltar" ou "avançar"
+        location.reload(true);
+      }
     };
-</script>
+  </script>
 </body>
-</html>
 
+</html>
