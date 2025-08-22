@@ -1,4 +1,4 @@
-{% load static %}
+{% load static nav_extras %}
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -26,6 +26,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if user|has_group:"portugues" or user|has_group:"geral" %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,6 +41,8 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'praca' %}">Praça/Parque</a>
           </li>
+          {% endif %}
+          {% if user|has_group:"english" or user|has_group:"geral" %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">
@@ -76,7 +79,16 @@
               <li><a class="dropdown-item" href="#">Parte 11</a></li>
             </ul>
           </li>
-
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Textos
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{% url 'fun_vacations' %}">Fun Vacations</a></li>
+            </ul>
+          </li>
+          {% endif %}
         </ul>
         <div class="ms-auto text-white">
           <a class="text-white text-decoration-none link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"

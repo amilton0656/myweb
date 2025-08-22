@@ -4,18 +4,14 @@
     <title>Friends - Parte 03</title>
   {% endblock title %}
 
-<body>
-  <div class="video-container">
-    {% block video %}
-      <video id="meuVideo" src="{% static 'english/friends0101/friends-01-03.mp4' %}" controls></video>
-    {% endblock video %}
-  </div>
+  {% block video %}
+    <video id="meuVideo"
+          preload="metadata"
+          src="{% static 'english/friends0101/friends-01-03.mp4' %}"
+          controls></video>
+  {% endblock video %}
 
   {% block script %}
-
-  <script>
-    // 1. DADOS DO DIÁLOGO (PARTE 3)
-    // Apenas esta seção de dados foi alterada para refletir o novo conteúdo.
     const dialogoData = [
       {
         pt: "Imagino que ele comprou para ela o grande órgão de tubos",
@@ -192,31 +188,4 @@
         fim: 139.7,
       },
     ];
-
-    // 2. LÓGICA PARA CRIAR A LISTA (INALTERADA)
-    // Este bloco de código permanece idêntico, mostrando a reutilização do código.
-    document.addEventListener("DOMContentLoaded", () => {
-      const listaDialogoElement = document.getElementById("lista-dialogo");
-
-      dialogoData.forEach((item) => {
-        const li = document.createElement("li");
-        li.className = "linha-dialogo";
-
-        li.innerHTML = `
-          <div class="frases">
-            <span class="frase-pt">${item.pt}</span>
-            <span class="frase-en">${item.en}</span>
-          </div>
-          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
-        `;
-
-        listaDialogoElement.appendChild(li);
-      });
-    });
-  </script>
   {% endblock script %}
-
-  <script src="script.js"></script>
-</body>
-
-</html>

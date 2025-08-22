@@ -4,18 +4,14 @@
     <title>Friends - Parte 02</title>
   {% endblock title %}
 
-<body>
-  <div class="video-container">
-    {% block video %}
-      <video id="meuVideo" src="{% static 'english/friends0101/friends-01-02.mp4' %}" controls></video>
-    {% endblock video %}
-  </div>
+  {% block video %}
+    <video id="meuVideo"
+          preload="metadata"
+          src="{% static 'english/friends0101/friends-01-02.mp4' %}"
+          controls></video>
+  {% endblock video %}
 
   {% block script %}
-
-  <script>
-    // 1. DADOS DO DIÁLOGO (PARTE 2)
-    // Os dados foram atualizados para o novo trecho do vídeo.
     const dialogoData = [
       {
         pt: "Ai, meu Deus, Monica! Oi! Graças a Deus!",
@@ -163,30 +159,4 @@
       },
     ];
 
-    // 2. LÓGICA PARA CRIAR A LISTA (IDÊNTICA À ANTERIOR)
-    // Este código não precisa de NENHUMA alteração. Ele apenas lê os dados acima.
-    document.addEventListener("DOMContentLoaded", () => {
-      const listaDialogoElement = document.getElementById("lista-dialogo");
-
-      dialogoData.forEach((item) => {
-        const li = document.createElement("li");
-        li.className = "linha-dialogo";
-
-        li.innerHTML = `
-          <div class="frases">
-            <span class="frase-pt">${item.pt}</span>
-            <span class="frase-en">${item.en}</span>
-          </div>
-          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
-        `;
-
-        listaDialogoElement.appendChild(li);
-      });
-    });
-  </script>
   {% endblock script %}
-
-  <script src="script.js"></script>
-</body>
-
-</html>

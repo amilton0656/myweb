@@ -1,0 +1,342 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="{% static 'accounts/images/favicon.ico' %}" type="image/x-icon">
+  <title>Praça / Parque — EN+PT (áudio em inglês)</title>
+  <style>
+    :root { --bg:#0f172a; --panel:#111827; --text:#e5e7eb; --muted:#9ca3af; --accent:#22d3ee; --border:#1f2937; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;line-height:1.5}
+    header{padding:28px 20px;text-align:center;border-bottom:1px solid var(--border)}
+    header h1{margin:0 0 6px;font-size:clamp(20px,3vw,28px)}
+    main{max-width:1100px;margin:24px auto;padding:0 16px}
+    .audio-card{margin-top:14px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;display:grid;gap:10px;justify-items:start}
+    .btn{appearance:none;border:1px solid var(--border);background:#0b1220;color:var(--text);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:600}
+    .btn:focus{outline:2px solid var(--accent);outline-offset:2px}
+    .hint{font-size:13px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:18px}
+    @media (min-width:880px){.grid{grid-template-columns:1fr 1fr}}
+    .col{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;min-height:320px;display:flex;flex-direction:column;gap:8px}
+    .col h2{margin:0;font-size:20px;letter-spacing:.3px;color:var(--accent);text-transform:uppercase}
+    .text{font-size:1.1rem}
+    .cue{transition:background .15s ease,color .15s ease;cursor:pointer}
+    #ptText .cue{cursor:text} /* PT não-clique */
+    .cue.active{background:rgba(34,211,238,.25);color:var(--accent);padding:2px 4px;border-radius:6px}
+    /* Esconde controles nativos do <audio> (mas mantém acessível ao JS) */
+    .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
+    .sr-only::-webkit-media-controls,
+    .sr-only::-webkit-media-controls-enclosure,
+    .sr-only::-webkit-media-controls-panel{display:none!important}
+    #statusEN{display:none!important}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Praça / Parque (EN audio + PT translation)</h1>
+  </header>
+
+  <main>
+    <!-- Player de ÁUDIO ÚNICO (em inglês) -->
+    <section class="audio-card" aria-labelledby="audio-title">
+      <audio id="audioEN" preload="auto" class="sr-only">
+        <!-- Usa o arquivo enviado (coloque o HTML no mesmo diretório do MP3 para funcionar em arquivo local) -->
+        <source src="fun_vacations.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio HTML5.
+      </audio>
+      <button id="btnEN" class="btn" type="button" aria-controls="audioEN">▶️ Play English audio</button>
+      <div id="statusEN" class="hint" aria-live="polite"></div>
+      <p class="hint">Clique nas frases em <b>English</b> para pular para o trecho correspondente.</p>
+    </section>
+
+    <section class="grid">
+      <!-- COLUNA 1: ENGLISH (clicável, com sincronização) -->
+      <article class="col">
+        <h2>English</h2>
+        <!-- Texto cru: será dividido em frases e convertido em <span class="cue"> via JS -->
+        <div id="enTextRaw" class="text">
+          Good morning, Shannon. Today I’m going to show you two words in Portuguese—what they represent, what they mean, and the difference between them.
+          <br><br>
+          One is “praça” (public square) and the other is “parque” (park). A “praça” is generally a public place where you can sit and rest.
+          <br><br>
+          It’s usually tree-lined, full of greenery, lots of trees, benches for you to sit, rest, and relax,
+          and here we have an example of a praça and also of a parque.
+          <br><br>
+          This is Getúlio Vargas Square. Getúlio Vargas was a president of Brazil for a long time, and at the end of his term he took his own life, and this square is a tribute to him.
+          <br><br>
+          So you can see there are several trees here, there’s grass everywhere, and there are many benches. It’s usually a pleasant place where you can sit and relax.
+          <br><br>
+          Here, in this square, we have an exercise area, a small public outdoor gym for people to work out. It’s a square… This is a large square; it takes up the entire block.
+          <br><br>
+          In the middle of the square we have a fountain. At the moment it’s turned off; it isn’t working. Let’s walk past it.
+          <br><br>
+          So that’s the concept of a “praça”: it’s a place where people can rest; there are lots of benches and plenty of greenery; it’s a place to relax, to not do anything—to sit and do nothing.
+          <br><br>
+          But inside this square there’s a “parque”. What is a “parque”? A park is a place to have fun, to do some activity.
+          <br><br>
+          For example, here we have a children’s playground called Dona Tilinha. Dona Tilinha was the woman who envisioned this park here inside the square.
+          <br><br>
+          So here we have various pieces of equipment for children to play on. There’s plenty of space. This square has a dirt ground. In this playground it’s finer sand.
+          <br><br>
+          Here we have some seesaws. And here we have what we call swings, for the children to play on as well.
+          <br><br>
+          And usually inside the square—in each square—there’s a kiosk, a little snack bar, a small bar, where people…
+          <br><br>
+          Here we have another example of a square and a park. Here there is a small square with a small park inside the square.
+          <br><br>
+          See, this is a square with plenty of trees. Inside the square, we have a space to play chess or checkers. Dominoes.
+          <br><br>
+          Usually a square has lots of greenery—flowers, foliage, trees. And in this case, inside the square we also have a small park for children to play.
+          <br><br>
+          Here we have some electric scooters. This is a small square. Inside this square, we have a little playground for children to play.
+          <br><br>
+          Here inside the square, we have another kiosk, which is a flower shop. A “floricultura” is a place where flowers are sold. Here inside the square, there’s a flower shop.
+          <br><br>
+          And here, across the street, we have another small square, where people can also sit and relax, rest. There’s also lots of greenery. There are some trees.
+          <br><br>
+          It’s a small square, and this square is right next to my workplace—the place where I work. Down here, in front, there is an old mansion.
+        </div>
+        <!-- Recebe os <span class="cue"> gerados -->
+        <div id="enText" class="text"></div>
+      </article>
+
+      <!-- COLUNA 2: PORTUGUÊS (somente texto visível) -->
+      <article class="col">
+        <h2>Português</h2>
+        <div id="ptText" class="text">
+          <span class="cue" data-start="0.00" data-end="2.60">Bom dia, Shannon.</span>
+          <span class="cue" data-start="2.61" data-end="06.53">Hoje eu vou mostrar para você</span>
+          <span class="cue" data-start="06.54" data-end="10.60">duas palavras em português,</span>
+          <span class="cue" data-start="10.61" data-end="14.88">o que elas representam, o que elas significam</span>
+          <span class="cue" data-start="14.89" data-end="17.94">e a diferença entre elas.</span>
+          <br><br>
+          <span class="cue" data-start="17.95" data-end="24.37">Uma é <b>praça</b> e a outra é <b>parque</b>.</span>
+          <span class="cue" data-start="24.38" data-end="29.12">Praça é um lugar, geralmente público,</span>
+          <span class="cue" data-start="29.13" data-end="38.39">onde você pode sentar e descansar.</span>
+          <br><br>
+          <span class="cue" data-start="38.40" data-end="43.93">Normalmente é um lugar arborizado,</span>
+          <span class="cue" data-start="43.94" data-end="47.53">cheio de verde, bastante árvores,</span>
+          <span class="cue" data-start="47.54" data-end="52.71">bancos para você sentar e descansar e relaxar</span>
+          <br><br>
+          <span class="cue" data-start="52.72" data-end="62.18">e aqui nós temos um exemplo de praça e também de parque.</span>
+          <br><br>
+          <span class="cue" data-start="62.19" data-end="66.07">Esta é a praça Getúlio Vargas.</span>
+          <span class="cue" data-start="66.08" data-end="70.37">Getúlio Vargas foi um presidente do Brasil</span>
+          <span class="cue" data-start="70.38" data-end="75.17">durante muito tempo e que no final do mandato ele se matou</span>
+          <br><br>
+          <span class="cue" data-start="75.18" data-end="80.00">e aqui é uma homenagem a ele, essa praça.</span>
+          <br><br>
+          <span class="cue" data-start="80.01" data-end="83.34">Então você vê que aqui há várias árvores,</span>
+          <span class="cue" data-start="83.35" data-end="89.82">há grama por todos os lugares,</span>
+          <span class="cue" data-start="89.83" data-end="93.29">há vários bancos.</span>
+          <br><br>
+          <span class="cue" data-start="93.30" data-end="98.99">Normalmente é um lugar agradável onde você pode sentar e relaxar.</span>
+          <br><br>
+          <span class="cue" data-start="99.00" data-end="103.06">Por exemplo...Aqui nós temos, nessa praça,</span>
+          <span class="cue" data-start="103.07" data-end="108.74">uma parte de ginástica,</span>
+          <span class="cue" data-start="108.75" data-end="110.95">uma miniacademia</span>
+          <span class="cue" data-start="110.96" data-end="114.23">pública para o pessoal se exercitar.</span>
+          <br><br>
+          <span class="cue" data-start="114.24" data-end="118.06">É uma praça...Esta é uma praça grande,</span>
+          <span class="cue" data-start="118.07" data-end="120.28">ocupa toda a quadra.</span>
+          <br><br>
+          <span class="cue" data-start="120.29" data-end="126.22">No meio da praça temos uma fonte.</span>
+          <span class="cue" data-start="126.23" data-end="129.52">No momento ela está desligada,</span>
+          <span class="cue" data-start="129.53" data-end="131.25">não está funcionando.</span>
+          <span class="cue" data-start="131.25" data-end="133.38">Vamos passar por ela.</span>
+          <br><br>
+          <span class="cue" data-start="133.39" data-end="136.84">Então o conceito de praça é esse, </span>
+          <span class="cue" data-start="136.85" data-end="142.25">é um lugar onde as pessoas podem descansar,</span>
+          <span class="cue" data-start="142.26" data-end="146.22">há vários bancos, há bastante verde,</span>
+          <span class="cue" data-start="146.23" data-end="150.01">é um lugar para relaxar, para não se fazer...</span>
+          <span class="cue" data-start="150.02" data-end="152.50">sentar e não fazer nada.</span>
+          <br><br>
+          <span class="cue" data-start="152.51" data-end="157.83">Mas dentro dessa praça existe um parque,</span>
+          <span class="cue" data-start="157.84" data-end="159.79">o que que é um parque?</span>
+          <span class="cue" data-start="159.80" data-end="164.21">Um parque é um lugar para se divertir,</span>
+          <span class="cue" data-start="164.22" data-end="166.96">para praticar alguma atividade.</span>
+          <br><br>
+          <span class="cue" data-start="166.97" data-end="171.24">Então por exemplo, aqui nós temos um parque infantil</span>
+          <span class="cue" data-start="171.25" data-end="173.84">chamado Dona Tilinha.</span>
+          <span class="cue" data-start="173.85" data-end="181.24">Dona Tilinha foi a mulher que idealizou esse parque aqui dentro da praça.</span>
+          <br><br>
+          <span class="cue" data-start="181.25" data-end="184.24">Então aqui nós temos vários equipamentos</span>
+          <span class="cue" data-start="184.25" data-end="187.08">para as crianças brincarem.</span>
+          <span class="cue" data-start="187.09" data-end="188.99">Há bastante espaço.</span>
+          <br><br>
+          <span class="cue" data-start="189.00" data-end="193.96">Essa praça, ela é de chão batido.</span>
+          <span class="cue" data-start="193.97" data-end="200.65">Por exemplo, aqui nesse parque é areia, mais fina.</span>
+          <br><br>
+          <span class="cue" data-start="200.66" data-end="205.14">Aqui nós temos algumas gangorras.</span>
+          <span class="cue" data-start="205.15" data-end="208.40">E aqui nós temos o que nós chamamos de balanço,</span>
+          <span class="cue" data-start="208.41" data-end="211.60">para as crianças brincarem também.</span>
+          <br><br>
+          <span class="cue" data-start="211.61" data-end="217.03">E geralmente dentro da praça, de cada praça, há um quiosque, </span>
+          <span class="cue" data-start="217.04" data-end="222.65">que é um mini barzinho, é um barzinho, </span>
+          <span class="cue" data-start="222.66" data-end="226.78">um pequeno bar onde as pessoas...</span>
+          <br><br>
+          <span class="cue" data-start="226.79" data-end="233.96">Aqui nós temos outro exemplo de praça e parque.</span>
+          <span class="cue" data-start="233.97" data-end="237.19">Aqui há uma pequena praça</span>
+          <span class="cue" data-start="237.20" data-end="243.93">com um parque, pequeno parque dentro da praça.</span>
+          <br><br>
+          <span class="cue" data-start="243.93" data-end="249.74">Veja, essa é uma praça com bastante árvores.</span>
+          <span class="cue" data-start="249.75" data-end="252.92">Dentro da praça, </span>
+          <span class="cue" data-start="252.93" data-end="262.93">aqui nós temos um espaço para jogar xadrez ou dama.</span>
+          <span class="cue" data-start="262.94" data-end="268.46">Dominó.</span>
+          <br><br>
+          <span class="cue" data-start="268.47" data-end="275.15">Essa praça...Normalmente a praça tem bastante verde,</span>
+          <span class="cue" data-start="275.16" data-end="280.06">flores, folhagens, árvores.</span>
+          <span class="cue" data-start="280.07" data-end="283.60">E nesse caso aqui, dentro da praça,</span>
+          <span class="cue" data-start="283.61" data-end="288.36">nós também temos um pequeno parque para as crianças brincarem.</span>
+          <br><br>
+          <span class="cue" data-start="288.36" data-end="293.41">Aqui nós temos alguns patinetes elétricos.</span>
+          <br><br>
+          <span class="cue" data-start="293.42" data-end="295.54">Essa é uma pequena praça.</span>
+          <span class="cue" data-start="295.55" data-end="298.72">Dentro dessa praça, nós temos </span>
+          <span class="cue" data-start="298.73" data-end="302.37">um parquinho para as crianças brincarem.</span>
+          <br><br>
+          <span class="cue" data-start="302.37" data-end="306.78">Aqui dentro da praça, nós temos um outro quiosque,</span>
+          <span class="cue" data-start="306.79" data-end="309.70">que é uma floricultura.</span>
+          <span class="cue" data-start="309.70" data-end="315.32">Floricultura é um lugar onde se vende flores.</span>
+          <br><br>
+          <span class="cue" data-start="315.33" data-end="320.10">Aqui dentro da praça, há uma floricultura.</span>
+          <span class="cue" data-start="320.11" data-end="322.50">Floricultura.</span>
+          <br><br>
+          <span class="cue" data-start="322.51" data-end="325.22">E aqui, atravessando a rua,</span>
+          <span class="cue" data-start="325.23" data-end="328.55">nós temos uma outra pequena praça.</span>
+          <span class="cue" data-start="328.56" data-end="333.30">Onde as pessoas também podem sentar e relaxar, descansar.</span>
+          <br><br>
+          <span class="cue" data-start="333.31" data-end="335.39">Também há bastante verde.</span>
+          <span class="cue" data-start="335.40" data-end="338">Há algumas árvores.</span>
+          <br><br>
+          <span class="cue" data-start="338.01" data-end="340.18">É uma pequena praça.</span>
+          <span class="cue" data-start="340.18" data-end="345.91">e essa praça fica bem ao lado do meu trabalho,</span>
+          <span class="cue" data-start="345.92" data-end="348.28">do lugar onde eu trabalho.</span>
+          <span class="cue" data-start="348.24" data-end="352.50">Este lugar, em baixo, na frente,</span>
+          <span class="cue" data-start="352.51" data-end="355">tem um antigo casarão.</span>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const audioEN  = document.getElementById('audioEN');
+    const btnEN    = document.getElementById('btnEN');
+    const statusEN = document.getElementById('statusEN');
+
+    // Botão Play/Pause
+    (function wireAudioControls(){
+      btnEN.addEventListener('click', () => {
+        if (audioEN.paused) { audioEN.play().catch(()=>{}); } else { audioEN.pause(); }
+      });
+      audioEN.addEventListener('play',  ()=>{ btnEN.textContent='⏸️ Pause English audio'; statusEN.textContent='Playing'; });
+      audioEN.addEventListener('pause', ()=>{ btnEN.textContent='▶️ Play English audio';  statusEN.textContent='Paused';  });
+      audioEN.addEventListener('ended', ()=>{ btnEN.textContent='▶️ Play English audio';  statusEN.textContent='Ended';  });
+    })();
+
+    // ===== util =====
+    const toNum = v => parseFloat(String(v).replace(',', '.'));
+
+    // Fallback: transforma src em Blob (melhora seeks em servidores sem Accept-Ranges)
+    async function ensureBlobSrc(el){
+      if (el.dataset.objectUrl) return;
+      const srcNode = el.querySelector('source');
+      const srcUrl  = (srcNode && srcNode.src) || el.currentSrc || el.src;
+      if (!srcUrl) return;
+      try{
+        const resp = await fetch(srcUrl, { cache:'force-cache' });
+        const blob = await resp.blob();
+        const obj  = URL.createObjectURL(blob);
+        el.dataset.objectUrl = obj;
+        el.src = obj;
+        Array.from(el.querySelectorAll('source')).forEach(n=>n.remove());
+        await new Promise(r=>{
+          if (el.readyState>=1) r(); else el.addEventListener('loadedmetadata', r, {once:true});
+        });
+      }catch(_e){}
+    }
+
+    // Sincroniza: clique em spans com data-start/data-end
+    function wireSyncByDataAttrs(audioEl, container){
+      const spans = Array.from(container.querySelectorAll('[data-start][data-end]'));
+
+      async function seekAndPlay(target){
+        const dur = Number.isFinite(audioEl.duration) ? audioEl.duration : null;
+        const t   = dur ? Math.min(Math.max(target, 0), Math.max(dur-0.05,0)) : Math.max(target,0);
+        await ensureBlobSrc(audioEl);
+        if (!audioEl.paused) audioEl.pause();
+        audioEl.currentTime = t;
+        try{ await audioEl.play(); }catch{}
+      }
+
+      spans.forEach(s=>{
+        s.addEventListener('click', ()=>{
+          const start = toNum(s.dataset.start);
+          if (!Number.isNaN(start)) seekAndPlay(start);
+        });
+      });
+
+      let lastActive=null;
+      function updateActive(){
+        const t = audioEl.currentTime;
+        let active=null;
+        for (const s of spans){
+          const a=toNum(s.dataset.start), b=toNum(s.dataset.end);
+          if (t>=a && t<b){ active=s; break; }
+        }
+        if (lastActive!==active){
+          spans.forEach(s=>s.classList.toggle('active', s===active));
+          if (active) active.scrollIntoView({block:'nearest', behavior:'smooth'});
+          lastActive=active;
+        }
+      }
+      audioEl.addEventListener('timeupdate', updateActive);
+      audioEl.addEventListener('seeked', updateActive);
+      audioEl.addEventListener('play', updateActive);
+    }
+
+    // ===== Construção dinâmica da coluna EN a partir do texto cru + tempos da coluna PT =====
+    (function buildEnglishCues(){
+      const ptCues   = Array.from(document.querySelectorAll('#ptText .cue'));
+      const timings  = ptCues.map(s => ({ start: toNum(s.dataset.start), end: toNum(s.dataset.end) }));
+
+      // Pega o texto bruto em inglês e faz uma segmentação simples por sentenças
+      const rawEl = document.getElementById('enTextRaw');
+      const outEl = document.getElementById('enText');
+      const raw   = rawEl.innerText
+        .replace(/\s+\n/g, '\n')
+        .replace(/\n{2,}/g, '\n\n')
+        .trim();
+
+      // Split por final de frase . ? ! ou quebras duplas de linha
+      const parts = [];
+      raw.split(/\n{2,}/).forEach(block=>{
+        const sentences = block.trim().split(/(?<=[\.\?\!])\s+(?=[A-Z“"‘])/);
+        sentences.forEach(s=>{ if (s.trim()) parts.push(s.trim()); });
+      });
+
+      const n = Math.min(parts.length, timings.length);
+      for (let i=0;i<n;i++){
+        const span = document.createElement('span');
+        span.className = 'cue';
+        span.textContent = parts[i];
+        span.dataset.start = timings[i].start;
+        span.dataset.end   = timings[i].end;
+        outEl.appendChild(span);
+        outEl.appendChild(document.createTextNode(' '));
+      }
+
+      for (let i=n;i<parts.length;i++){
+        const span = document.createElement('span');
+        span.textContent = parts[i] + ' ';
+        outEl.appendChild(span);
+      }
+
+      // Liga a sincronização SOMENTE na coluna EN
+      wireSyncByDataAttrs(audioEN, outEl);
+    })();
+  </script>
+</body>
+</html>

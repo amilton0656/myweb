@@ -29,12 +29,12 @@ def home(request):
     grupos = list(request.user.groups.values_list("name", flat=True))
     print(grupos)
 
-    if request.user.groups.filter(name='portugues').exists():
-        return render(request, 'home_portugues.html')
-    elif request.user.groups.filter(name='english').exists():
-        return render(request, 'home_english.html')
-    else:
-        return render(request, 'home.html')
+    # if request.user.groups.filter(name='portugues').exists():
+    #     return render(request, 'home_portugues.html')
+    # elif request.user.groups.filter(name='english').exists():
+    #     return render(request, 'home_english.html')
+    # else:
+    return render(request, 'home.html')
 
 @login_required
 @never_cache

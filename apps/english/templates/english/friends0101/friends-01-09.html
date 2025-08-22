@@ -4,17 +4,14 @@
     <title>Friends - Parte 09</title>
   {% endblock title %}
 
-<body>
   {% block video %}
-      <video id="meuVideo" src="{% static 'videos/friends0101/friends-01-09.mp4' %}" controls></video>
-    {% endblock video %}
-  </div>
+    <video id="meuVideo"
+          preload="metadata"
+          src="{% static 'english/friends0101/friends-01-09.mp4' %}"
+          controls></video>
+  {% endblock video %}
 
   {% block script %}
-
-  <script>
-    // 1. DADOS DO DIÁLOGO (PARTE 8)
-    // ATENÇÃO: Os dados abaixo foram corrigidos e completados para refletir a cena real do episódio.
     const dialogoData = [
       {
         pt: "Bom, é isso. Você vai dormir no sofá?",
@@ -173,31 +170,4 @@
         fim: 160.4,
       },
     ];
-
-    // 2. LÓGICA PARA CRIAR A LISTA (INALTERADA)
-    // A mesma lógica de antes, funcionando agora com os dados corrigidos.
-    document.addEventListener("DOMContentLoaded", () => {
-      const listaDialogoElement = document.getElementById("lista-dialogo");
-
-      dialogoData.forEach((item) => {
-        const li = document.createElement("li");
-        li.className = "linha-dialogo";
-
-        li.innerHTML = `
-          <div class="frases">
-            <span class="frase-pt">${item.pt}</span>
-            <span class="frase-en">${item.en}</span>
-          </div>
-          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
-        `;
-
-        listaDialogoElement.appendChild(li);
-      });
-    });
-  </script>
   {% endblock script %}
-
-  <script src="script.js"></script>
-</body>
-
-</html>

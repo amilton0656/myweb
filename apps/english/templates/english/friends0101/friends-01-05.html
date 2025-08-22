@@ -4,17 +4,14 @@
     <title>Friends - Parte 05</title>
   {% endblock title %}
 
-<body>
   {% block video %}
-      <video id="meuVideo" src="{% static 'english/friends0101/friends-01-05.mp4' %}" controls></video>
-    {% endblock video %}
-  </div>
+    <video id="meuVideo"
+          preload="metadata"
+          src="{% static 'english/friends0101/friends-01-05.mp4' %}"
+          controls></video>
+  {% endblock video %}
 
   {% block script %}
-
-  <script>
-    // 1. DADOS DO DIÁLOGO (PARTE 5)
-    // Os dados para este trecho foram atualizados aqui.
     const dialogoData = [
       {
         pt: "Eu deveria prender",
@@ -275,30 +272,4 @@
         fim: 152.1,
       },
     ];
-
-    // 2. LÓGICA PARA CRIAR A LISTA (IDÊNTICA E REUTILIZADA)
-    document.addEventListener("DOMContentLoaded", () => {
-      const listaDialogoElement = document.getElementById("lista-dialogo");
-
-      dialogoData.forEach((item) => {
-        const li = document.createElement("li");
-        li.className = "linha-dialogo";
-
-        li.innerHTML = `
-          <div class="frases">
-            <span class="frase-pt">${item.pt}</span>
-            <span class="frase-en">${item.en}</span>
-          </div>
-          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
-        `;
-
-        listaDialogoElement.appendChild(li);
-      });
-    });
-  </script>
   {% endblock script %}
-
-  <script src="script.js"></script>
-</body>
-
-</html>

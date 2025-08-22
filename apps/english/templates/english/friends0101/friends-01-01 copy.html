@@ -4,11 +4,16 @@
     <title>Friends - Parte 01</title>
   {% endblock title %}
 
-  {% block video %}
-    <video id="meuVideo" src="{% static 'english/friends0101/friends-01-01.mp4' %}" controls></video>
-  {% endblock video %}
+<body>
+  <div class="video-container">
+    {% block video %}
+      <video id="meuVideo" src="{% static 'english/friends0101/friends-01-01.mp4' %}" controls></video>
+    {% endblock video %}
+  </div>
 
   {% block script %}
+  
+    <script>
       const dialogoData = [
         {
           pt: "Não há nada a dizer.",
@@ -287,4 +292,35 @@
           fim: 162.9,
         },
       ];
+
+      // 2. LÓGICA PARA CRIAR A LISTA
+      // Este código será executado assim que o HTML da página for carregado.
+      document.addEventListener("DOMContentLoaded", () => {
+        const listaDialogoElement = document.getElementById("lista-dialogo");
+
+        // Itera sobre cada item do nosso array de dados
+        dialogoData.forEach((item) => {
+          // Cria um novo elemento <li>
+          const li = document.createElement("li");
+          li.className = "linha-dialogo";
+
+          // Define o conteúdo HTML do <li> usando os dados do item atual
+          li.innerHTML = `
+            <div class="frases">
+              <span class="frase-pt">${item.pt}</span>
+              <span class="frase-en">${item.en}</span>
+            </div>
+            <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
+          `;
+
+          // Adiciona o <li> recém-criado à lista <ul> no HTML
+          listaDialogoElement.appendChild(li);
+        });
+      });
+    </script>
   {% endblock script %}
+
+  <script src="{% static 'js/script_friends.js' %}"></script>
+</body>
+
+</html>

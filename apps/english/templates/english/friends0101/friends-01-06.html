@@ -4,17 +4,14 @@
     <title>Friends - Parte 06</title>
   {% endblock title %}
 
-<body>
   {% block video %}
-      <video id="meuVideo" src="{% static 'english/friends0101/friends-01-06.mp4' %}" controls></video>
-    {% endblock video %}
-  </div>
+    <video id="meuVideo"
+          preload="metadata"
+          src="{% static 'english/friends0101/friends-01-06.mp4' %}"
+          controls></video>
+  {% endblock video %}
 
   {% block script %}
-
-  <script>
-    // 1. DADOS DO DIÁLOGO (PARTE 6)
-    // Os dados para este trecho foram atualizados.
     const dialogoData = [
       {
         pt: "Desde que ela me abandonou, eu, uh...",
@@ -125,31 +122,4 @@
         fim: 103.8,
       },
     ];
-
-    // 2. LÓGICA PARA CRIAR A LISTA (A MESMA DE ANTES)
-    // Este bloco permanece inalterado, demonstrando sua reutilização.
-    document.addEventListener("DOMContentLoaded", () => {
-      const listaDialogoElement = document.getElementById("lista-dialogo");
-
-      dialogoData.forEach((item) => {
-        const li = document.createElement("li");
-        li.className = "linha-dialogo";
-
-        li.innerHTML = `
-          <div class="frases">
-            <span class="frase-pt">${item.pt}</span>
-            <span class="frase-en">${item.en}</span>
-          </div>
-          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
-        `;
-
-        listaDialogoElement.appendChild(li);
-      });
-    });
-  </script>
   {% endblock script %}
-
-  <script src="script.js"></script>
-</body>
-
-</html>

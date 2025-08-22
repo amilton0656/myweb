@@ -4,18 +4,14 @@
     <title>Friends - Parte 08</title>
   {% endblock title %}
 
-<body>
   {% block video %}
-      <video id="meuVideo" src="{% static 'english/friends0101/friends-01-08.mp4' %}" controls></video>
-    {% endblock video %}
-  </div>
+    <video id="meuVideo"
+          preload="metadata"
+          src="{% static 'english/friends0101/friends-01-08.mp4' %}"
+          controls></video>
+  {% endblock video %}
 
   {% block script %}
-
-  <script>
-    // 1. DADOS DO DIÁLOGO (PARTE 8)
-    // ATENÇÃO: Apenas os dados válidos do arquivo original foram incluídos.
-    // O restante dos dados no seu arquivo parecia corrompido.
     const dialogoData = [
       {
         pt: "Frannie, bem-vinda de volta! Como foi na Flórida?",
@@ -259,31 +255,4 @@
       },
 
     ];
-
-    // 2. LÓGICA PARA CRIAR A LISTA (INALTERADA)
-    // A mesma lógica de antes, provando a eficiência do método.
-    document.addEventListener("DOMContentLoaded", () => {
-      const listaDialogoElement = document.getElementById("lista-dialogo");
-
-      dialogoData.forEach((item) => {
-        const li = document.createElement("li");
-        li.className = "linha-dialogo";
-
-        li.innerHTML = `
-          <div class="frases">
-            <span class="frase-pt">${item.pt}</span>
-            <span class="frase-en">${item.en}</span>
-          </div>
-          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
-        `;
-
-        listaDialogoElement.appendChild(li);
-      });
-    });
-  </script>
   {% endblock script %}
-
-  <script src="script.js"></script>
-</body>
-
-</html>

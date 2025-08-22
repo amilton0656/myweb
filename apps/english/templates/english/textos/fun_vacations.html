@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="{% static 'accounts/images/favicon.ico' %}" type="image/x-icon">
+  <title>Fun Vacations — EN+PT (áudio em inglês)</title>
+  <style>
+    :root { --bg:#0f172a; --panel:#111827; --text:#e5e7eb; --muted:#9ca3af; --accent:#22d3ee; --border:#1f2937; }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;line-height:1.5}
+    header{padding:28px 20px;text-align:center;border-bottom:1px solid var(--border)}
+    header h1{margin:0 0 6px;font-size:clamp(20px,3vw,28px)}
+    main{max-width:1100px;margin:24px auto;padding:0 16px}
+    .audio-card{margin-top:14px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;display:grid;gap:10px;justify-items:start}
+    .btn{appearance:none;border:1px solid var(--border);background:#0b1220;color:var(--text);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:600}
+    .btn:focus{outline:2px solid var(--accent);outline-offset:2px}
+    .hint{font-size:13px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:18px}
+    @media (min-width:880px){.grid{grid-template-columns:1fr 1fr}}
+    .col{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;min-height:320px;display:flex;flex-direction:column;gap:8px}
+    .col h2{margin:0;font-size:20px;letter-spacing:.3px;color:var(--accent);text-transform:uppercase}
+    .text{font-size:1.8rem}
+    .cue{transition:background .15s ease,color .15s ease;cursor:pointer}
+    #ptText .cue{cursor:text} /* PT não-clique */
+    .cue.active{background:rgba(34,211,238,.25);color:var(--accent);padding:2px 4px;border-radius:6px}
+    /* Esconde controles nativos do <audio>, mas mantém acessível ao JS */
+    .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
+    .sr-only::-webkit-media-controls,
+    .sr-only::-webkit-media-controls-enclosure,
+    .sr-only::-webkit-media-controls-panel{display:none!important}
+    #statusEN{display:none!important}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Fun Vacations</h1>
+  </header>
+
+  <main>
+    <!-- Player de ÁUDIO ÚNICO (em inglês) -->
+    <section class="audio-card" aria-labelledby="audio-title">
+      <audio id="audioEN" preload="auto" class="sr-only">
+        <source src="{% static 'english/textos/fun_vacations.mp3' %}" type="audio/mpeg">
+        Seu navegador não suporta áudio HTML5.
+      </audio>
+      <button id="btnEN" class="btn" type="button" aria-controls="audioEN">▶️ Play English audio</button>
+      <div id="statusEN" class="hint" aria-live="polite"></div>
+      <p class="hint">Clique nas frases em <b>English</b> para pular para o trecho correspondente.</p>
+    </section>
+
+    <section class="grid">
+      <!-- COLUNA 1: ENGLISH (clicável, com sincronização) -->
+      <article class="col">
+        <h2>English</h2>
+        <div id="enText" class="text">
+          <span class="cue" data-start="0.00" data-end="2.00">Last summer vacation</span>
+          <span class="cue" data-start="2.01" data-end="5.50">I visited England for the first time.</span>
+          <span class="cue" data-start="5.51" data-end="8.10">I stayed there for 20 days.</span>
+          <br><br>
+          <span class="cue" data-start="8.11" data-end="12.17">One day when I was walking around Liverpool,</span>
+          <span class="cue" data-start="12.18" data-end="13.95">enjoying the weather,</span>
+          <span class="cue" data-start="13.96" data-end="17.02">shopping and taking pictures,</span>
+          <span class="cue" data-start="17.03" data-end="20.60">I started to feel a bit tired and hungry.</span>
+          <br><br><br>
+          <span class="cue" data-start="20.61" data-end="24.25">So I decided to go to a nice restaurant</span>
+          <span class="cue" data-start="24.26" data-end="27.31">just across the road.</span>
+          <span class="cue" data-start="27.32" data-end="31.50">I was eager to post some pictures online</span>
+          <span class="cue" data-start="31.51" data-end="33.68">to share with my friends.</span>
+          <br><br><br>
+          <span class="cue" data-start="33.69" data-end="37.52">So I asked the waiter for the Wi-Fi code.</span>
+          <span class="cue" data-start="37.53" data-end="40.56">He told me to eat first.</span>
+          <span class="cue" data-start="40.56" data-end="44.36">I thought, okay maybe in this restaurant</span>
+          <span class="cue" data-start="44.37" data-end="48.15">customers need to eat before getting the code.</span>
+          <br><br>
+          <span class="cue" data-start="48.15" data-end="52.40">So I ordered and enjoyed the fish and chips.</span>
+          <span class="cue" data-start="52.41" data-end="56.35">I then asked the waiter again for the code.</span>
+          <span class="cue" data-start="56.36" data-end="60.48">He again said with a smile: eat first.</span>
+          <br><br>
+          <span class="cue" data-start="60.49" data-end="62.40">I was irritated.</span>
+          <span class="cue" data-start="62.41" data-end="67.01">And about to go make a complaint with the manager.</span>
+          <span class="cue" data-start="67.02" data-end="71.85">When I noticed a sign posted on the wall,</span>
+          <span class="cue" data-start="71.86" data-end="76.85">which said Wi-Fi code: eat first.</span>
+          <br><br>
+          <span class="cue" data-start="76.86" data-end="79.12">I was so embarrassed</span>
+          <span class="cue" data-start="79.13" data-end="85">and apologized to my waiter for the misunderstanding.</span>
+        </div>
+      </article>
+
+      <!-- COLUNA 2: PORTUGUÊS (somente texto visível) -->
+      <article class="col">
+        <h2>Português</h2>
+        <div id="ptText" class="text">
+          Nas últimas férias de verão, visitei a Inglaterra pela primeira vez. Fiquei lá por 20 dias.
+          <br><br>
+          Um dia, enquanto eu caminhava por Liverpool, aproveitando o clima,
+          fazendo compras e tirando fotos, comecei a me sentir um pouco cansado e com fome.
+          <br><br>
+          Então decidi ir a um bom restaurante do outro lado da rua.
+          Eu estava ansioso para postar algumas fotos online para compartilhar com meus amigos.
+          <br><br>
+          Então pedi ao garçom o código do Wi-Fi.
+          Ele me disse para comer primeiro.
+          Pensei: “Ok, talvez neste restaurante os clientes precisem comer antes de receber o código.”
+          <br><br>
+          Então fiz o pedido e aproveitei um fish and chips.
+          Depois, pedi novamente ao garçom o código.
+          Ele novamente disse, com um sorriso: “eat first”.
+          <br><br>
+          Fiquei irritado e estava prestes a ir reclamar com o gerente.
+          Foi quando notei um aviso na parede,
+          que dizia: “Código do Wi-Fi: eat first.”
+          <br><br>
+          Fiquei muito sem graça e pedi desculpas ao garçom pelo mal-entendido.
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const audioEN  = document.getElementById('audioEN');
+    const btnEN    = document.getElementById('btnEN');
+    const statusEN = document.getElementById('statusEN');
+
+    // Botão Play/Pause
+    (function wireAudioControls(){
+      btnEN.addEventListener('click', () => {
+        if (audioEN.paused) { audioEN.play().catch(()=>{}); } else { audioEN.pause(); }
+      });
+      audioEN.addEventListener('play',  ()=>{ btnEN.textContent='⏸️ Pause English audio'; statusEN.textContent='Playing'; });
+      audioEN.addEventListener('pause', ()=>{ btnEN.textContent='▶️ Play English audio';  statusEN.textContent='Paused';  });
+      audioEN.addEventListener('ended', ()=>{ btnEN.textContent='▶️ Play English audio';  statusEN.textContent='Ended';  });
+    })();
+
+    // Utilitário: garante que o seek funcione mesmo sem Accept-Ranges
+    async function ensureBlobSrc(el){
+      if (el.dataset.objectUrl) return;
+      const srcNode = el.querySelector('source');
+      const srcUrl  = (srcNode && srcNode.src) || el.currentSrc || el.src;
+      if (!srcUrl) return;
+      try{
+        const resp = await fetch(srcUrl, { cache:'force-cache' });
+        const blob = await resp.blob();
+        const obj  = URL.createObjectURL(blob);
+        el.dataset.objectUrl = obj;
+        el.src = obj;
+        Array.from(el.querySelectorAll('source')).forEach(n=>n.remove());
+        await new Promise(r=>{
+          if (el.readyState>=1) r(); else el.addEventListener('loadedmetadata', r, {once:true});
+        });
+      }catch(_e){}
+    }
+
+    // Clique em spans com data-start/data-end → seek + play
+    function wireSyncByDataAttrs(audioEl, container){
+      const toNum = v => parseFloat(String(v).replace(',', '.'));
+
+      async function seekAndPlay(target){
+        const dur = Number.isFinite(audioEl.duration) ? audioEl.duration : null;
+        const t   = dur ? Math.min(Math.max(target, 0), Math.max(dur-0.05,0)) : Math.max(target,0);
+        await ensureBlobSrc(audioEl);
+        if (!audioEl.paused) audioEl.pause();
+        audioEl.currentTime = t;
+        try{ await audioEl.play(); }catch{}
+      }
+
+      container.addEventListener('click', (ev)=>{
+        const span = ev.target.closest('.cue');
+        if (!span || !container.contains(span)) return;
+        const start = toNum(span.dataset.start);
+        if (!Number.isNaN(start)) seekAndPlay(start);
+      });
+
+      // Highlight automático da frase atual
+      const spans = Array.from(container.querySelectorAll('.cue'));
+      let lastActive = null;
+      function updateActive(){
+        const t = audioEl.currentTime;
+        let active = null;
+        for (const s of spans){
+          const a = toNum(s.dataset.start), b = toNum(s.dataset.end);
+          if (t>=a && t<b){ active = s; break; }
+        }
+        if (lastActive !== active){
+          spans.forEach(s=>s.classList.toggle('active', s===active));
+          if (active) active.scrollIntoView({ block:'nearest', behavior:'smooth' });
+          lastActive = active;
+        }
+      }
+      audioEl.addEventListener('timeupdate', updateActive);
+      audioEl.addEventListener('seeked', updateActive);
+      audioEl.addEventListener('play', updateActive);
+    }
+
+    // Ativa a sincronização SOMENTE na coluna EN
+    (function(){
+      const enText = document.getElementById('enText');
+      if (enText) wireSyncByDataAttrs(audioEN, enText);
+    })();
+  </script>
+</body>
+</html>

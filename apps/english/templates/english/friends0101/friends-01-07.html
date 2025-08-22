@@ -4,17 +4,14 @@
     <title>Friends - Parte 07</title>
   {% endblock title %}
 
-<body>
   {% block video %}
-      <video id="meuVideo" src="{% static 'english/friends0101/friends-01-07.mp4' %}" controls></video>
-    {% endblock video %}
-  </div>
+    <video id="meuVideo"
+          preload="metadata"
+          src="{% static 'english/friends0101/friends-01-07.mp4' %}"
+          controls></video>
+  {% endblock video %}
 
   {% block script %}
-
-  <script>
-    // 1. DADOS DO DIÁLOGO (PARTE 7)
-    // Os dados para este trecho do vídeo.
     const dialogoData = [
       { pt: "Não é incrível?", en: "Isn't this amazing?", inicio: 0, fim: 1 },
       {
@@ -204,39 +201,4 @@
         fim: 154,
       },
     ];
-
-    // 2. LÓGICA PARA CRIAR A LISTA (INALTERADA)
-    // A mesma lógica de antes, provando a eficiência do método.
-    document.addEventListener("DOMContentLoaded", () => {
-      const listaDialogoElement = document.getElementById("lista-dialogo");
-
-      dialogoData.forEach((item) => {
-        // A linha abaixo com o erro de digitação foi corrigida no código para pt/en
-        if (
-          item.pt === "O que diabos você faz em um encontro de verdade?" &&
-          item.en === "O que diabos você faz em um encontro de verdade?"
-        ) {
-          item.en = "What the hell do you do on a real date?";
-        }
-
-        const li = document.createElement("li");
-        li.className = "linha-dialogo";
-
-        li.innerHTML = `
-          <div class="frases">
-            <span class="frase-pt">${item.pt}</span>
-            <span class="frase-en">${item.en}</span>
-          </div>
-          <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
-        `;
-
-        listaDialogoElement.appendChild(li);
-      });
-    });
-  </script>
   {% endblock script %}
-
-  <script src="script.js"></script>
-</body>
-
-</html>
