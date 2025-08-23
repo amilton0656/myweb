@@ -5,5 +5,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("portugues/", include("portugues.urls")), 
     path("english/", include("english.urls")),
+    path("frases/", include("frases.urls")),
     path("", include("accounts.urls")),  # home e login/logout
 ]

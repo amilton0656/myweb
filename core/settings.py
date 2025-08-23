@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'accounts',
     'apps.portugues',
     'apps.english',
+    'apps.frases',
 ]
 
 MIDDLEWARE = [
@@ -86,10 +87,10 @@ DATABASES = {
 
 # --- Password validators ---
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    # {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    # {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    # {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    # {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 # --- Locale ---
@@ -99,7 +100,7 @@ USE_I18N = True
 USE_TZ = True
 
 # --- Static ---
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static/"]  # arquivos estáticos do projeto
 STATIC_ROOT = BASE_DIR / "staticfiles"    # destino do collectstatic em prod
 

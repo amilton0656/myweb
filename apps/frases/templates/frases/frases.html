@@ -1,0 +1,215 @@
+<!doctype html>
+{% load static %}
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <title>Frases (PT ↔ EN) — PPT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-bottom: 40px;
+            background-color: #0f172a;
+        }
+
+        .card-text {
+            font-size: 2rem;
+        }
+
+        .known {
+            background: #e8ffe8;
+        }
+
+        .sentence {
+            white-space: pre-wrap;
+        }
+
+        .tts-btn {
+            min-width: 44px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container my-4">
+        <header class="d-flex flex-wrap align-items-center justify-content-between mb-3">
+            <div class="d-flex gap-2">
+                <a class="btn btn-outline-secondary text-light" href="#" id="exportCsvBtn">Exportar CSV</a>
+                <button class="btn btn-outline-danger text-light" id="resetKnownBtn" type="button">Limpar
+                    Conhecidas</button>
+
+            </div>
+        </header>
+
+        <!-- seletor de um arquivo JSON -->
+        <div class="row g-3 mb-3">
+            <div class="col-12 col-md-8">
+                <select id="datasetSelect" class="form-select" style="background-color: #acacac"></select>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-3">
+            <div class="col-12 col-md-6">
+                <input id="searchInput" type="search" class="form-control form-control-lg"
+                    placeholder="Buscar (PT ou EN)..." style="background-color: #acacac" />
+            </div>
+            <div class="col-6 col-md-2 form-check d-flex align-items-center">
+                <input class="form-check-input me-2" type="checkbox" id="showEnglish" checked>
+                <label class="form-check-label text-light" for="showEnglish">Mostrar inglês</label>
+            </div>
+            <div class="col-6 col-md-2 form-check d-flex align-items-center d-none">
+                <input class="form-check-input me-2" type="checkbox" id="listMode">
+                <label class="form-check-label text-light" for="listMode">Modo lista</label>
+            </div>
+            <div class="col-6 col-md-1">
+                <button class="btn btn-outline-primary w-100 text-light" id="shuffleBtn" type="button">Baralhar</button>
+            </div>
+            <div class="col-6 col-md-1">
+                <button class="btn btn-outline-secondary w-100 text-light" id="revealBtn" type="button">Revelar</button>
+            </div>
+        </div>
+
+        <div id="flashcard" class="card shadow-sm mb-3" style="background-color: #c6c4c4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span id="indexLabel" class="text-muted small">1 / 1</span>
+                    <div class="btn-group">
+                        <!-- Botões reutilizados agora tocam MP3 dos campos pt_audio / en_audio -->
+                        <button class="btn btn-outline-secondary tts-btn" id="speakPtBtn" aria-pressed="false"
+                            disabled>PT 🔊</button>
+                        <button class="btn btn-outline-secondary tts-btn" id="speakEnBtn" aria-pressed="false"
+                            disabled>EN 🔊</button>
+                    </div>
+                </div>
+                <p id="ptText" class="card-text sentence fw-semibold"></p>
+                <p id="enText" class="card-text sentence text-secondary"></p>
+                <div class="d-flex gap-2 mt-3">
+                    <button class="btn btn-secondary" id="prevBtn" type="button">← Anterior</button>
+                    <button class="btn btn-primary" id="nextBtn" type="button">Próximo →</button>
+                    <button class="btn btn-success ms-auto" id="toggleKnownBtn" type="button">Marcar como
+                        conhecida</button>
+                </div>
+            </div>
+            <div class="progress">
+                <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div id="listContainer" class="d-none">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead>
+                        <tr>
+                            <th style="width: 40%">Português</th>
+                            <th style="width: 40%">Inglês</th>
+                            <th class="text-end" style="width: 20%">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <p class="text-success small mt-3">
+            Dica: ← → navegam; Espaço revela; PT/EN 🔊 tocam áudio automático.
+        </p>
+    </div>
+
+    <!-- lista de datasets (NÃO use |safe / |default) -->
+    {{ datasets|json_script:"datasets" }}
+
+    <!-- seu JS principal -->
+    <script src="{% static 'pp/pp.js' %}"></script>
+
+    <!-- ÁUDIO: correções e integração com campos pt_audio / en_audio do JSON -->
+    <script>
+        // Normaliza "static/..." -> "/static/..." (evita 404 como /frases/static/...)
+        function normalizeAudioPath(p) {
+            if (!p) return null;
+            if (p.startsWith('http') || p.startsWith('/')) return p;
+            if (p.startsWith('static/')) return '/' + p;
+            return p;
+        }
+
+        // Player único (somente um áudio por vez)
+        const audioPlayer = new Audio();
+        let pressedBtn = null;
+
+        function setPressed(btn, isPressed) {
+            if (!btn) return;
+            btn.setAttribute('aria-pressed', isPressed ? 'true' : 'false');
+            if (!isPressed && pressedBtn === btn) pressedBtn = null;
+        }
+
+        function playSrc(src, btn) {
+            const url = normalizeAudioPath(src);
+            if (!url) {
+                btn?.blur();
+                alert('Sem arquivo de áudio para este lado.');
+                return;
+            }
+
+            const full = new URL(url, window.location.origin).toString();
+
+            if (audioPlayer.src !== full) {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+                setPressed(pressedBtn, false);
+                audioPlayer.src = full;
+            }
+
+            if (audioPlayer.paused) {
+                audioPlayer.play().then(() => {
+                    if (pressedBtn && pressedBtn !== btn) setPressed(pressedBtn, false);
+                    pressedBtn = btn;
+                    setPressed(btn, true);
+                }).catch(err => {
+                    console.error('Falha ao tocar áudio:', err);
+                    alert('Não foi possível reproduzir o áudio.');
+                    setPressed(btn, false);
+                });
+            } else {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+                setPressed(btn, false);
+            }
+        }
+
+        audioPlayer.addEventListener('ended', () => setPressed(pressedBtn, false));
+
+        // Exposta globalmente para o pp.js chamar após renderizar o cartão
+        window.bindAudioButtons = function bindAudioButtons(itemAtual) {
+            const ptBtn = document.getElementById('speakPtBtn');
+            const enBtn = document.getElementById('speakEnBtn');
+
+            // remove event listeners antigos recriando os botões
+            const ptClone = ptBtn.cloneNode(true);
+            const enClone = enBtn.cloneNode(true);
+            ptBtn.replaceWith(ptClone);
+            enBtn.replaceWith(enClone);
+
+            // estados
+            setPressed(ptClone, false);
+            setPressed(enClone, false);
+
+            const ptSrc = itemAtual?.pt_audio || null;
+            const enSrc = itemAtual?.en_audio || null;
+
+            ptClone.disabled = !ptSrc;
+            enClone.disabled = !enSrc;
+
+            if (ptSrc) ptClone.addEventListener('click', () => playSrc(ptSrc, ptClone));
+            if (enSrc) enClone.addEventListener('click', () => playSrc(enSrc, enClone));
+        };
+
+        // OPCIONAL: se você preferir eventos, seu pp.js pode despachar:
+        // document.dispatchEvent(new CustomEvent('pp:cardRendered', { detail: { item } }));
+        // e aqui nós ligaríamos automaticamente:
+        document.addEventListener('pp:cardRendered', (ev) => {
+            if (ev?.detail?.item) window.bindAudioButtons(ev.detail.item);
+        });
+    </script>
+</body>
+
+</html>
