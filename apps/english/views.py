@@ -43,5 +43,9 @@ def friends0109(request):
     return render(request, 'english/friends0101/friends-01-09.html')
 
 @login_required
+def friends0201(request):
+    return render(request, 'english/friends0102/friends-02-01.html')
+
+@login_required
 def fun_vacations(request):
     return render(request, 'english/textos/fun_vacations.html')

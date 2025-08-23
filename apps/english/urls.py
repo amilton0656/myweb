@@ -12,5 +12,8 @@ urlpatterns = [
     path('friends0107/', views.friends0107, name='friends0107'),
     path('friends0108/', views.friends0108, name='friends0108'),
     path('friends0109/', views.friends0109, name='friends0109'),
+
+    path('friends0201/', views.friends0201, name='friends0201'),
+
     path('fun_vacations/', views.fun_vacations, name='fun_vacations'),
 ]

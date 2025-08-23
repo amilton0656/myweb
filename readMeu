@@ -1,10 +1,14 @@
 py -m venv .venv
 .\.venv\Scripts\activate
+source .venv/bin/activate
 
 pip install django
 pip install python-decouple psycopg[binary]
 
 python manage.py startapp portugues
 
+py manage.py runserver
+
+source .venv/bin/activate
 python manage.py collectstatic --noinput
 sudo systemctl restart apache2
