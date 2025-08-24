@@ -14,6 +14,7 @@ urlpatterns = [
     path('friends0109/', views.friends0109, name='friends0109'),
 
     path('friends0201/', views.friends0201, name='friends0201'),
+    path('friends0202/', views.friends0202, name='friends0202'),
 
     path('fun_vacations/', views.fun_vacations, name='fun_vacations'),
 ]

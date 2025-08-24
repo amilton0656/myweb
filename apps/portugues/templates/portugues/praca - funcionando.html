@@ -9,49 +9,6 @@
   <link rel="stylesheet" href="{% static 'portugues/css/style_texto.css' %}" />
   <title>Vídeo com Transcrição (PT/EN)</title>
 
-  <!-- Estilos somente para o rodapé fixo dos botões de ÁUDIO -->
-  <style>
-    body {
-      padding-bottom: 72px;
-    }
-
-    /* espaço para o footer não cobrir o conteúdo */
-
-    .audio-footer {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 16px;
-      background: rgba(17, 24, 39, 0.9);
-      /* tom escuro translúcido */
-      border-top: 1px solid #1f2937;
-      backdrop-filter: blur(6px);
-      z-index: 9999;
-    }
-
-    .audio-footer .btn {
-      font-weight: 600;
-      border-radius: 10px;
-      border: 1px solid #1f2937;
-      padding: 10px 14px;
-      cursor: pointer;
-      transition: transform .06s ease, border-color .2s ease;
-    }
-
-    .audio-footer .btn:hover {
-      transform: translateY(-1px);
-      border-color: #22d3ee;
-    }
-
-    .audio-footer .btn:active {
-      transform: translateY(0);
-    }
-  </style>
 </head>
 
 <body>
@@ -83,7 +40,7 @@
     <section class="grid">
       <article class="col">
         <h2>Português</h2>
-        <!-- (botão movido para o rodapé) -->
+        <p><button id="btnPT" class="btn" type="button" aria-controls="audioPT">▶️ Ouvir em português</button></p>
         <div id="statusPT" class="hint" aria-live="polite"></div>
 
         <div class="text" id="ptText">
@@ -216,7 +173,7 @@
 
       <article class="col">
         <h2>English</h2>
-        <!-- (botão movido para o rodapé) -->
+        <p><button id="btnEN" class="btn" type="button" aria-controls="audioEN">▶️ Ouvir em inglês</button></p>
         <div id="statusEN" class="hint" aria-live="polite"></div>
 
         <div class="text">
@@ -292,12 +249,6 @@
       </article>
     </section>
   </main>
-
-  <!-- RODAPÉ FIXO: botões de ÁUDIO -->
-  <footer class="audio-footer" aria-label="Controles de áudio">
-    <button id="btnPT" class="btn" type="button" aria-controls="audioPT">▶️ Ouvir em português</button>
-    <button id="btnEN" class="btn" type="button" aria-controls="audioEN">▶️ Ouvir em inglês</button>
-  </footer>
 
   <script>
     const audioEN = document.getElementById('audioEN');
@@ -387,6 +338,7 @@
           el.src = objUrl;
           Array.from(el.querySelectorAll('source')).forEach(n => n.remove());
         } catch (e) {
+          // Se falhar, seguimos com a URL original (o seek pode ser impreciso em alguns servidores)
           console.warn('Blob fallback falhou:', e);
         }
 
@@ -396,11 +348,14 @@
       async function seekAndPlay(target) {
         const t = clampTime(target);
 
+        // Garante fonte Blob (ou pelo menos metadados) antes de buscar
         await ensureBlobSrc(audioEl);
         await ensureMetadata(audioEl);
 
+        // Pausa para evitar “pulo” audível
         if (!audioEl.paused) audioEl.pause();
 
+        // Posiciona e toca
         audioEl.currentTime = t;
         try { await audioEl.play(); } catch { /* ignore autoplay error */ }
       }

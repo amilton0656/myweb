@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <link rel="icon" href="{% static 'accounts/images/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'accounts/images/favicon.ico' %}" type="image/x-icon">
   {% block title %}
   {% endblock title %}
   <link rel="stylesheet" href="{% static 'css/style_friends.css' %}" />
@@ -21,21 +21,21 @@
     <ul id="lista-dialogo"></ul>
   </div>
   <script>
-  {% block script %}
-  {% endblock script %}
-  // 2. LÓGICA PARA CRIAR A LISTA
-      // Este código será executado assim que o HTML da página for carregado.
-      document.addEventListener("DOMContentLoaded", () => {
-        const listaDialogoElement = document.getElementById("lista-dialogo");
+    {% block script %}
+    {% endblock script %}
+    // 2. LÓGICA PARA CRIAR A LISTA
+    // Este código será executado assim que o HTML da página for carregado.
+    document.addEventListener("DOMContentLoaded", () => {
+      const listaDialogoElement = document.getElementById("lista-dialogo");
 
-        // Itera sobre cada item do nosso array de dados
-        dialogoData.forEach((item) => {
-          // Cria um novo elemento <li>
-          const li = document.createElement("li");
-          li.className = "linha-dialogo";
+      // Itera sobre cada item do nosso array de dados
+      dialogoData.forEach((item) => {
+        // Cria um novo elemento <li>
+        const li = document.createElement("li");
+        li.className = "linha-dialogo";
 
-          // Define o conteúdo HTML do <li> usando os dados do item atual
-          li.innerHTML = `
+        // Define o conteúdo HTML do <li> usando os dados do item atual
+        li.innerHTML = `
             <div class="frases">
               <span class="frase-pt">${item.pt}</span>
               <span class="frase-en">${item.en}</span>
@@ -43,59 +43,59 @@
             <button class="btn-play" data-inicio="${item.inicio}" data-fim="${item.fim}">▶</button>
           `;
 
-          // Adiciona o <li> recém-criado à lista <ul> no HTML
-          listaDialogoElement.appendChild(li);
-        });
+        // Adiciona o <li> recém-criado à lista <ul> no HTML
+        listaDialogoElement.appendChild(li);
       });
+    });
 
-      // Espera o HTML ser totalmente carregado
-document.addEventListener('DOMContentLoaded', () => {
-    const video = document.getElementById('meuVideo');
-    const listaDialogo = document.getElementById('lista-dialogo');
+    // Espera o HTML ser totalmente carregado
+    document.addEventListener('DOMContentLoaded', () => {
+      const video = document.getElementById('meuVideo');
+      const listaDialogo = document.getElementById('lista-dialogo');
 
-    if (!video) {
+      if (!video) {
         console.warn('[friends] #meuVideo não encontrado');
         return;
-    }
-    if (!listaDialogo) {
+      }
+      if (!listaDialogo) {
         console.warn('[friends] #lista-dialogo não encontrado');
         return;
-    }
+      }
 
-    let pontoDeParada = null;
-    let linhaAtiva = null;
+      let pontoDeParada = null;
+      let linhaAtiva = null;
 
-    // Tocar trecho com segurança
-    function reproduzirTrecho(inicio, fim) {
+      // Tocar trecho com segurança
+      function reproduzirTrecho(inicio, fim) {
         const start = Number(inicio) + 0.01; // pequeno offset
         const end = Number(fim);
         pontoDeParada = end;
 
         const doSeekAndPlay = () => {
-            video.pause();
-            video.currentTime = start;
+          video.pause();
+          video.currentTime = start;
 
-            const onSeeked = () => {
-                video.removeEventListener('seeked', onSeeked);
-                video.play();
-            };
-            video.addEventListener('seeked', onSeeked, { once: true });
-            setTimeout(() => video.play(), 50); // fallback
+          const onSeeked = () => {
+            video.removeEventListener('seeked', onSeeked);
+            video.play();
+          };
+          video.addEventListener('seeked', onSeeked, { once: true });
+          setTimeout(() => video.play(), 50); // fallback
         };
 
         if (video.readyState < 1) {
-            const onLoadedMeta = () => {
-                video.removeEventListener('loadedmetadata', onLoadedMeta);
-                doSeekAndPlay();
-            };
-            video.addEventListener('loadedmetadata', onLoadedMeta, { once: true });
-        } else {
+          const onLoadedMeta = () => {
+            video.removeEventListener('loadedmetadata', onLoadedMeta);
             doSeekAndPlay();
+          };
+          video.addEventListener('loadedmetadata', onLoadedMeta, { once: true });
+        } else {
+          doSeekAndPlay();
         }
-    }
+      }
 
-    // Clique em qualquer parte da linha (ou no botão ▶)
-    listaDialogo.addEventListener('click', (evento) => {
+      // Clique em qualquer parte da linha (ou no botão ▶)
+      listaDialogo.addEventListener('click', (evento) => {
         const li = evento.target.closest('.linha-dialogo');
         if (!li) return;
 
@@ -114,24 +114,24 @@ document.addEventListener('DOMContentLoaded', () => {
         evento.preventDefault();
 
         reproduzirTrecho(inicio, fim);
-    });
+      });
 
-    // Pausar no fim do trecho
-    video.addEventListener('timeupdate', () => {
+      // Pausar no fim do trecho
+      video.addEventListener('timeupdate', () => {
         if (pontoDeParada != null && video.currentTime >= (pontoDeParada - 0.03)) {
-            video.pause();
-            pontoDeParada = null;
+          video.pause();
+          pontoDeParada = null;
 
-            if (linhaAtiva) {
-                linhaAtiva.classList.remove('active');
-                linhaAtiva = null;
-            }
+          if (linhaAtiva) {
+            linhaAtiva.classList.remove('active');
+            linhaAtiva = null;
+          }
         }
+      });
     });
-});
 
-    </script>
-  
+  </script>
+
 
 </body>
 
