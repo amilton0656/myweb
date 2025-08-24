@@ -1,38 +1,184 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="{% static 'accounts/images/favicon.ico' %}" type="image/x-icon">
   <title>Fun Vacations — EN+PT (áudio em inglês)</title>
   <style>
-    :root { --bg:#0f172a; --panel:#111827; --text:#e5e7eb; --muted:#9ca3af; --accent:#22d3ee; --border:#1f2937; }
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;line-height:1.5}
-    header{padding:28px 20px;text-align:center;border-bottom:1px solid var(--border)}
-    header h1{margin:0 0 6px;font-size:clamp(20px,3vw,28px)}
-    main{max-width:1100px;margin:24px auto;padding:0 16px}
-    .audio-card{margin-top:14px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;display:grid;gap:10px;justify-items:start}
-    .btn{appearance:none;border:1px solid var(--border);background:#0b1220;color:var(--text);padding:10px 14px;border-radius:999px;cursor:pointer;font-weight:600}
-    .btn:focus{outline:2px solid var(--accent);outline-offset:2px}
-    .hint{font-size:13px;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:18px}
-    @media (min-width:880px){.grid{grid-template-columns:1fr 1fr}}
-    .col{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;min-height:320px;display:flex;flex-direction:column;gap:8px}
-    .col h2{margin:0;font-size:20px;letter-spacing:.3px;color:var(--accent);text-transform:uppercase}
-    .text{font-size:1.8rem}
-    .cue{transition:background .15s ease,color .15s ease;cursor:pointer}
-    #ptText .cue{cursor:text} /* PT não-clique */
-    .cue.active{background:rgba(34,211,238,.25);color:var(--accent);padding:2px 4px;border-radius:6px}
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #22d3ee;
+      --border: #1f2937;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial;
+      line-height: 1.5;
+      padding-bottom: 72px;
+      /* espaço para o rodapé fixo não cobrir o conteúdo */
+    }
+
+    header {
+      padding: 28px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--border)
+    }
+
+    header h1 {
+      margin: 0 0 6px;
+      font-size: clamp(20px, 3vw, 28px)
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 24px auto;
+      padding: 0 16px
+    }
+
+    .audio-card {
+      margin-top: 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      display: grid;
+      gap: 10px;
+      justify-items: start
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: #0b1220;
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600
+    }
+
+    .btn:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px
+    }
+
+    .hint {
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 18px
+    }
+
+    @media (min-width:880px) {
+      .grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    .col {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .col h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: .3px;
+      color: var(--accent);
+      text-transform: uppercase
+    }
+
+    .text {
+      font-size: 1.8rem
+    }
+
+    .cue {
+      transition: background .15s ease, color .15s ease;
+      cursor: pointer
+    }
+
+    #ptText .cue {
+      cursor: text
+    }
+
+    /* PT não-clique */
+    .cue.active {
+      background: rgba(34, 211, 238, .25);
+      color: var(--accent);
+      padding: 2px 4px;
+      border-radius: 6px
+    }
+
     /* Esconde controles nativos do <audio>, mas mantém acessível ao JS */
-    .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0 0 0 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important
+    }
+
     .sr-only::-webkit-media-controls,
     .sr-only::-webkit-media-controls-enclosure,
-    .sr-only::-webkit-media-controls-panel{display:none!important}
-    #statusEN{display:none!important}
+    .sr-only::-webkit-media-controls-panel {
+      display: none !important
+    }
+
+    #statusEN {
+      display: none !important
+    }
+
+    /* Rodapé fixo: botão de áudio */
+    .audio-footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      background: rgba(17, 24, 39, .9);
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(6px);
+      padding: 12px 16px;
+    }
+
+    .audio-footer .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Fun Vacations</h1>
@@ -45,7 +191,7 @@
         <source src="{% static 'english/textos/fun_vacations.mp3' %}" type="audio/mpeg">
         Seu navegador não suporta áudio HTML5.
       </audio>
-      <button id="btnEN" class="btn" type="button" aria-controls="audioEN">▶️ Play English audio</button>
+      <!-- botão movido para o rodapé fixo -->
       <div id="statusEN" class="hint" aria-live="polite"></div>
       <p class="hint">Clique nas frases em <b>English</b> para pular para o trecho correspondente.</p>
     </section>
@@ -79,12 +225,14 @@
           <span class="cue" data-start="56.36" data-end="60.48">He again said with a smile: eat first.</span>
           <br><br>
           <span class="cue" data-start="60.49" data-end="62.40">I was irritated.</span>
-          <span class="cue" data-start="62.41" data-end="67.01">And about to go make a complaint with the manager.</span>
+          <span class="cue" data-start="62.41" data-end="67.01">And about to go make a complaint with the
+            manager.</span>
           <span class="cue" data-start="67.02" data-end="71.85">When I noticed a sign posted on the wall,</span>
           <span class="cue" data-start="71.86" data-end="76.85">which said Wi-Fi code: eat first.</span>
           <br><br>
           <span class="cue" data-start="76.86" data-end="79.12">I was so embarrassed</span>
-          <span class="cue" data-start="79.13" data-end="85">and apologized to my waiter for the misunderstanding.</span>
+          <span class="cue" data-start="79.13" data-end="85">and apologized to my waiter for the
+            misunderstanding.</span>
         </div>
       </article>
 
@@ -118,54 +266,61 @@
     </section>
   </main>
 
+  <!-- Rodapé fixo com o botão de ÁUDIO (EN) -->
+  <footer class="audio-footer" aria-label="Controles de áudio">
+    <div class="wrap">
+      <button id="btnEN" class="btn" type="button" aria-controls="audioEN">▶️ Play English audio</button>
+    </div>
+  </footer>
+
   <script>
-    const audioEN  = document.getElementById('audioEN');
-    const btnEN    = document.getElementById('btnEN');
+    const audioEN = document.getElementById('audioEN');
+    const btnEN = document.getElementById('btnEN');
     const statusEN = document.getElementById('statusEN');
 
     // Botão Play/Pause
-    (function wireAudioControls(){
+    (function wireAudioControls() {
       btnEN.addEventListener('click', () => {
-        if (audioEN.paused) { audioEN.play().catch(()=>{}); } else { audioEN.pause(); }
+        if (audioEN.paused) { audioEN.play().catch(() => { }); } else { audioEN.pause(); }
       });
-      audioEN.addEventListener('play',  ()=>{ btnEN.textContent='⏸️ Pause English audio'; statusEN.textContent='Playing'; });
-      audioEN.addEventListener('pause', ()=>{ btnEN.textContent='▶️ Play English audio';  statusEN.textContent='Paused';  });
-      audioEN.addEventListener('ended', ()=>{ btnEN.textContent='▶️ Play English audio';  statusEN.textContent='Ended';  });
+      audioEN.addEventListener('play', () => { btnEN.textContent = '⏸️ Pause English audio'; statusEN.textContent = 'Playing'; });
+      audioEN.addEventListener('pause', () => { btnEN.textContent = '▶️ Play English audio'; statusEN.textContent = 'Paused'; });
+      audioEN.addEventListener('ended', () => { btnEN.textContent = '▶️ Play English audio'; statusEN.textContent = 'Ended'; });
     })();
 
     // Utilitário: garante que o seek funcione mesmo sem Accept-Ranges
-    async function ensureBlobSrc(el){
+    async function ensureBlobSrc(el) {
       if (el.dataset.objectUrl) return;
       const srcNode = el.querySelector('source');
-      const srcUrl  = (srcNode && srcNode.src) || el.currentSrc || el.src;
+      const srcUrl = (srcNode && srcNode.src) || el.currentSrc || el.src;
       if (!srcUrl) return;
-      try{
-        const resp = await fetch(srcUrl, { cache:'force-cache' });
+      try {
+        const resp = await fetch(srcUrl, { cache: 'force-cache' });
         const blob = await resp.blob();
-        const obj  = URL.createObjectURL(blob);
+        const obj = URL.createObjectURL(blob);
         el.dataset.objectUrl = obj;
         el.src = obj;
-        Array.from(el.querySelectorAll('source')).forEach(n=>n.remove());
-        await new Promise(r=>{
-          if (el.readyState>=1) r(); else el.addEventListener('loadedmetadata', r, {once:true});
+        Array.from(el.querySelectorAll('source')).forEach(n => n.remove());
+        await new Promise(r => {
+          if (el.readyState >= 1) r(); else el.addEventListener('loadedmetadata', r, { once: true });
         });
-      }catch(_e){}
+      } catch (_e) { }
     }
 
     // Clique em spans com data-start/data-end → seek + play
-    function wireSyncByDataAttrs(audioEl, container){
+    function wireSyncByDataAttrs(audioEl, container) {
       const toNum = v => parseFloat(String(v).replace(',', '.'));
 
-      async function seekAndPlay(target){
+      async function seekAndPlay(target) {
         const dur = Number.isFinite(audioEl.duration) ? audioEl.duration : null;
-        const t   = dur ? Math.min(Math.max(target, 0), Math.max(dur-0.05,0)) : Math.max(target,0);
+        const t = dur ? Math.min(Math.max(target, 0), Math.max(dur - 0.05, 0)) : Math.max(target, 0);
         await ensureBlobSrc(audioEl);
         if (!audioEl.paused) audioEl.pause();
         audioEl.currentTime = t;
-        try{ await audioEl.play(); }catch{}
+        try { await audioEl.play(); } catch { }
       }
 
-      container.addEventListener('click', (ev)=>{
+      container.addEventListener('click', (ev) => {
         const span = ev.target.closest('.cue');
         if (!span || !container.contains(span)) return;
         const start = toNum(span.dataset.start);
@@ -175,16 +330,16 @@
       // Highlight automático da frase atual
       const spans = Array.from(container.querySelectorAll('.cue'));
       let lastActive = null;
-      function updateActive(){
+      function updateActive() {
         const t = audioEl.currentTime;
         let active = null;
-        for (const s of spans){
+        for (const s of spans) {
           const a = toNum(s.dataset.start), b = toNum(s.dataset.end);
-          if (t>=a && t<b){ active = s; break; }
+          if (t >= a && t < b) { active = s; break; }
         }
-        if (lastActive !== active){
-          spans.forEach(s=>s.classList.toggle('active', s===active));
-          if (active) active.scrollIntoView({ block:'nearest', behavior:'smooth' });
+        if (lastActive !== active) {
+          spans.forEach(s => s.classList.toggle('active', s === active));
+          if (active) active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
           lastActive = active;
         }
       }
@@ -194,10 +349,11 @@
     }
 
     // Ativa a sincronização SOMENTE na coluna EN
-    (function(){
+    (function () {
       const enText = document.getElementById('enText');
       if (enText) wireSyncByDataAttrs(audioEN, enText);
     })();
   </script>
 </body>
+
 </html>
