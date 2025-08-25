@@ -17,33 +17,67 @@
 
   <div class="media-col">
     <div class="audio-card">
-      <h3 style="margin:0 0 8px;">Friends 2 - parte 02</h3>
+      {# Título oculto #}
+      {# <h3 style="margin:0 0 8px;">Friends 2 - parte 02</h3> #}
+
+      <!-- Áudio SEM controles visíveis (UI escondida) -->
       <audio id="meuAudio"
              src="{% static 'english/friends0102/friends-02-02.mp3' %}?v=3"
-             controls
              preload="auto"
              playsinline></audio>
+
       <div class="muted" style="opacity:.7;font-size:.9rem;margin-top:6px;">
+        {# opcionalmente deixe vazio #}
       </div>
     </div>
   </div>
 </div>
 
 <style>
-  /* layout do topo: por padrão 1 coluna; em telas largas, vídeo (70%) | áudio (≤30%) */
-  .media-row { display:grid; grid-template-columns: 1fr; gap:16px; margin:0; }
-  @media (min-width: 900px){
-    .media-row {
-      grid-template-columns: minmax(0, 1fr) minmax(220px, 30%);
-      align-items: start;
-    }
+  /* Grid do topo: uma coluna sempre (áudio oculto não ocupa espaço) */
+  .media-row{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:16px;
+    margin:0;
+    max-width:1280px;
+    margin-inline:auto; /* centraliza o bloco todo */
   }
-  .media-col video, .media-col audio { width:100%; display:block; max-width:100%; }
+  @media (min-width: 900px){
+    .media-row{ grid-template-columns: 1fr; } /* garante 1 coluna no desktop também */
+  }
+
+  /* Esconde completamente a coluna do áudio (não ocupa espaço) */
+  .media-row .media-col:last-child{ display:none; }
+
+  /* Centraliza o vídeo em todas as larguras */
+  .media-col:first-child{
+    display:flex;
+    justify-content:center;
+  }
+  .media-col:first-child > video{
+    width:min(100%, 960px);
+    height:auto;
+    display:block;
+    object-fit:contain;
+  }
+
+  .media-col video, .media-col audio{
+    width:100%;
+    display:block;
+    max-width:100%;
+  }
+
   .audio-card{
-    padding:12px; border:1px solid var(--border, #1f2937);
-    background:var(--panel, #111827); border-radius:8px;
+    padding:12px;
+    border:1px solid var(--border, #1f2937);
+    background:var(--panel, #111827);
+    border-radius:8px;
   }
 </style>
+
+
+
 {% endblock video %}
 
 {% block script %}
