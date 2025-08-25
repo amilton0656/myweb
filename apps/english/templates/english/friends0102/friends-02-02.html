@@ -1,128 +1,161 @@
 {% extends 'english/friends-base.html' %}
 {% load static %}
+
 {% block title %}
-<title>Friends - Parte 01</title>
+<title>Friends - Parte 01 — Vídeo + Áudio</title>
 {% endblock title %}
 
 {% block video %}
-<<video id="meuVideo" src="{% static 'english/friends0102/friends-02-02.mp4' %}?v=3" controls preload="auto"
-    playsinline></video>
+<div class="media-row">
+  <div class="media-col">
+    <video id="meuVideo"
+           src="{% static 'english/friends0102/friends-02-02.mp4' %}?v=3"
+           controls
+           preload="metadata"
+           playsinline></video>
+  </div>
 
+  <div class="media-col">
+    <div class="audio-card">
+      <h3 style="margin:0 0 8px;">Friends 2 - parte 02</h3>
+      <audio id="meuAudio"
+             src="{% static 'english/friends0102/friends-02-02.mp3' %}?v=3"
+             controls
+             preload="auto"
+             playsinline></audio>
+      <div class="muted" style="opacity:.7;font-size:.9rem;margin-top:6px;">
+      </div>
+    </div>
+  </div>
+</div>
 
-    {% endblock video %}
+<style>
+  /* layout do topo: por padrão 1 coluna; em telas largas, vídeo (70%) | áudio (≤30%) */
+  .media-row { display:grid; grid-template-columns: 1fr; gap:16px; margin:0; }
+  @media (min-width: 900px){
+    .media-row {
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 30%);
+      align-items: start;
+    }
+  }
+  .media-col video, .media-col audio { width:100%; display:block; max-width:100%; }
+  .audio-card{
+    padding:12px; border:1px solid var(--border, #1f2937);
+    background:var(--panel, #111827); border-radius:8px;
+  }
+</style>
+{% endblock video %}
 
+{% block script %}
+/* Tempos dos trechos */
+const dialogoData = [
+  { pt: "Está bom. Só que ela não parece um pouco brava?", en: "It is good. It's just that, doesn't she seem a little angry?", inicio: 1.0, fim: 6.0 },
+  { pt: "Bom, ela tem problemas.", en: "Well, she has issues.", inicio: 6.1, fim: 8.0 },
+  { pt: "Tem?", en: "Does she?", inicio: 9, fim: 10.9 },
+  { pt: "Ele está batendo na cabeça de outras mulheres com um porrete...", en: "He's out banging other women over the head with a club...", inicio: 11.3, fim: 13.8 },
+  { pt: "...enquanto ela fica em casa", en: "...while she sits at home", inicio: 13.9, fim: 14.9 },
+  { pt: "tentando tirar o cheiro de mastodonte do carpete.", en: "trying to get the mastodon smell out of the carpet.", inicio: 15, fim: 17.1 },
+  { pt: "Marsha, veja, essas são pessoas das cavernas.", en: "Marsha, see, these are cave people.", inicio: 18, fim: 21 },
+  { pt: "Certo, eles têm problemas como: Nossa, essa geleira está quase chegando.", en: "Okay, they have issues like: Gee, that glacier's getting kind of close.", inicio: 22, fim: 27 },
+  { pt: "Viu? Falando em problemas, aquela não é sua ex-mulher?", en: "See? Speaking of issues, isn't that your ex-wife?", inicio: 28, fim: 30.7 },
+  { pt: "Não. sim, é.", en: "No. Yes, it is.", inicio: 31, fim: 33 },
+  { pt: "Que tal eu te encontrar na Era Glacial?", en: "How about I'll catch up with you in the Ice Age?", inicio: 36, fim: 38.6 },
+  { pt: "Então... você está ótima. Eu odeio isso.", en: "So....You look great. I hate that.", inicio: 62.5, fim: 68 },
+  { pt: "Desculpe. Obrigada. Você também está linda.", en: "Sorry. Thanks. You look good too.", inicio: 69, fim: 72.5 },
+  { pt: "Bem, você sabe, aqui dentro, qualquer um que...fique de pé...", en: "Well, you know, in here, anyone who...stands erect...", inicio: 72.6, fim: 78.4 },
+  { pt: "Então, o que há de novo? Ainda é... lésbica?", en: "So, what's new? Still a...A lesbian?", inicio: 82, fim: 84 },
+  { pt: "Bom... Nunca se sabe. Como está, hum...? Como está a família?", en: "Well...You never know. How's, um...? How's the family?", inicio: 84.1, fim: 90.5 },
+  { pt: "Marty ainda está totalmente paranoico.", en: "Marty's still totally paranoid.", inicio: 90.6, fim: 93 },
+  { pt: "Ah, e... Carol, por que você está aqui, Carol? Estou grávida. Grávida.", en: "Oh, and...Carol, why are you here, Carol? I'm pregnant. Pregnant.", inicio: 93.1, fim: 100 }
+];
 
+document.addEventListener('DOMContentLoaded', () => {
+  const audio = document.getElementById('meuAudio');
+  const lista = document.getElementById('lista-dialogo');
+  if (!lista || !audio) return;
 
-    {% block script %}
-    const dialogoData = [
-    {
-    pt: "Está bom. Só que ela não parece um pouco brava?",
-    en: "It is good. It's just that, doesn't she seem a little angry?",
-    inicio: 1.0,
-    fim: 6.0,
-    },
-    {
-    pt: "Bom, ela tem problemas.",
-    en: "Well, she has issues.",
-    inicio: 6.1,
-    fim: 8.0,
-    },
-    {
-    pt: "Tem?",
-    en: "Does she?",
-    inicio: 9,
-    fim: 10.9,
-    },
-    {
-    pt: "Ele está batendo na cabeça de outras mulheres com um porrete...",
-    en: "He's out banging other women over the head with a club...",
-    inicio: 11.3,
-    fim: 13.8,
-    },
-    {
-    pt: "...enquanto ela fica em casa",
-    en: "...while she sits at home",
-    inicio: 13.9,
-    fim: 14.9,
-    },
-    {
-    pt: "tentando tirar o cheiro de mastodonte do carpete.",
-    en: "trying to get the mastodon smell out of the carpet.",
-    inicio: 15,
-    fim: 17.1,
-    },
-    {
-    pt: "Marsha, veja, essas são pessoas das cavernas.",
-    en: "Marsha, see, these are cave people.",
-    inicio: 18,
-    fim: 21,
-    },
-    {
-    pt: "Certo, eles têm problemas como: Nossa, essa geleira está quase chegando.",
-    en: "Okay, they have issues like: Gee, that glacier's getting kind of close.",
-    inicio: 22,
-    fim: 27,
-    },
-    {
-    pt: "Viu? Falando em problemas, aquela não é sua ex-mulher?",
-    en: "See? Speaking of issues, isn't that your ex-wife?",
-    inicio: 28,
-    fim: 30.7,
-    },
-    {
-    pt: "Não. sim, é.",
-    en: "No. Yes, it is.",
-    inicio: 31,
-    fim: 33,
-    },
-    {
-    pt: "Que tal eu te encontrar na Era Glacial?",
-    en: "How about I'll catch up with you in the Ice Age?",
-    inicio: 36,
-    fim: 38.6,
-    },
-    {
-    pt: "Então... você está ótima. Eu odeio isso.",
-    en: "So....You look great. I hate that.",
-    inicio: 62.5,
-    fim: 68,
-    },
-    {
-    pt: "Desculpe. Obrigada. Você também está linda.",
-    en: "Sorry. Thanks. You look good too.",
-    inicio: 69,
-    fim: 72.5
-    },
-    {
-    pt: "Bem, você sabe, aqui dentro, qualquer um que...fique de pé...",
-    en: "Well, you know, in here, anyone who...stands erect...",
-    inicio: 72.6,
-    fim: 78.4,
-    },
-    {
-    pt: "Então, o que há de novo? Ainda é... lésbica?",
-    en: "So, what's new? Still a...A lesbian?",
-    inicio: 82,
-    fim: 84,
-    },
-    {
-    pt: "Bom... Nunca se sabe. Como está, hum...? Como está a família?",
-    en: "Well...You never know. How's, um...? How's the family?",
-    inicio: 84.1,
-    fim: 90.5,
-    },
-    {
-    pt: "Marty ainda está totalmente paranoico.",
-    en: "Marty's still totally paranoid.",
-    inicio: 90.6,
-    fim: 93,
-    },
-    {
-    pt: "Ah, e... Carol, por que você está aqui, Carol? Estou grávida. Grávida.",
-    en: "Oh, and...Carol, why are you here, Carol? I'm pregnant. Pregnant.",
-    inicio: 93.1,
-    fim: 100,
-    },
+  // evita rodar duas vezes
+  if (lista.dataset.initDone === '1') return;
+  lista.dataset.initDone = '1';
 
-    ];
-    {% endblock script %}
+  // estilos dos botões nas frases (uma seta só)
+  const style = document.createElement('style');
+  style.textContent = `
+    #lista-dialogo li{ position:relative; padding-right:52px; }
+    #lista-dialogo .btn-play{
+      position:absolute; right:10px; top:50%; transform:translateY(-50%);
+      width:36px; height:36px; border:none; border-radius:50%;
+      background:#444; color:#fff; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; font-weight:700;
+    }
+    #lista-dialogo .btn-play::before, #lista-dialogo .btn-play::after{ content:none !important; }
+    #lista-dialogo li.active{ outline:1px solid var(--accent, #22d3ee); }
+  `;
+  document.head.appendChild(style);
+
+  // injeta um botão por <li> já existente
+  const lis = Array.from(lista.querySelectorAll('li'));
+  const total = Math.min(lis.length, dialogoData.length);
+  for (let i = 0; i < total; i++) {
+    const li = lis[i];
+    if (li.querySelector('.btn-play')) continue;
+    const { inicio, fim } = dialogoData[i] || {};
+    if (!Number.isFinite(inicio) || !Number.isFinite(fim)) continue;
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'btn-play';
+    btn.dataset.inicio = inicio;
+    btn.dataset.fim = fim;
+    btn.textContent = '▶';
+    li.appendChild(btn);
+  }
+
+  let stopAt = null;
+  let linhaAtiva = null;
+
+  // pausa no fim do trecho
+  audio.addEventListener('timeupdate', () => {
+    if (stopAt != null && audio.currentTime >= stopAt - 0.02) {
+      audio.pause();
+      stopAt = null;
+    }
+  });
+
+  // clique nos botões (captura + bloqueio de propagação)
+  lista.addEventListener('click', (ev) => {
+    const btn = ev.target.closest('.btn-play');
+    if (!btn) return;
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    const inicio = parseFloat(btn.dataset.inicio);
+    const fim = parseFloat(btn.dataset.fim);
+    if (!Number.isFinite(inicio) || !Number.isFinite(fim)) return;
+
+    const li = btn.closest('li');
+    if (linhaAtiva) linhaAtiva.classList.remove('active');
+    linhaAtiva = li;
+    linhaAtiva.classList.add('active');
+
+    audio.pause();
+    stopAt = Math.min(fim, isFinite(audio.duration) ? audio.duration : fim);
+    const start = Math.max(0, inicio + 0.001);
+
+    const doSeekThenPlay = () => {
+      if (typeof audio.fastSeek === 'function') audio.fastSeek(start);
+      else { try { audio.currentTime = start; } catch(e){} }
+
+      const delta = Math.abs((audio.currentTime || 0) - start);
+      if (delta < 0.05) audio.play().catch(()=>{});
+      else {
+        const onSeeked = () => { audio.removeEventListener('seeked', onSeeked); audio.play().catch(()=>{}); };
+        audio.addEventListener('seeked', onSeeked, { once:true });
+      }
+    };
+
+    if (audio.readyState >= 1) doSeekThenPlay();
+    else audio.addEventListener('loadedmetadata', doSeekThenPlay, { once:true });
+  }, { capture:true });
+});
+{% endblock script %}
