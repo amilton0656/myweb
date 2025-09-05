@@ -20,3 +20,7 @@ def tapas03(request):
 @login_required
 def praca(request):
     return render(request, 'portugues/praca.html')
+
+@login_required
+def hangar_t6(request):
+    return render(request, 'portugues/praca_aviao.html')

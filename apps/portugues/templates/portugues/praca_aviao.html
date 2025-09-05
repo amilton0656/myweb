@@ -1,0 +1,348 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="{% static 'accounts/images/favicon.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="{% static 'portugues/css/style_texto.css' %}" />
+  <title>Vídeo com Transcrição (PT/EN)</title>
+
+  <!-- Estilos somente para o rodapé fixo dos botões de ÁUDIO -->
+  <style>
+    body {
+      padding-bottom: 72px;
+    }
+
+    /* espaço para o footer não cobrir o conteúdo */
+
+    .audio-footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 16px;
+      background: rgba(17, 24, 39, 0.9);
+      /* tom escuro translúcido */
+      border-top: 1px solid #1f2937;
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+    }
+
+    .audio-footer .btn {
+      font-weight: 600;
+      border-radius: 10px;
+      border: 1px solid #1f2937;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: transform .06s ease, border-color .2s ease;
+    }
+
+    .audio-footer .btn:hover {
+      transform: translateY(-1px);
+      border-color: #22d3ee;
+    }
+
+    .audio-footer .btn:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Praçinha do Avião</h1>
+  </header>
+
+  <main>
+    <section class="player">
+      <video controls src="{% static 'portugues/praca_aviao/hangar-T6.mp4' %}">
+        Seu navegador não suporta a tag <code>video</code>.
+      </video>
+    </section>
+
+    <!-- Bloco de áudio -->
+    <section class="audio-card" aria-labelledby="pp-title">
+      <!-- Players de áudio (sem controles nativos visíveis) -->
+      <audio id="audioPT" preload="auto" class="sr-only">
+        <source src="{% static 'portugues/praca_aviao/hangar-T6-pt.mp3' %}" type="audio/mpeg">
+        Seu navegador não suporta áudio HTML5.
+      </audio>
+
+      <audio id="audioEN" preload="auto" class="sr-only">
+        <source src="{% static 'portugues/praca_aviao/hangar-T6-en.mp3' %}" type="audio/mpeg">
+        Seu navegador não suporta áudio HTML5.
+      </audio>
+    </section>
+
+    <section class="grid">
+      <article class="col">
+        <h2>Português</h2>
+        <!-- (botão movido para o rodapé) -->
+        <div id="statusPT" class="hint" aria-live="polite"></div>
+
+        <div class="text" id="ptText">
+          <span class="cue" data-start="1.60" data-end="5.06">Boa tarde Minha Amiga!</span>
+          <span class="cue" data-start="5.07" data-end="08.60">A Força Aérea Brasileira </span>
+          <span class="cue" data-start="08.61" data-end="12.80">possui um grupo de pilotos</span>
+          <span class="cue" data-start="12.81" data-end="16.02">que tem como objetivo</span>
+          <span class="cue" data-start="16.03" data-end="19.35">fazer apresentações aéreas. </span>
+          <br><br>
+          <span class="cue" data-start="19.36" data-end="23.99">Esse grupo é popularmente conhecido como</span>
+          <span class="cue" data-start="24.00" data-end="27.06"><b>Esquadrilha da Fumaça</b>. </span>
+          <span class="cue" data-start="27.07" data-end="31.26">É um grupo de seis ou sete aviões</span>
+          <span class="cue" data-start="31.27" data-end="34.24">que fazem acrobacias </span>
+          <span class="cue" data-start="34.25" data-end="36.56">riscando os céus </span>
+          <span class="cue" data-start="36.57" data-end="40.42">com um rastro de fumaça colorida. </span>
+          <br><br>
+          <span class="cue" data-start="40.43" data-end="42.86">Aqui no Brasil </span>
+          <span class="cue" data-start="42.87" data-end="48.05">esse grupo foi criado em 1952</span>
+          <span class="cue" data-start="48.06" data-end="50.87">e existe até hoje.</span>
+          <br><br>
+          <span class="cue" data-start="50.88" data-end="53.63">No começo dos anos 60,</span>
+          <span class="cue" data-start="53.64" data-end="57.25">esses pilotos fizeram uma apresentação</span>
+          <span class="cue" data-start="57.26" data-end="59.55">aqui em Florianópolis </span>
+          <span class="cue" data-start="59.56" data-end="63.05">sobre a baia norte.</span>
+          <span class="cue" data-start="63.06" data-end="67.11">Baia norte é esse...</span>
+          <span class="cue" data-start="67.12" data-end="69.63">esse espaço aqui.</span>
+          <br><br>
+          <span class="cue" data-start="69.64" data-end="72.48">A gente tem aqui em Florianópolis duas baias</span>
+          <span class="cue" data-start="72.58" data-end="73.80">A baia norte...</span>
+          <span class="cue" data-start="74.60" data-end="79.60">Aqui nessa direção fica... ficam as pontes</span>
+          <span class="cue" data-start="79.64" data-end="83.53">e ali ao fundo fica a baia sul.</span>
+          <br><br><br>
+          <span class="cue" data-start="83.54" data-end="87.13">São duas partes, uma parte sul da baia</span>
+          <span class="cue" data-start="87.14" data-end="91.00">e aqui a parte norte. </span>
+          <br><br>
+          <span class="cue" data-start="91.01" data-end="94.85">E esse grupo, a Esquadrilha da fumaça,</span>
+          <span class="cue" data-start="94.86" data-end="98.02">Em... Na década de sessenta</span>
+          <span class="cue" data-start="98.03" data-end="104.13">eles fizeram uma apresentação... uma das apresentações que eles fizeram aqui... foi em mil novecentos e sessenta</span>
+          <span class="cue" data-start="104.14" data-end="107.22">sobre essa baia norte </span>
+          <br><br>
+          <span class="cue" data-start="107.23" data-end="111.96">e quando esses aviões </span>
+          <span class="cue" data-start="111.97" data-end="117.48">estavam desenhando, no céu, um coração</span>
+          <span class="cue" data-start="117.49" data-end="122.10">esse... dois aviões</span>
+          <span class="cue" data-start="122.11" data-end="123.60">se tocaram,</span>
+          <span class="cue" data-start="123.61" data-end="126.46">quebraram as asas...</span>
+          <br><br>
+          <span class="cue" data-start="126.47" data-end="130.00">Um desses aviões conseguiu</span>
+          <span class="cue" data-start="130.01" data-end="134.35">voar até a Base Aérea</span>
+          <span class="cue" data-start="134.36" data-end="136.68">que fica nesse ponto.</span>
+          <span class="cue" data-start="136.69" data-end="141.44">Isso é uma distância de dez quilômetros, mais ou menos </span>
+          <br><br>
+          <span class="cue" data-start="141.45" data-end="145.59">E o outro avião não teve a mesma sorte</span>
+          <span class="cue" data-start="145.60" data-end="149.81">e voou até este ponto aqui, onde eu estou agora</span>
+          <span class="cue" data-start="149.82" data-end="153.45">e caiu nesta praça.</span>
+          <span class="cue" data-start="153.46" data-end="155.83">Nesta pequena praça.</span>
+          <br><br>
+          <span class="cue" data-start="155.84" data-end="160.18">Essa pequena praça é conhecida até hoje como Pracinha do Avião.</span>
+
+          <span class="cue" data-start="160.19" data-end="163.14">Por causa desse acidente aéreo</span>
+          <br><br>
+          <span class="cue" data-start="163.15" data-end="168.48">Aqui, no piso da praça</span>
+          <span class="cue" data-start="168.49" data-end="170.25">há um desenho</span>
+          <span class="cue" data-start="170.26" data-end="174.54">de um avião com a asa partida. A asa quebrada.</span>
+          <span class="cue" data-start="174.55" data-end="208.40">Lembrando esse acidente aéreo.</span>
+          
+        </div>
+      </article>
+
+      <article class="col">
+        <h2>English</h2>
+        <!-- (botão movido para o rodapé) -->
+        <div id="statusEN" class="hint" aria-live="polite"></div>
+
+        <div class="text">
+          Good afternoon, my friend! The Brazilian Air Force has a group of pilots
+           whose goal is to perform aerial displays.
+          <br><br>
+          This group is popularly known as the <b>Smoke Squadron</b>. 
+          It's a group of six or seven planes that perform acrobatics, 
+          streaking the sky with a trail of colored smoke.
+          <br><br>
+          Here in Brazil, this group was created in 1952 and still exists today.
+          <br><br>
+          In the early 1960s, these pilots performed a display here in Florianópolis over the North Bay.
+           The North Bay is this... this space here.
+          <br><br><br>
+          We have two bays here in Florianópolis. The North Bay... Here in this direction are...
+           are the bridges, and over there in the background is the South Bay.
+           <br><br> 
+           There are two parts: the southern part of the bay and here is the northern part.
+          <br><br>
+          And this group, the Smoke Squadron, in... In the sixties, they performed...
+           one of the performances they performed here... was in 1960 over this northern bay.
+          <br><br><br>
+          And when these planes were drawing a heart in the sky... two planes touched, their wings broke...
+          <br><br>
+
+          One of these planes managed to fly to the Air Force Base at this point. 
+          That's a distance of ten kilometers, more or less.
+          <br><br>
+          And the other plane wasn't so lucky and flew to this point here, 
+          where I am now, and crashed in this square.
+          In this small square.
+          <br><br><br>
+           This small square is known to this day as Airplane Square. Because of that plane crash.
+          <br><br><br>
+          Here, on the square's floor, there's a drawing
+
+          of a plane with a broken wing. A broken wing. A reminder of that plane crash.
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- RODAPÉ FIXO: botões de ÁUDIO -->
+  <footer class="audio-footer" aria-label="Controles de áudio">
+    <button id="btnPT" class="btn" type="button" aria-controls="audioPT">▶️ Ouvir em português</button>
+    <button id="btnEN" class="btn" type="button" aria-controls="audioEN">▶️ Ouvir em inglês</button>
+  </footer>
+
+  <script>
+    const audioEN = document.getElementById('audioEN');
+    const audioPT = document.getElementById('audioPT');
+    const btnEN = document.getElementById('btnEN');
+    const btnPT = document.getElementById('btnPT');
+    const statusEN = document.getElementById('statusEN');
+    const statusPT = document.getElementById('statusPT');
+
+    function pauseOther(current) {
+      if (current === audioEN && !audioPT.paused) audioPT.pause();
+      if (current === audioPT && !audioEN.paused) audioEN.pause();
+    }
+
+    function wire(audio, btn, status, labels) {
+      const { playLbl, pauseLbl, name } = labels;
+
+      btn.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play().catch(() => { });
+        } else {
+          audio.pause();
+        }
+      });
+
+      audio.addEventListener('play', () => {
+        pauseOther(audio);
+        btn.textContent = '⏸️ ' + pauseLbl;
+        if (status) status.textContent = 'Reproduzindo: ' + name;
+      });
+
+      audio.addEventListener('pause', () => {
+        btn.textContent = '▶️ ' + playLbl;
+        if (status) status.textContent = 'Pausado: ' + name;
+      });
+
+      audio.addEventListener('ended', () => {
+        btn.textContent = '▶️ ' + playLbl;
+        if (status) status.textContent = 'Concluído: ' + name;
+      });
+    }
+
+    wire(audioEN, btnEN, statusEN, {
+      playLbl: 'Ouvir em inglês',
+      pauseLbl: 'Pausar inglês',
+      name: 'audio_english.mp3'
+    });
+
+    wire(audioPT, btnPT, statusPT, {
+      playLbl: 'Ouvir em português',
+      pauseLbl: 'Pausar português',
+      name: 'audio_portugues.mp3'
+    });
+
+    // ==== Sincroniza frases com o áudio (clique pula para o trecho) ====
+    function wireSyncByDataAttrs(audioEl, container) {
+      const spans = Array.from(container.querySelectorAll('[data-start][data-end]'));
+      const toNum = v => parseFloat(String(v).replace(',', '.'));
+
+      function clampTime(t) {
+        const dur = Number.isFinite(audioEl.duration) ? audioEl.duration : null;
+        return dur ? Math.min(Math.max(t, 0), Math.max(dur - 0.05, 0)) : Math.max(t, 0);
+      }
+
+      // Espera metadados
+      function ensureMetadata(el) {
+        return new Promise(resolve => {
+          if (el.readyState >= 1) return resolve();
+          el.addEventListener('loadedmetadata', resolve, { once: true });
+        });
+      }
+
+      // Fallback: garante que a fonte vire um Blob (resolve problemas de seek quando o servidor não suporta ranges)
+      async function ensureBlobSrc(el) {
+        if (el.dataset.objectUrl) return;
+        const srcNode = el.querySelector('source');
+        const srcUrl = (srcNode && srcNode.src) || el.currentSrc || el.src;
+        if (!srcUrl) return;
+
+        try {
+          const resp = await fetch(srcUrl, { cache: 'force-cache' });
+          const blob = await resp.blob();
+          const objUrl = URL.createObjectURL(blob);
+          el.dataset.objectUrl = objUrl;
+
+          // Troca para o Blob e remove <source> para evitar re-seleção
+          el.src = objUrl;
+          Array.from(el.querySelectorAll('source')).forEach(n => n.remove());
+        } catch (e) {
+          console.warn('Blob fallback falhou:', e);
+        }
+
+        await ensureMetadata(el);
+      }
+
+      async function seekAndPlay(target) {
+        const t = clampTime(target);
+
+        await ensureBlobSrc(audioEl);
+        await ensureMetadata(audioEl);
+
+        if (!audioEl.paused) audioEl.pause();
+
+        audioEl.currentTime = t;
+        try { await audioEl.play(); } catch { /* ignore autoplay error */ }
+      }
+
+      spans.forEach(s => {
+        s.addEventListener('click', () => {
+          const start = toNum(s.dataset.start);
+          if (!Number.isNaN(start)) seekAndPlay(start);
+        });
+      });
+
+      let lastActive = null;
+      function updateActive() {
+        const t = audioEl.currentTime;
+        let active = null;
+        for (const s of spans) {
+          const a = toNum(s.dataset.start);
+          const b = toNum(s.dataset.end);
+          if (t >= a && t < b) { active = s; break; }
+        }
+        if (lastActive !== active) {
+          spans.forEach(s => s.classList.toggle('active', s === active));
+          if (active) active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          lastActive = active;
+        }
+      }
+
+      audioEl.addEventListener('timeupdate', updateActive);
+      audioEl.addEventListener('seeked', updateActive);
+      audioEl.addEventListener('play', updateActive);
+    }
+
+    (function () {
+      const ptText = document.getElementById('ptText');
+      if (audioPT && ptText) wireSyncByDataAttrs(audioPT, ptText);
+    })();
+  </script>
+</body>
+
+</html>
